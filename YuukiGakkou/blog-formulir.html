@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LPK Yukki Gakkou - Lembaga Pelatihan Bahasa Jepang</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-red: #dc143c;
+        --dark-red: #b01030;
+        --light-gray: #f8f9fa;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .navbar {
+        background: linear-gradient(135deg, #000 0%, #2c2c2c 100%);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        color: var(--primary-red) !important;
+        font-size: 1.5rem;
+      }
+
+      .nav-link {
+        color: #fff !important;
+        transition: color 0.3s;
+        margin: 0 10px;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-red) !important;
+      }
+
+      .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1528164344705-47542687000d?w=1200");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 150px 0 100px;
+        text-align: center;
+      }
+
+      .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-section p {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+      }
+
+      .btn-primary-custom {
+        background: var(--primary-red);
+        border: none;
+        padding: 12px 40px;
+        font-size: 1.1rem;
+        border-radius: 50px;
+        transition: all 0.3s;
+      }
+
+      .btn-primary-custom:hover {
+        background: var(--dark-red);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(220, 20, 60, 0.4);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        position: relative;
+        padding-bottom: 20px;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #000;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--primary-red);
+      }
+
+      .program-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        height: 100%;
+      }
+
+      .program-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .program-card .card-header {
+        background: var(--primary-red);
+        color: white;
+        padding: 20px;
+        font-size: 1.3rem;
+        font-weight: bold;
+      }
+
+      .program-card .card-body {
+        padding: 25px;
+      }
+
+      .program-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .program-card li {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .program-card li:last-child {
+        border-bottom: none;
+      }
+
+      .program-card li i {
+        color: var(--primary-red);
+        margin-right: 10px;
+      }
+
+      .testimonial-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .testimonial-card .quote-icon {
+        color: var(--primary-red);
+        font-size: 2rem;
+        margin-bottom: 15px;
+      }
+
+      .testimonial-card .profile {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .testimonial-card .profile img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 15px;
+        border: 3px solid var(--primary-red);
+      }
+
+      .testimonial-card .profile .name {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .testimonial-card .profile .company {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-item .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(220, 20, 60, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .gallery-item:hover .overlay {
+        opacity: 1;
+      }
+
+      .gallery-item .overlay i {
+        color: white;
+        font-size: 2rem;
+      }
+
+      .blog-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+        height: 100%;
+      }
+
+      .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .blog-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .blog-card .card-body {
+        padding: 20px;
+      }
+
+      .blog-card .blog-date {
+        color: var(--primary-red);
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+
+      .blog-card .blog-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #000;
+      }
+
+      .about-section {
+        background: var(--light-gray);
+      }
+
+      .about-section .about-content {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .about-section img {
+        width: 100%;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .stats-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary-red) 0%,
+          var(--dark-red) 100%
+        );
+        color: white;
+        padding: 60px 0;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-item i {
+        font-size: 3rem;
+        margin-bottom: 15px;
+      }
+
+      .stat-item h3 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .stat-item p {
+        font-size: 1.1rem;
+      }
+
+      .contact-section {
+        background: #000;
+        color: white;
+        padding: 60px 0;
+      }
+
+      .contact-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .contact-info i {
+        font-size: 1.5rem;
+        color: var(--primary-red);
+        margin-right: 15px;
+        width: 40px;
+      }
+
+      footer {
+        background: #000;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        border-top: 2px solid var(--primary-red);
+      }
+
+      @media (max-width: 768px) {
+        .hero-section h1 {
+          font-size: 2rem;
+        }
+
+        .hero-section p {
+          font-size: 1rem;
+        }
+
+        .about-section .about-content {
+          flex-direction: column;
+        }
+
+        .section-title h2 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#home">
+          <i class="fas fa-torii-gate"></i> Yukki Gakkou
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/blog.html">Blog</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container text-center">
+        <h1 class="display-5 fw-bold mb-4">Formulir Pendaftaran</h1>
+        <p class="lead mb-4">
+          Daftar sekarang untuk mulai perjalanan Anda belajar bahasa Jepang dan
+          bekerja di Jepang
+        </p>
+      </div>
+    </section>
+
+    <!-- Form Pendaftaran -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="card registration-card">
+              <div class="card-header bg-primary text-white py-3">
+                <h3 class="card-title mb-0">
+                  Formulir Pendaftaran LPK Yukki Gakkou
+                </h3>
+              </div>
+              <div class="card-body p-4 p-md-5">
+                <form id="registrationForm">
+                  <!-- Data Pribadi -->
+                  <h4 class="section-title mb-4">Data Pribadi</h4>
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                      <label for="namaLengkap" class="form-label required"
+                        >Nama Lengkap</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="namaLengkap"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="namaPanggilan" class="form-label"
+                        >Nama Panggilan</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="namaPanggilan"
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="tempatLahir" class="form-label required"
+                        >Tempat Lahir</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="tempatLahir"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="tanggalLahir" class="form-label required"
+                        >Tanggal Lahir</label
+                      >
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="tanggalLahir"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="jenisKelamin" class="form-label required"
+                        >Jenis Kelamin</label
+                      >
+                      <select class="form-select" id="jenisKelamin" required>
+                        <option value="" selected disabled>
+                          Pilih Jenis Kelamin
+                        </option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="kewarganegaraan" class="form-label required"
+                        >Kewarganegaraan</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="kewarganegaraan"
+                        value="Indonesia"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="agama" class="form-label required"
+                        >Agama</label
+                      >
+                      <select class="form-select" id="agama" required>
+                        <option value="" selected disabled>Pilih Agama</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Katolik">Katolik</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Buddha">Buddha</option>
+                        <option value="Konghucu">Konghucu</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="statusPerkawinan" class="form-label required"
+                        >Status Perkawinan</label
+                      >
+                      <select
+                        class="form-select"
+                        id="statusPerkawinan"
+                        required
+                      >
+                        <option value="" selected disabled>Pilih Status</option>
+                        <option value="Belum Menikah">Belum Menikah</option>
+                        <option value="Menikah">Menikah</option>
+                        <option value="Cerai">Cerai</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Kontak -->
+                  <h4 class="section-title mb-4">Kontak</h4>
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                      <label for="email" class="form-label required"
+                        >Email</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="telepon" class="form-label required"
+                        >Nomor Telepon/WhatsApp</label
+                      >
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="telepon"
+                        required
+                      />
+                    </div>
+                    <div class="col-12">
+                      <label for="alamat" class="form-label required"
+                        >Alamat Lengkap</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="alamat"
+                        rows="3"
+                        required
+                      ></textarea>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="kota" class="form-label required">Kota</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="kota"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="kodePos" class="form-label">Kode Pos</label>
+                      <input type="text" class="form-control" id="kodePos" />
+                    </div>
+                  </div>
+
+                  <!-- Pendidikan -->
+                  <h4 class="section-title mb-4">Pendidikan Terakhir</h4>
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                      <label for="pendidikan" class="form-label required"
+                        >Pendidikan Terakhir</label
+                      >
+                      <select class="form-select" id="pendidikan" required>
+                        <option value="" selected disabled>
+                          Pilih Pendidikan
+                        </option>
+                        <option value="SD">SD</option>
+                        <option value="SMP">SMP</option>
+                        <option value="SMA/SMK">SMA/SMK</option>
+                        <option value="D1/D2/D3">D1/D2/D3</option>
+                        <option value="S1">S1</option>
+                        <option value="S2">S2</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="jurusan" class="form-label">Jurusan</label>
+                      <input type="text" class="form-control" id="jurusan" />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="namaSekolah" class="form-label required"
+                        >Nama Sekolah/Universitas</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="namaSekolah"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="tahunLulus" class="form-label required"
+                        >Tahun Lulus</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="tahunLulus"
+                        min="1950"
+                        max="2030"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Program yang Dipilih -->
+                  <h4 class="section-title mb-4">Program yang Dipilih</h4>
+                  <div class="row g-3 mb-4">
+                    <div class="col-12">
+                      <label for="program" class="form-label required"
+                        >Pilih Program</label
+                      >
+                      <select class="form-select" id="program" required>
+                        <option value="" selected disabled>
+                          Pilih Program
+                        </option>
+                        <option value="Kursus Bahasa Jepang Intensif">
+                          Kursus Bahasa Jepang Intensif (6 bulan)
+                        </option>
+                        <option value="Program Ginou Ginjutsusha">
+                          Program Ginou Ginjutsusha (6-12 bulan)
+                        </option>
+                        <option value="Program Tokutei Ginou">
+                          Program Tokutei Ginou (sesuai bidang)
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <label for="motivasi" class="form-label required"
+                        >Motivasi Mengikuti Program</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="motivasi"
+                        rows="4"
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Pengalaman Kerja (Opsional) -->
+                  <h4 class="section-title mb-4">
+                    Pengalaman Kerja (Opsional)
+                  </h4>
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                      <label for="pengalamanKerja" class="form-label"
+                        >Apakah memiliki pengalaman kerja?</label
+                      >
+                      <select class="form-select" id="pengalamanKerja">
+                        <option value="" selected>Pilih</option>
+                        <option value="Ya">Ya</option>
+                        <option value="Tidak">Tidak</option>
+                      </select>
+                    </div>
+                    <div
+                      class="col-md-6"
+                      id="lamaPengalamanContainer"
+                      style="display: none"
+                    >
+                      <label for="lamaPengalaman" class="form-label"
+                        >Lama Pengalaman Kerja</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="lamaPengalaman"
+                        placeholder="Contoh: 2 tahun"
+                      />
+                    </div>
+                    <div
+                      class="col-12"
+                      id="detailPengalamanContainer"
+                      style="display: none"
+                    >
+                      <label for="detailPengalaman" class="form-label"
+                        >Detail Pengalaman Kerja</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="detailPengalaman"
+                        rows="3"
+                        placeholder="Jabatan, perusahaan, dan tanggung jawab"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Informasi Tambahan -->
+                  <h4 class="section-title mb-4">Informasi Tambahan</h4>
+                  <div class="row g-3 mb-4">
+                    <div class="col-12">
+                      <label for="infoTambahan" class="form-label"
+                        >Informasi Tambahan Lainnya</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="infoTambahan"
+                        rows="3"
+                        placeholder="Informasi lain yang ingin disampaikan"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Konfirmasi -->
+                  <div class="form-check mb-4">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="konfirmasi"
+                      required
+                    />
+                    <label class="form-check-label" for="konfirmasi">
+                      Saya menyatakan bahwa data yang saya isi adalah benar dan
+                      siap mengikuti proses seleksi di LPK Yukki Gakkou
+                    </label>
+                  </div>
+
+                  <!-- Tombol Submit -->
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button
+                      type="reset"
+                      class="btn btn-outline-secondary me-md-2"
+                    >
+                      Reset Form
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                      Kirim Pendaftaran
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <h4 class="mb-3">LPK Yukki Gakkou</h4>
+            <p>
+              Pusat Pendidikan Bahasa Jepang dan Penempatan Kerja ke Jepang yang
+              terpercaya sejak 2010.
+            </p>
+            <div class="d-flex mt-4">
+              <a href="#" class="text-white me-3"
+                ><i class="bi bi-facebook fs-5"></i
+              ></a>
+              <a href="#" class="text-white me-3"
+                ><i class="bi bi-instagram fs-5"></i
+              ></a>
+              <a href="#" class="text-white me-3"
+                ><i class="bi bi-youtube fs-5"></i
+              ></a>
+              <a href="#" class="text-white"
+                ><i class="bi bi-whatsapp fs-5"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+            <h5 class="mb-3">Menu</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#home" class="text-white text-decoration-none"
+                  >Beranda</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#about" class="text-white text-decoration-none"
+                  >Tentang Kami</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#program" class="text-white text-decoration-none"
+                  >Program</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#testimoni" class="text-white text-decoration-none"
+                  >Testimoni</a
+                >
+              </li>
+              <li class="mb-2">
+                <a href="#blog" class="text-white text-decoration-none">Blog</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="mb-3">Kontak Kami</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <i class="bi bi-geo-alt me-2"></i>
+                Jl. Pendidikan No. 123, Jakarta Selatan
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-telephone me-2"></i>
+                (021) 1234-5678
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-whatsapp me-2"></i>
+                +62 812-3456-7890
+              </li>
+              <li class="mb-2">
+                <i class="bi bi-envelope me-2"></i>
+                info@yukkigakkou.com
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3">
+            <h5 class="mb-3">Jam Operasional</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2">Senin - Jumat: 08.00 - 17.00</li>
+              <li class="mb-2">Sabtu: 08.00 - 15.00</li>
+              <li class="mb-2">Minggu & Hari Libur: Tutup</li>
+            </ul>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <div class="text-center">
+          <p class="mb-0">&copy; 2023 LPK Yukki Gakkou. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Toggle tampilan field pengalaman kerja
+      document
+        .getElementById("pengalamanKerja")
+        .addEventListener("change", function () {
+          const hasExperience = this.value === "Ya";
+          document.getElementById("lamaPengalamanContainer").style.display =
+            hasExperience ? "block" : "none";
+          document.getElementById("detailPengalamanContainer").style.display =
+            hasExperience ? "block" : "none";
+
+          if (!hasExperience) {
+            document.getElementById("lamaPengalaman").value = "";
+            document.getElementById("detailPengalaman").value = "";
+          }
+        });
+
+      // Fungsi untuk mengirim data ke WhatsApp
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Mengumpulkan data dari form
+          const formData = {
+            namaLengkap: document.getElementById("namaLengkap").value,
+            namaPanggilan: document.getElementById("namaPanggilan").value,
+            tempatLahir: document.getElementById("tempatLahir").value,
+            tanggalLahir: document.getElementById("tanggalLahir").value,
+            jenisKelamin: document.getElementById("jenisKelamin").value,
+            kewarganegaraan: document.getElementById("kewarganegaraan").value,
+            agama: document.getElementById("agama").value,
+            statusPerkawinan: document.getElementById("statusPerkawinan").value,
+            email: document.getElementById("email").value,
+            telepon: document.getElementById("telepon").value,
+            alamat: document.getElementById("alamat").value,
+            kota: document.getElementById("kota").value,
+            kodePos: document.getElementById("kodePos").value,
+            pendidikan: document.getElementById("pendidikan").value,
+            jurusan: document.getElementById("jurusan").value,
+            namaSekolah: document.getElementById("namaSekolah").value,
+            tahunLulus: document.getElementById("tahunLulus").value,
+            program: document.getElementById("program").value,
+            motivasi: document.getElementById("motivasi").value,
+            pengalamanKerja: document.getElementById("pengalamanKerja").value,
+            lamaPengalaman: document.getElementById("lamaPengalaman").value,
+            detailPengalaman: document.getElementById("detailPengalaman").value,
+            infoTambahan: document.getElementById("infoTambahan").value,
+          };
+
+          // Format pesan untuk WhatsApp
+          let message = `Halo, saya ingin mendaftar di LPK Yukki Gakkou.\n\n`;
+          message += `*DATA PENDAFTARAN*\n`;
+          message += `Nama Lengkap: ${formData.namaLengkap}\n`;
+          message += `Nama Panggilan: ${formData.namaPanggilan || "-"}\n`;
+          message += `Tempat, Tanggal Lahir: ${formData.tempatLahir}, ${formData.tanggalLahir}\n`;
+          message += `Jenis Kelamin: ${formData.jenisKelamin}\n`;
+          message += `Agama: ${formData.agama}\n`;
+          message += `Status Perkawinan: ${formData.statusPerkawinan}\n`;
+          message += `Email: ${formData.email}\n`;
+          message += `Telepon: ${formData.telepon}\n`;
+          message += `Alamat: ${formData.alamat}, ${formData.kota} ${
+            formData.kodePos || ""
+          }\n\n`;
+
+          message += `*PENDIDIKAN TERAKHIR*\n`;
+          message += `Pendidikan: ${formData.pendidikan}\n`;
+          message += `Jurusan: ${formData.jurusan || "-"}\n`;
+          message += `Nama Sekolah/Universitas: ${formData.namaSekolah}\n`;
+          message += `Tahun Lulus: ${formData.tahunLulus}\n\n`;
+
+          message += `*PROGRAM YANG DIPILIH*\n`;
+          message += `Program: ${formData.program}\n`;
+          message += `Motivasi: ${formData.motivasi}\n\n`;
+
+          if (formData.pengalamanKerja === "Ya") {
+            message += `*PENGALAMAN KERJA*\n`;
+            message += `Lama Pengalaman: ${formData.lamaPengalaman}\n`;
+            message += `Detail: ${formData.detailPengalaman}\n\n`;
+          }
+
+          if (formData.infoTambahan) {
+            message += `*INFORMASI TAMBAHAN*\n`;
+            message += `${formData.infoTambahan}\n\n`;
+          }
+
+          message += `Terima kasih.`;
+
+          // Encode pesan untuk URL
+          const encodedMessage = encodeURIComponent(message);
+
+          // Nomor WhatsApp tujuan (ganti dengan nomor LPK Yukki Gakkou)
+          const phoneNumber = "6281234567890"; // Format: kode negara + nomor (tanpa + dan spasi)
+
+          // Membuka WhatsApp dengan pesan yang sudah diformat
+          window.open(
+            `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
+            "_blank"
+          );
+
+          // Opsional: Tampilkan konfirmasi
+          alert(
+            "Formulir pendaftaran berhasil diisi! Anda akan diarahkan ke WhatsApp untuk mengirim data."
+          );
+        });
+    </script>
+  </body>
+</html>
