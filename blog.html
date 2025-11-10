@@ -1,482 +1,486 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="LPK Yuuki Gakkou - Belajar Bahasa Jepang & Bekerja di Jepang"
-    />
-    <title>LPK Yuuki Gakkou</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --primary-red: #dc143c;
-        --dark-red: #a40f2a;
-        --black: #000;
-        --white: #fff;
-        --light-gray: #f8f9fa;
-      }
 
-      body {
-        font-family: "Poppins", sans-serif;
-        background-color: var(--light-gray);
-        color: #333;
-        scroll-behavior: smooth;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LPK Yuuki Gakkou - Belajar Bahasa Jepang & Bekerja di Jepang" />
+  <title>LPK Yuuki Gakkou</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-red: #dc143c;
+      --dark-red: #a40f2a;
+      --black: #000;
+      --white: #fff;
+      --light-gray: #f8f9fa;
+    }
 
-      /* Navbar */
-      .navbar {
-        background: linear-gradient(90deg, var(--black), #1c1c1c);
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
-      }
-      .navbar-brand {
-        color: var(--primary-red) !important;
-        font-weight: bold;
-        font-size: 1.5rem;
-      }
-      .nav-link {
-        color: white !important;
-        font-weight: 500;
-      }
-      .nav-link:hover {
-        color: var(--primary-red) !important;
-      }
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: var(--light-gray);
+      color: #333;
+      scroll-behavior: smooth;
+    }
 
-      /* Hero Carousel */
-      .carousel-item {
-        height: 100vh;
-        min-height: 500px;
-        background-position: center;
-        background-size: cover;
-        position: relative;
-        color: white;
-      }
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, var(--black), #1c1c1c);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-brand {
+      color: var(--primary-red) !important;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-red) !important;
+    }
+
+    /* Hero Carousel */
+    .carousel-item {
+      height: 100vh;
+      min-height: 500px;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      color: white;
+    }
+
+    .carousel-caption {
+      bottom: 30%;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .carousel-caption h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .carousel-caption p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-primary {
+      background: var(--primary-red);
+      border: none;
+      border-radius: 30px;
+      padding: 12px 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--dark-red);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      font-weight: bold;
+      color: var(--black);
+      margin-top: 50px;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--primary-red);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Cards */
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-img-top {
+      height: 250px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      color: var(--primary-red);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* Gallery */
+    .gallery img {
+      width: 100%;
+      height: 230px;
+      border-radius: 10px;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Testimoni */
+    .testimoni {
+      background: white;
+      padding: 60px 15px;
+    }
+
+    .testi-box {
+      background: var(--light-gray);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .testi-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .testi-box img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid var(--primary-red);
+    }
+
+    .testi-box p {
+      font-style: italic;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .testi-box small {
+      color: var(--dark-red);
+      font-weight: 600;
+    }
+
+    /* Tentang Kami */
+    .about-content {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-container {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      height: 300px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--black);
+      color: white;
+      text-align: center;
+      padding: 30px 10px;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: var(--primary-red);
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    @media (max-width: 768px) {
       .carousel-caption {
-        bottom: 30%;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        bottom: 20%;
       }
+
       .carousel-caption h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
       }
+
       .carousel-caption p {
-        font-size: 1.2rem;
-        margin-bottom: 1.5rem;
-      }
-      .btn-primary {
-        background: var(--primary-red);
-        border: none;
-        border-radius: 30px;
-        padding: 12px 30px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-      }
-      .btn-primary:hover {
-        background: var(--dark-red);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-size: 1rem;
       }
 
-      /* Section Titles */
       .section-title {
-        text-align: center;
-        font-weight: bold;
-        color: var(--black);
-        margin-top: 50px;
-        margin-bottom: 40px;
-        font-size: 2rem;
-        position: relative;
+        font-size: 1.6rem;
       }
-      .section-title::after {
-        content: "";
-        display: block;
-        width: 80px;
-        height: 4px;
-        background: var(--primary-red);
-        margin: 15px auto 0;
-        border-radius: 2px;
-      }
+    }
+  </style>
+</head>
 
-      /* Cards */
-      .card {
-        border: none;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        height: 100%;
-      }
-      .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-      }
-      .card-img-top {
-        height: 250px;
-        object-fit: cover;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-      }
-      .card-body {
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .card-title {
-        color: var(--primary-red);
-        font-weight: 600;
-        margin-bottom: 1rem;
-      }
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        </i>Yuuki Gakkou
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbarNav" class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="#program" class="nav-link">Program</a></li>
+          <li class="nav-item"><a href="#visi" class="nav-link">Visi Misi</a></li>
+          <li class="nav-item"><a href="#testimoni" class="nav-link">Testimoni</a></li>
+          <li class="nav-item"><a href="#galeri" class="nav-link">Galeri</a></li>
+          <li class="nav-item"><a href="#tentang" class="nav-link">Tentang</a></li>
+          <li class="nav-item"><a href="/blog-formulir.html" class="nav-link"
+              style="background-color: red; border-radius: 5%;">Daftar Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-      /* Gallery */
-      .gallery img {
-        width: 100%;
-        height: 230px;
-        border-radius: 10px;
-        object-fit: cover;
-        transition: 0.3s;
-      }
-      .gallery img:hover {
-        transform: scale(1.05);
-      }
+  <!-- Hero Carousel -->
+  <section id="home" class="mt-5">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+      <div class="carousel-inner">
+        <div class="carousel-item"
+          style="background-image: url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1600&q=80');">
+          <div class="carousel-caption">
+            <h1>Persiapan Karier ke Jepang</h1>
+            <p>Latihan bahasa, budaya, dan etika kerja Jepang yang aplikatif.</p>
+            <a href="#visi" class="btn btn-primary">Lihat Visi Kami</a>
+          </div>
+        </div>
+        <div class="carousel-item active"
+          style="background-image: url('https://i.pinimg.com/736x/21/1b/58/211b586459bb84c77f089f410881bae6.jpg');">
+          <div class="carousel-caption">
+            <h1>Belajar Bahasa Jepang dengan Seru</h1>
+            <p>Kelas interaktif & suasana belajar menyenangkan bersama sensei profesional.</p>
+            <a href="#program" class="btn btn-primary">Pelajari Program</a>
+          </div>
+        </div>
+        <div class="carousel-item"
+          style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=80');">
+          <div class="carousel-caption">
+            <h1>Langkahmu Menuju Negeri Sakura</h1>
+            <p>Bersama Yuuki Gakkou, impianmu bekerja di Jepang menjadi nyata!</p>
+            <a href="#tentang" class="btn btn-primary">Tentang Kami</a>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </section>
 
-      /* Testimoni */
-      .testimoni {
-        background: white;
-        padding: 60px 15px;
-      }
-      .testi-box {
-        background: var(--light-gray);
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: all 0.3s ease;
-      }
-      .testi-box:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-      }
-      .testi-box img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 1rem;
-        border: 3px solid var(--primary-red);
-      }
-      .testi-box p {
-        font-style: italic;
-        margin-bottom: 1rem;
-        flex-grow: 1;
-      }
-      .testi-box small {
-        color: var(--dark-red);
-        font-weight: 600;
-      }
+  <!-- Program -->
+  <section id="program" class="container py-5">
+    <h2 class="section-title">Program Unggulan</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://i.pinimg.com/1200x/d0/ad/08/d0ad08feaa30e2ff44bb1a17343ea7a4.jpg" class="card-img-top"
+            alt="Program JLPT" />
+          <div class="card-body">
+            <h5 class="card-title">Paket Intensif JLPT N5</h5>
+            <p class="card-text">8 minggu — Fokus pada percakapan dasar & kelulusan JLPT N5.</p>
+            <a href="#" class="btn btn-outline-danger mt-auto">Selengkapnya</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://i.pinimg.com/1200x/de/9a/37/de9a37baf106406e761c44a6b946cb99.jpg" class="card-img-top"
+            alt="Program Kaigo" />
+          <div class="card-body">
+            <h5 class="card-title">Pelatihan Kerja Jepang</h5>
+            <p class="card-text">12 minggu — Keterampilan kerja & budaya Jepang bidang Kaigo & industri.</p>
+            <a href="#" class="btn btn-outline-danger mt-auto">Selengkapnya</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://i.pinimg.com/736x/fd/7c/c8/fd7cc87203ec45fa14ed38a65861b3a9.jpg" class="card-img-top"
+            alt="Program Interview" />
+          <div class="card-body">
+            <h5 class="card-title">Persiapan Interview & CV Jepang</h5>
+            <p class="card-text">4 minggu — Simulasi interview, etika kerja, & pembuatan CV Jepang.</p>
+            <a href="#" class="btn btn-outline-danger mt-auto">Selengkapnya</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      /* Tentang Kami */
-      .about-content {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
-      .map-container {
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        height: 300px;
-      }
-      .map-container iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-      }
-
-      /* Footer */
-      footer {
-        background: var(--black);
-        color: white;
-        text-align: center;
-        padding: 30px 10px;
-        margin-top: 50px;
-      }
-      footer a {
-        color: var(--primary-red);
-        text-decoration: none;
-        margin: 0 10px;
-        font-size: 1.2rem;
-        transition: color 0.3s ease;
-      }
-      footer a:hover {
-        color: white;
-      }
-
-      @media (max-width: 768px) {
-        .carousel-caption {
-          bottom: 20%;
-        }
-        .carousel-caption h1 {
-          font-size: 1.8rem;
-        }
-        .carousel-caption p {
-          font-size: 1rem;
-        }
-        .section-title {
-          font-size: 1.6rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          </i>Yuuki Gakkou
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbarNav" class="collapse navbar-collapse justify-content-end">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="#program" class="nav-link">Program</a></li>
-            <li class="nav-item"><a href="#visi" class="nav-link">Visi Misi</a></li>
-            <li class="nav-item"><a href="#testimoni" class="nav-link">Testimoni</a></li>
-            <li class="nav-item"><a href="#galeri" class="nav-link">Galeri</a></li>
-            <li class="nav-item"><a href="#tentang" class="nav-link">Tentang</a></li>
+  <!-- Visi Misi -->
+  <section id="visi" class="container py-5">
+    <h2 class="section-title">Visi & Misi</h2>
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <div class="p-4 bg-white rounded shadow-sm h-100">
+          <h5 class="fw-bold text-danger mb-3"><i class="fas fa-bullseye me-2"></i>Visi</h5>
+          <p class="mb-0">Menjadi lembaga pelatihan terbaik yang mencetak generasi Indonesia siap kerja dan berkarier di
+            Jepang.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-4 bg-white rounded shadow-sm h-100">
+          <h5 class="fw-bold text-danger mb-3"><i class="fas fa-tasks me-2"></i>Misi</h5>
+          <ul class="mb-0 ps-3">
+            <li>Meningkatkan kemampuan bahasa & budaya Jepang siswa.</li>
+            <li>Menjalin kerja sama dengan perusahaan Jepang.</li>
+            <li>Mempersiapkan peserta dengan keterampilan profesional.</li>
+            <li>Memberikan pendampingan hingga proses penempatan kerja.</li>
           </ul>
         </div>
       </div>
-    </nav>
+    </div>
+  </section>
 
-    <!-- Hero Carousel -->
-    <section id="home" class="mt-5">
-      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-        <div class="carousel-inner">
-          <div
-            class="carousel-item"
-            style="background-image: url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1600&q=80');"
-          >
-            <div class="carousel-caption">
-              <h1>Persiapan Karier ke Jepang</h1>
-              <p>Latihan bahasa, budaya, dan etika kerja Jepang yang aplikatif.</p>
-              <a href="#visi" class="btn btn-primary">Lihat Visi Kami</a>
-            </div>
-          </div>
-          <div
-            class="carousel-item active"
-            style="background-image: url('https://i.pinimg.com/736x/21/1b/58/211b586459bb84c77f089f410881bae6.jpg');"
-          >
-            <div class="carousel-caption">
-              <h1>Belajar Bahasa Jepang dengan Seru</h1>
-              <p>Kelas interaktif & suasana belajar menyenangkan bersama sensei profesional.</p>
-              <a href="#program" class="btn btn-primary">Pelajari Program</a>
-            </div>
-          </div>
-          <div
-            class="carousel-item"
-            style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=80');"
-          >
-            <div class="carousel-caption">
-              <h1>Langkahmu Menuju Negeri Sakura</h1>
-              <p>Bersama Yuuki Gakkou, impianmu bekerja di Jepang menjadi nyata!</p>
-              <a href="#tentang" class="btn btn-primary">Tentang Kami</a>
-            </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#heroCarousel"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#heroCarousel"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon"></span>
-        </button>
-      </div>
-    </section>
-
-    <!-- Program -->
-    <section id="program" class="container py-5">
-      <h2 class="section-title">Program Unggulan</h2>
+  <!-- Testimoni -->
+  <section id="testimoni" class="testimoni">
+    <h2 class="section-title">Testimoni Alumni</h2>
+    <div class="container">
       <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card">
-            <img
-              src="https://i.pinimg.com/1200x/d0/ad/08/d0ad08feaa30e2ff44bb1a17343ea7a4.jpg"
-              class="card-img-top"
-              alt="Program JLPT"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Paket Intensif JLPT N5</h5>
-              <p class="card-text">8 minggu — Fokus pada percakapan dasar & kelulusan JLPT N5.</p>
-              <a href="#" class="btn btn-outline-danger mt-auto">Selengkapnya</a>
-            </div>
+        <div class="col-md-4 col-12">
+          <div class="testi-box">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Rina" />
+            <p>"Saya berhasil bekerja di Jepang berkat Yuuki Gakkou! Senseinya sangat sabar dan profesional."</p>
+            <small>- Rina, Tokyo</small>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img
-              src="https://i.pinimg.com/1200x/de/9a/37/de9a37baf106406e761c44a6b946cb99.jpg"
-              class="card-img-top"
-              alt="Program Kaigo"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Pelatihan Kerja Jepang</h5>
-              <p class="card-text">12 minggu — Keterampilan kerja & budaya Jepang bidang Kaigo & industri.</p>
-              <a href="#" class="btn btn-outline-danger mt-auto">Selengkapnya</a>
-            </div>
+        <div class="col-md-4 col-12">
+          <div class="testi-box">
+            <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Dimas" />
+            <p>"Materinya menarik dan langsung bisa dipraktikkan. Terima kasih Yuuki Gakkou!"</p>
+            <small>- Dimas, Osaka</small>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img
-              src="https://i.pinimg.com/736x/fd/7c/c8/fd7cc87203ec45fa14ed38a65861b3a9.jpg"
-              class="card-img-top"
-              alt="Program Interview"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Persiapan Interview & CV Jepang</h5>
-              <p class="card-text">4 minggu — Simulasi interview, etika kerja, & pembuatan CV Jepang.</p>
-              <a href="#" class="btn btn-outline-danger mt-auto">Selengkapnya</a>
-            </div>
+        <div class="col-md-4 col-12">
+          <div class="testi-box">
+            <img src="https://randomuser.me/api/portraits/women/29.jpg" alt="Sinta" />
+            <p>"Program persiapan kerja lengkap banget. Saya lulus interview di perusahaan Jepang!"</p>
+            <small>- Sinta, Nagoya</small>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Visi Misi -->
-    <section id="visi" class="container py-5">
-      <h2 class="section-title">Visi & Misi</h2>
+  <!-- Galeri -->
+  <section id="galeri" class="container py-5 gallery">
+    <h2 class="section-title">Galeri Kegiatan</h2>
+    <div class="row g-3">
+      <div class="col-6 col-md-4"><img
+          src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80"
+          alt="Kegiatan Belajar" /></div>
+      <div class="col-6 col-md-4"><img src="https://i.pinimg.com/736x/5c/b6/56/5cb6564e46ded3cdd634ae9575de0d4a.jpg"
+          alt="Kelas Bahasa Jepang" /></div>
+      <div class="col-6 col-md-4"><img
+          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+          alt="Simulasi Interview" /></div>
+      <div class="col-6 col-md-4"><img
+          src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
+          alt="Belajar Budaya Jepang" /></div>
+      <div class="col-6 col-md-4"><img src="https://i.pinimg.com/736x/31/3d/32/313d325f2b5b41af098e24919db8fd65.jpg"
+          alt="Kegiatan Kelompok" /></div>
+      <div class="col-6 col-md-4"><img
+          src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80"
+          alt="Wisuda" /></div>
+    </div>
+  </section>
+
+  <!-- Tentang Kami -->
+  <section id="tentang" class="container py-5">
+    <h2 class="section-title">Tentang Kami</h2>
+    <div class="about-content">
       <div class="row">
-        <div class="col-md-6 mb-4">
-          <div class="p-4 bg-white rounded shadow-sm h-100">
-            <h5 class="fw-bold text-danger mb-3"><i class="fas fa-bullseye me-2"></i>Visi</h5>
-            <p class="mb-0">Menjadi lembaga pelatihan terbaik yang mencetak generasi Indonesia siap kerja dan berkarier di Jepang.</p>
-          </div>
+        <div class="col-md-6">
+          <p class="mb-4">
+            LPK Yuuki Gakkou adalah lembaga pelatihan bahasa dan budaya Jepang yang berkomitmen mencetak generasi
+            Indonesia siap kerja di Jepang. Kami menyediakan pembelajaran terstruktur, pengajar berpengalaman, serta
+            dukungan penuh hingga proses keberangkatan ke Jepang.
+          </p>
+          <h5 class="fw-bold text-danger mb-3">Informasi Kontak</h5>
+          <p><i class="fas fa-map-marker-alt me-2 text-danger"></i> Jl. Pendidikan No. 123, Jakarta Selatan</p>
+          <p><i class="fas fa-phone me-2 text-danger"></i> (021) 1234-5678</p>
+          <p><i class="fas fa-envelope me-2 text-danger"></i> info@yukkigakkou.com</p>
         </div>
         <div class="col-md-6">
-          <div class="p-4 bg-white rounded shadow-sm h-100">
-            <h5 class="fw-bold text-danger mb-3"><i class="fas fa-tasks me-2"></i>Misi</h5>
-            <ul class="mb-0 ps-3">
-              <li>Meningkatkan kemampuan bahasa & budaya Jepang siswa.</li>
-              <li>Menjalin kerja sama dengan perusahaan Jepang.</li>
-              <li>Mempersiapkan peserta dengan keterampilan profesional.</li>
-              <li>Memberikan pendampingan hingga proses penempatan kerja.</li>
-            </ul>
+          <h5 class="fw-bold text-danger mb-3">Lokasi Kami</h5>
+          <div class="map-container">
+            <!-- Ganti src dengan embed URL Google Maps yang sesuai -->
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.81956117464648!3d-6.194741893788987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sJakarta%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1648031109984!5m2!1sid!2sid"
+              allowfullscreen="" loading="lazy">
+            </iframe>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Testimoni -->
-    <section id="testimoni" class="testimoni">
-      <h2 class="section-title">Testimoni Alumni</h2>
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-md-4 col-12">
-            <div class="testi-box">
-              <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Rina" />
-              <p>"Saya berhasil bekerja di Jepang berkat Yuuki Gakkou! Senseinya sangat sabar dan profesional."</p>
-              <small>- Rina, Tokyo</small>
-            </div>
-          </div>
-          <div class="col-md-4 col-12">
-            <div class="testi-box">
-              <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Dimas" />
-              <p>"Materinya menarik dan langsung bisa dipraktikkan. Terima kasih Yuuki Gakkou!"</p>
-              <small>- Dimas, Osaka</small>
-            </div>
-          </div>
-          <div class="col-md-4 col-12">
-            <div class="testi-box">
-              <img src="https://randomuser.me/api/portraits/women/29.jpg" alt="Sinta" />
-              <p>"Program persiapan kerja lengkap banget. Saya lulus interview di perusahaan Jepang!"</p>
-              <small>- Sinta, Nagoya</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <footer>
+    <p>© 2025 Yuuki Gakkou | Belajar & Bekerja di Jepang</p>
+    <div class="mt-3">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+    </div>
+  </footer>
 
-    <!-- Galeri -->
-    <section id="galeri" class="container py-5 gallery">
-      <h2 class="section-title">Galeri Kegiatan</h2>
-      <div class="row g-3">
-        <div class="col-6 col-md-4"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80" alt="Kegiatan Belajar" /></div>
-        <div class="col-6 col-md-4"><img src="https://i.pinimg.com/736x/5c/b6/56/5cb6564e46ded3cdd634ae9575de0d4a.jpg" alt="Kelas Bahasa Jepang" /></div>
-        <div class="col-6 col-md-4"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80" alt="Simulasi Interview" /></div>
-        <div class="col-6 col-md-4"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Belajar Budaya Jepang" /></div>
-        <div class="col-6 col-md-4"><img src="https://i.pinimg.com/736x/31/3d/32/313d325f2b5b41af098e24919db8fd65.jpg" alt="Kegiatan Kelompok" /></div>
-        <div class="col-6 col-md-4"><img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80" alt="Wisuda" /></div>
-      </div>
-    </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-    <!-- Tentang Kami -->
-    <section id="tentang" class="container py-5">
-      <h2 class="section-title">Tentang Kami</h2>
-      <div class="about-content">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="mb-4">
-              LPK Yuuki Gakkou adalah lembaga pelatihan bahasa dan budaya Jepang yang berkomitmen mencetak generasi Indonesia siap kerja di Jepang. Kami menyediakan pembelajaran terstruktur, pengajar berpengalaman, serta dukungan penuh hingga proses keberangkatan ke Jepang.
-            </p>
-            <h5 class="fw-bold text-danger mb-3">Informasi Kontak</h5>
-            <p><i class="fas fa-map-marker-alt me-2 text-danger"></i> Jl. Pendidikan No. 123, Jakarta Selatan</p>
-            <p><i class="fas fa-phone me-2 text-danger"></i> (021) 1234-5678</p>
-            <p><i class="fas fa-envelope me-2 text-danger"></i> info@yukkigakkou.com</p>
-          </div>
-          <div class="col-md-6">
-            <h5 class="fw-bold text-danger mb-3">Lokasi Kami</h5>
-            <div class="map-container">
-              <!-- Ganti src dengan embed URL Google Maps yang sesuai -->
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.81956117464648!3d-6.194741893788987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sJakarta%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1648031109984!5m2!1sid!2sid" 
-                allowfullscreen="" 
-                loading="lazy">
-              </iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <p>© 2025 Yuuki Gakkou | Belajar & Bekerja di Jepang</p>
-      <div class="mt-3">
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-tiktok"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-      </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
 </html>
