@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>BultangKis</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Nyabultangkis – Vote Lapangan</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --n: #00ff88;
@@ -25,25 +26,29 @@
         body {
             background: var(--bg);
             color: var(--text);
-            padding: 30px 20px
+            min-height: 100vh;
+            padding: 16px;
+            font-size: 14px
         }
 
         h1,
         h2 {
-            color: var(--n)
+            color: var(--n);
+            margin-bottom: 12px
         }
 
         button {
             cursor: pointer;
             border: none;
-            font-weight: 700
+            font-weight: 700;
+            border-radius: var(--r)
         }
 
         .btn {
+            width: 100%;
+            padding: 14px;
             background: var(--n);
             color: #000;
-            padding: 10px 18px;
-            border-radius: var(--r);
             transition: .3s
         }
 
@@ -56,24 +61,16 @@
             color: #888
         }
 
-        .card {
-            background: var(--card);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: var(--r);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, .4)
-        }
-
-        label {
-            display: block;
-            margin-top: 15px;
-            font-size: .9rem
+        .btn-second {
+            background: var(--a);
+            color: #fff;
+            margin-top: 8px
         }
 
         input,
         textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-top: 6px;
             border: none;
             border-radius: var(--r);
@@ -81,85 +78,113 @@
             color: var(--text)
         }
 
-        fieldset {
-            border: 1px solid #444;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: var(--r)
+        textarea {
+            resize: vertical;
+            min-height: 60px
         }
 
-        legend {
-            color: var(--a)
+        .card {
+            background: var(--card);
+            padding: 16px;
+            margin-bottom: 16px;
+            border-radius: var(--r);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .4)
         }
 
-        .poll-group {
+        .row {
             display: flex;
-            flex-wrap: wrap;
             gap: 10px;
-            margin-top: 10px
+            margin-bottom: 10px
         }
 
-        .poll-btn {
-            background: #222;
-            border: 2px solid var(--n);
-            color: var(--n);
-            padding: 8px 14px;
-            border-radius: var(--r)
-        }
-
-        .poll-btn:hover:not(:disabled) {
-            background: var(--n);
-            color: #000
+        .col {
+            flex: 1
         }
 
         .small {
             font-size: .8rem;
             opacity: .7
         }
+
+        .lapang-list,
+        .waktu-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px
+        }
+
+        .pill {
+            background: #222;
+            border: 2px solid var(--n);
+            color: var(--n);
+            padding: 8px 12px;
+            border-radius: var(--r);
+            font-size: 13px
+        }
+
+        .pill.sel {
+            background: var(--n);
+            color: #000
+        }
+
+        .import-btn {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: var(--a);
+            color: #fff;
+            padding: 8px 12px;
+            font-size: 12px;
+            border-radius: 20px
+        }
     </style>
 </head>
 
 <body>
-    <h1>🏸 ShuttleLite</h1>
-    <div id="loginPage">
-        <button class="btn" onclick="login()">Masuk Anonymous</button>
+    <h1>🏸 Nyabultangkis</h1>
+
+    <!-- LOGIN -->
+    <div id="loginPage" class="card">
+        <label>Username
+            <input id="username" type="text" placeholder="got">
+        </label>
+        <label>Password (3 angka berurutan)
+            <input id="password" type="password" placeholder="567">
+        </label>
+        <button class="btn" onclick="login()">Login</button>
     </div>
 
+    <!-- APP -->
     <div id="appPage" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
             <h2 id="pageTitle">Event</h2>
-            <button class="btn" onclick="logout()">Logout</button>
+            <button class="btn btn-second" onclick="logout()">Logout</button>
         </div>
 
-        <!-- FORM ADMIN -->
+        <!-- FORM BUAT EVENT (khusus got) -->
         <div id="adminForm" class="card" style="display:none">
-            <h3>Buat Event Baru</h3>
-            <label>Judul<input id="title" required></label>
-            <label>Deskripsi<textarea id="desc"></textarea></label>
-            <label>Batas (menit dari sekarang)<input type="number" id="menit" min="1" value="60"></label>
-            <fieldset>
-                <legend>Tempat (satu per baris)<textarea id="places" rows="2">Lapangan A
-Lapangan B</textarea></legend>
-            </fieldset>
-            <fieldset>
-                <legend>Tanggal (satu per baris, 2025-06-25)<textarea id="dates" rows="2">2025-06-25
-2025-06-27</textarea></legend>
-            </fieldset>
-            <fieldset>
-                <legend>Jam (satu per baris, 19:00)<textarea id="times" rows="2">19:00
-20:00</textarea></legend>
-            </fieldset>
+            <h3>Buat Event</h3>
+            <label>Nama Acara<input id="title" required></label>
+            <label>Tanggal<input type="date" id="tanggal" required></label>
+            <label>Lapang (satu per baris)<textarea id="places" rows="2">Lapangan A
+Lapangan B</textarea></label>
+            <label>Waktu (satu per baris, 19:00)<textarea id="times" rows="2">19:00
+20:00</textarea></label>
             <button class="btn" onclick="buatEvent()">Buat Event</button>
         </div>
 
         <!-- DAFTAR EVENT -->
-        <div id="eventList" class="card">Loading...</div>
+        <div id="eventList"></div>
     </div>
 
-    <!-- Firebase v9 modular CDN -->
+    <!-- TOMBOL IMPORT DATA (sekali saja) -->
+    <button class="import-btn" onclick="importData()">Import User</button>
+
+    <!-- FIREBASE -->
     <script type="module">
-        // ========== GANTI INI ==========
-    const firebaseConfig = {
+        // ========= GANTI INI DENGAN CONFIG MILIKMU =========
+   const firebaseConfig = {
   apiKey: "AIzaSyCJAJR8ODqVXRwUjsIgC1b_Yvdyw6eyJr8",
   authDomain: "bulutangkis-ca92b.firebaseapp.com",
   projectId: "bulutangkis-ca92b",
@@ -168,72 +193,97 @@ Lapangan B</textarea></legend>
   appId: "1:1008111745548:web:4a1f852caac9a2356a0c29",
   measurementId: "G-B1CK8E3FY0"
 };
-    // =================================
+    // ====================================================
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getAuth, signInAnonymously, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
     import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, where, doc, getDoc, setDoc, Timestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    window.login = () => signInAnonymously(auth);
+    // Email dummy generator
+    function toEmail(username) {
+      return `${username}@nyabultangkis.web.app`;
+    }
+
+    window.importData = async () => {
+      const list = [
+        { nama: 'goy',  username: 'goy',  pass: '123' },
+        { nama: 'gungun', username: 'gungun', pass: '456' },
+        { nama: 'adit', username: 'adit', pass: '789' },
+        { nama: 'rere', username: 'rere', pass: '012' },
+        { nama: 'mitha', username: 'mitha', pass: '345' },
+        { nama: 'putri', username: 'putri', pass: '678' },
+        { nama: 'yor', username: 'yor', pass: '901' },
+        { nama: 'uji', username: 'uji', pass: '234' },
+        { nama: 'got',  username: 'got',  pass: '567' },
+        { nama: 'amat', username: 'amat', pass: '890' }
+      ];
+      for (const u of list) {
+        try {
+          const email = toEmail(u.username);
+          const cred = await createUserWithEmailAndPassword(auth, email, u.pass);
+          await setDoc(doc(db, 'users', cred.user.uid), { nama: u.nama, username: u.username });
+          if (u.nama === 'got') await setDoc(doc(db, 'admins', cred.user.uid), {});
+        } catch (e) { console.log(e.message); }
+      }
+      alert('Import selesai! (lihat Firestore)');
+    };
+
+    window.login = async () => {
+      const username = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      if (!username || !pass) return alert('Lengkapi form');
+      try {
+        const email = toEmail(username);
+        await signInWithEmailAndPassword(auth, email, pass);
+      } catch (e) {
+        alert('Login gagal: ' + e.message);
+      }
+    };
     window.logout = () => signOut(auth);
 
-    let userId = null;
-    let isAdmin = false;
-
+    let userId = null; let isAdmin = false;
     onAuthStateChanged(auth, async u => {
-      if (!u) { // belum login
+      if (!u) {
         document.getElementById('loginPage').style.display = 'block';
         document.getElementById('appPage').style.display = 'none';
         return;
       }
       userId = u.uid;
-      // cek admin?
       const adm = await getDoc(doc(db, 'admins', userId));
       isAdmin = adm.exists;
       document.getElementById('loginPage').style.display = 'none';
       document.getElementById('appPage').style.display = 'block';
       document.getElementById('adminForm').style.display = isAdmin ? 'block' : 'none';
-      document.getElementById('pageTitle').textContent = isAdmin ? 'Admin – Event' : 'Event';
       loadEvents();
     });
 
-    async function buatEvent() {
+    window.buatEvent = async () => {
       const title = document.getElementById('title').value.trim();
-      const desc = document.getElementById('desc').value.trim();
-      const menit = parseInt(document.getElementById('menit').value);
-      const deadline = new Date(Date.now() + menit * 60000);
+      const tgl = document.getElementById('tanggal').value;
       const places = document.getElementById('places').value.split('\n').map(x => x.trim()).filter(x => x);
-      const dates = document.getElementById('dates').value.split('\n').map(x => x.trim()).filter(x => x);
       const times = document.getElementById('times').value.split('\n').map(x => x.trim()).filter(x => x);
-
-      if (!title || !places.length || !dates.length || !times.length) return alert('Lengkapi form');
-
-      // buat event
+      if (!title || !tgl || !places.length || !times.length) return alert('Lengkapi form');
+      const deadline = new Date(Date.now() + 60 * 60 * 1000); // 1 jam
       const evRef = await addDoc(collection(db, 'events'), {
-        title, description: desc,
+        title, tanggal: tgl,
         status: 'polling',
         deadline: Timestamp.fromDate(deadline),
         createdBy: userId,
         createdAt: serverTimestamp()
       });
-
-      // buat polls
       const pollCol = collection(db, 'events', evRef.id, 'polls');
       const batch = [];
       places.forEach(v => batch.push({ type: 'place', value: v, votes: 0 }));
-      dates.forEach(v => batch.push({ type: 'date', value: v, votes: 0 }));
       times.forEach(v => batch.push({ type: 'time', value: v, votes: 0 }));
       await Promise.all(batch.map(d => addDoc(pollCol, d)));
-
       alert('Event dibuat!');
       document.getElementById('title').value = '';
-      document.getElementById('desc').value = '';
-    }
-    window.buatEvent = buatEvent;
+      document.getElementById('tanggal').value = '';
+    };
 
     function loadEvents() {
       const q = query(collection(db, 'events'), where('status', '==', 'polling'));
@@ -249,28 +299,38 @@ Lapangan B</textarea></legend>
       const ev = docSnap.data();
       const card = document.createElement('div');
       card.className = 'card';
-      card.innerHTML = `<h3>${ev.title}</h3><p>${ev.description}</p><div class="small">Deadline: ${ev.deadline.toDate().toLocaleString()}</div>`;
+      card.innerHTML = `<h3>${ev.title}</h3><div class="small">Tanggal: ${ev.tanggal}</div><div class="small">Deadline: ${ev.deadline.toDate().toLocaleString()}</div>`;
+
+      const voteSnap = doc(db, 'events', docSnap.id, 'votes', userId);
+      const vs = await getDoc(voteSnap);
+      const sudah = vs.exists;
+      const pilihanku = vs.data() || {};
 
       const pollCol = collection(db, 'events', docSnap.id, 'polls');
       onSnapshot(pollCol, qs => {
-        const voteSnap = collection(db, 'events', docSnap.id, 'votes');
-        getDoc(doc(voteSnap, userId)).then(vSnap => {
-          const sudah = vSnap.exists;
-          const pollWrap = document.createElement('div');
-          pollWrap.className = 'poll-group';
-          qs.forEach(p => {
-            const b = document.createElement('button');
-            b.className = 'poll-btn';
-            b.textContent = `${p.data().type}: ${p.data().value} (${p.data().votes || 0})`;
-            b.disabled = sudah;
-            b.onclick = async () => {
-              await setDoc(doc(voteSnap, userId), { pollId: p.id, votedAt: serverTimestamp() });
+        const placeGroup = document.createElement('div');
+        placeGroup.innerHTML = '<div class="small">Pilih Lapang:</div>';
+        const timeGroup = document.createElement('div');
+        timeGroup.innerHTML = '<div class="small">Pilih Waktu:</div>';
+        qs.forEach(p => {
+          const data = p.data();
+          const isPil = (pilihanku.placeId === p.id) || (pilihanku.timeId === p.id);
+          const span = document.createElement('span');
+          span.className = 'pill ' + (isPil ? 'sel' : '');
+          span.textContent = `${data.value} (${data.votes || 0})`;
+          if (!sudah) {
+            span.style.cursor = 'pointer';
+            span.onclick = async () => {
+              if (data.type === 'place') await setDoc(voteSnap, { ...pilihanku, placeId: p.id }, { merge: true });
+              if (data.type === 'time') await setDoc(voteSnap, { ...pilihanku, timeId: p.id }, { merge: true });
             };
-            pollWrap.appendChild(b);
-          });
-          if (sudah) pollWrap.insertAdjacentHTML('beforeend', '<span class="small">Kamu sudah vote</span>');
-          card.appendChild(pollWrap);
+          }
+          if (data.type === 'place') placeGroup.appendChild(span);
+          if (data.type === 'time') timeGroup.appendChild(span);
         });
+        card.appendChild(placeGroup);
+        card.appendChild(timeGroup);
+        if (sudah) card.insertAdjacentHTML('beforeend', '<div class="small">Kamu sudah memilih ✔</div>');
       });
 
       document.getElementById('eventList').appendChild(card);
