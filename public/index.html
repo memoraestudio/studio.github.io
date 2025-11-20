@@ -210,17 +210,17 @@ Lapangan B</textarea></label>
 
     window.importData = async () => {
       const list = [
-        { nama: 'goy',  username: 'goy',  pass: '123' },
-        { nama: 'gungun', username: 'gungun', pass: '456' },
-        { nama: 'adit', username: 'adit', pass: '789' },
-        { nama: 'rere', username: 'rere', pass: '012' },
-        { nama: 'mitha', username: 'mitha', pass: '345' },
-        { nama: 'putri', username: 'putri', pass: '678' },
-        { nama: 'yor', username: 'yor', pass: '901' },
-        { nama: 'uji', username: 'uji', pass: '234' },
-        { nama: 'got',  username: 'got',  pass: '567' },
-        { nama: 'amat', username: 'amat', pass: '890' }
-      ];
+  { nama: 'goy',  username: 'goy',  pass: '123456' },
+  { nama: 'gungun', username: 'gungun', pass: '234567' },
+  { nama: 'adit', username: 'adit', pass: '345678' },
+  { nama: 'rere', username: 'rere', pass: '456789' },
+  { nama: 'mitha', username: 'mitha', pass: '567890' },
+  { nama: 'putri', username: 'putri', pass: '678901' },
+  { nama: 'yor', username: 'yor', pass: '789012' },
+  { nama: 'uji', username: 'uji', pass: '890123' },
+  { nama: 'got',  username: 'got',  pass: '901234' },
+  { nama: 'amat', username: 'amat', pass: '012345' }
+];
       for (const u of list) {
         try {
           const email = toEmail(u.username);
