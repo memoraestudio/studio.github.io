@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <title>BultangKis</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        :root {
+            --n: #00ff88;
+            --a: #ff6a00;
+            --bg: #111;
+            --card: #1a1a1a;
+            --text: #f2f2f2;
+            --r: 10px
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Poppins, system-ui
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            padding: 30px 20px
+        }
+
+        h1,
+        h2 {
+            color: var(--n)
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            font-weight: 700
+        }
+
+        .btn {
+            background: var(--n);
+            color: #000;
+            padding: 10px 18px;
+            border-radius: var(--r);
+            transition: .3s
+        }
+
+        .btn:hover {
+            background: #fff
+        }
+
+        .btn:disabled {
+            background: #555;
+            color: #888
+        }
+
+        .card {
+            background: var(--card);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: var(--r);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .4)
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: .9rem
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: none;
+            border-radius: var(--r);
+            background: #222;
+            color: var(--text)
+        }
+
+        fieldset {
+            border: 1px solid #444;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: var(--r)
+        }
+
+        legend {
+            color: var(--a)
+        }
+
+        .poll-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px
+        }
+
+        .poll-btn {
+            background: #222;
+            border: 2px solid var(--n);
+            color: var(--n);
+            padding: 8px 14px;
+            border-radius: var(--r)
+        }
+
+        .poll-btn:hover:not(:disabled) {
+            background: var(--n);
+            color: #000
+        }
+
+        .small {
+            font-size: .8rem;
+            opacity: .7
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🏸 ShuttleLite</h1>
+    <div id="loginPage">
+        <button class="btn" onclick="login()">Masuk Anonymous</button>
+    </div>
+
+    <div id="appPage" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+            <h2 id="pageTitle">Event</h2>
+            <button class="btn" onclick="logout()">Logout</button>
+        </div>
+
+        <!-- FORM ADMIN -->
+        <div id="adminForm" class="card" style="display:none">
+            <h3>Buat Event Baru</h3>
+            <label>Judul<input id="title" required></label>
+            <label>Deskripsi<textarea id="desc"></textarea></label>
+            <label>Batas (menit dari sekarang)<input type="number" id="menit" min="1" value="60"></label>
+            <fieldset>
+                <legend>Tempat (satu per baris)<textarea id="places" rows="2">Lapangan A
+Lapangan B</textarea></legend>
+            </fieldset>
+            <fieldset>
+                <legend>Tanggal (satu per baris, 2025-06-25)<textarea id="dates" rows="2">2025-06-25
+2025-06-27</textarea></legend>
+            </fieldset>
+            <fieldset>
+                <legend>Jam (satu per baris, 19:00)<textarea id="times" rows="2">19:00
+20:00</textarea></legend>
+            </fieldset>
+            <button class="btn" onclick="buatEvent()">Buat Event</button>
+        </div>
+
+        <!-- DAFTAR EVENT -->
+        <div id="eventList" class="card">Loading...</div>
+    </div>
+
+    <!-- Firebase v9 modular CDN -->
+    <script type="module">
+        // ========== GANTI INI ==========
+    const firebaseConfig = {
+  apiKey: "AIzaSyCJAJR8ODqVXRwUjsIgC1b_Yvdyw6eyJr8",
+  authDomain: "bulutangkis-ca92b.firebaseapp.com",
+  projectId: "bulutangkis-ca92b",
+  storageBucket: "bulutangkis-ca92b.firebasestorage.app",
+  messagingSenderId: "1008111745548",
+  appId: "1:1008111745548:web:4a1f852caac9a2356a0c29",
+  measurementId: "G-B1CK8E3FY0"
+};
+    // =================================
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, where, doc, getDoc, setDoc, Timestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.login = () => signInAnonymously(auth);
+    window.logout = () => signOut(auth);
+
+    let userId = null;
+    let isAdmin = false;
+
+    onAuthStateChanged(auth, async u => {
+      if (!u) { // belum login
+        document.getElementById('loginPage').style.display = 'block';
+        document.getElementById('appPage').style.display = 'none';
+        return;
+      }
+      userId = u.uid;
+      // cek admin?
+      const adm = await getDoc(doc(db, 'admins', userId));
+      isAdmin = adm.exists;
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('appPage').style.display = 'block';
+      document.getElementById('adminForm').style.display = isAdmin ? 'block' : 'none';
+      document.getElementById('pageTitle').textContent = isAdmin ? 'Admin – Event' : 'Event';
+      loadEvents();
+    });
+
+    async function buatEvent() {
+      const title = document.getElementById('title').value.trim();
+      const desc = document.getElementById('desc').value.trim();
+      const menit = parseInt(document.getElementById('menit').value);
+      const deadline = new Date(Date.now() + menit * 60000);
+      const places = document.getElementById('places').value.split('\n').map(x => x.trim()).filter(x => x);
+      const dates = document.getElementById('dates').value.split('\n').map(x => x.trim()).filter(x => x);
+      const times = document.getElementById('times').value.split('\n').map(x => x.trim()).filter(x => x);
+
+      if (!title || !places.length || !dates.length || !times.length) return alert('Lengkapi form');
+
+      // buat event
+      const evRef = await addDoc(collection(db, 'events'), {
+        title, description: desc,
+        status: 'polling',
+        deadline: Timestamp.fromDate(deadline),
+        createdBy: userId,
+        createdAt: serverTimestamp()
+      });
+
+      // buat polls
+      const pollCol = collection(db, 'events', evRef.id, 'polls');
+      const batch = [];
+      places.forEach(v => batch.push({ type: 'place', value: v, votes: 0 }));
+      dates.forEach(v => batch.push({ type: 'date', value: v, votes: 0 }));
+      times.forEach(v => batch.push({ type: 'time', value: v, votes: 0 }));
+      await Promise.all(batch.map(d => addDoc(pollCol, d)));
+
+      alert('Event dibuat!');
+      document.getElementById('title').value = '';
+      document.getElementById('desc').value = '';
+    }
+    window.buatEvent = buatEvent;
+
+    function loadEvents() {
+      const q = query(collection(db, 'events'), where('status', '==', 'polling'));
+      onSnapshot(q, snap => {
+        const box = document.getElementById('eventList');
+        box.innerHTML = '';
+        snap.forEach(d => renderEvent(d));
+        if (snap.empty) box.innerHTML = '<div class="small">Belum ada event.</div>';
+      });
+    }
+
+    async function renderEvent(docSnap) {
+      const ev = docSnap.data();
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `<h3>${ev.title}</h3><p>${ev.description}</p><div class="small">Deadline: ${ev.deadline.toDate().toLocaleString()}</div>`;
+
+      const pollCol = collection(db, 'events', docSnap.id, 'polls');
+      onSnapshot(pollCol, qs => {
+        const voteSnap = collection(db, 'events', docSnap.id, 'votes');
+        getDoc(doc(voteSnap, userId)).then(vSnap => {
+          const sudah = vSnap.exists;
+          const pollWrap = document.createElement('div');
+          pollWrap.className = 'poll-group';
+          qs.forEach(p => {
+            const b = document.createElement('button');
+            b.className = 'poll-btn';
+            b.textContent = `${p.data().type}: ${p.data().value} (${p.data().votes || 0})`;
+            b.disabled = sudah;
+            b.onclick = async () => {
+              await setDoc(doc(voteSnap, userId), { pollId: p.id, votedAt: serverTimestamp() });
+            };
+            pollWrap.appendChild(b);
+          });
+          if (sudah) pollWrap.insertAdjacentHTML('beforeend', '<span class="small">Kamu sudah vote</span>');
+          card.appendChild(pollWrap);
+        });
+      });
+
+      document.getElementById('eventList').appendChild(card);
+    }
+  </script>
+</body>
+
+</html>
