@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin – ShuttleStrike</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #111;
+            --card: #1a1a1a;
+            --neon: #00ff88;
+            --accent: #ff6a00;
+            --text: #f2f2f2;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif
+        }
+
+        body {
+            background: linear-gradient(135deg, #000 0%, #222 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 30px 20px
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--accent)
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .btn-primary {
+            background: var(--neon);
+            color: #000
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: #fff
+        }
+
+        form {
+            background: var(--card);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .4);
+            max-width: 600px;
+            margin: auto
+        }
+
+        label {
+            font-weight: 700;
+            margin-top: 15px;
+            display: block
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: none;
+            border-radius: var(--radius);
+            background: #222;
+            color: var(--text)
+        }
+
+        fieldset {
+            border: 1px solid #444;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: var(--radius)
+        }
+
+        legend {
+            padding: 0 8px;
+            color: var(--accent)
+        }
+
+        .my-event {
+            background: #222;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: var(--radius)
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🏸 Admin ShuttleStrike</h1>
+        <button class="btn btn-secondary" id="logout">Logout</button>
+    </header>
+
+    <form id="formEvent">
+        <label>Judul Event<input name="title" required></label>
+        <label>Deskripsi<textarea name="desc" rows="2"></textarea></label>
+        <label>Batas polling (menit dari sekarang)<input type="number" name="menit" min="1" value="60"></label>
+
+        <fieldset>
+            <legend>Opsi Tempat (satu per baris)</legend>
+            <textarea name="places" rows="3" required>Lapangan A
+Lapangan B</textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Opsi Tanggal (satu per baris, format: 2025-06-25)</legend>
+            <textarea name="dates" rows="3" required>2025-06-25
+2025-06-27</textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Opsi Jam (satu per baris, format: 19:00)</legend>
+            <textarea name="times" rows="3" required>19:00
+20:00</textarea>
+        </fieldset>
+
+        <button class="btn btn-primary" type="submit">Buat Event</button>
+    </form>
+
+    <h2 style="margin-top:40px">Event Saya</h2>
+    <div id="myEvents"></div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+
+</html>

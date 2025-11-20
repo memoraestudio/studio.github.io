@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Member – ShuttleStrike</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #111;
+            --card: #1a1a1a;
+            --neon: #00ff88;
+            --accent: #ff6a00;
+            --text: #f2f2f2;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif
+        }
+
+        body {
+            background: linear-gradient(135deg, #000 0%, #222 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 30px 20px
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--neon)
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+            color: #fff
+        }
+
+        .btn:disabled {
+            background: #444;
+            color: #888;
+            cursor: not-allowed
+        }
+
+        .event-card {
+            background: var(--card);
+            border-left: 5px solid var(--neon);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .4)
+        }
+
+        .event-card h3 {
+            color: var(--neon);
+            margin-bottom: 8px
+        }
+
+        .poll-group {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px
+        }
+
+        .poll-btn {
+            background: #222;
+            border: 2px solid var(--neon);
+            color: var(--neon);
+            padding: 8px 14px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: .3s
+        }
+
+        .poll-btn:hover:not(:disabled) {
+            background: var(--neon);
+            color: #000
+        }
+
+        .deadline {
+            font-size: .85rem;
+            opacity: .7;
+            margin-top: 10px
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🏸 Event Bulutangkis</h1>
+        <button class="btn btn-secondary" id="logout">Logout</button>
+    </header>
+
+    <main id="eventList"></main>
+
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
