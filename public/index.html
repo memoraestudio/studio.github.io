@@ -20,7 +20,7 @@
             /* primary text on light backgrounds (dark) */
             --on-dark: #ffffff;
             /* text color for dark surfaces */
-            --r: 12px;
+            --r: 5px;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
@@ -68,8 +68,8 @@
 
         .btn {
             padding: 14px;
-            background: #ffffff;
-            color: #000;
+            background: #fdb32e;
+            color: #3b6070;
             font-size: 16px;
             margin-top: 8px;
         }
@@ -114,16 +114,16 @@
             margin-top: 8px;
             border: none;
             border-radius: var(--r);
-            background: #222;
-            color: var(--on-dark);
+            background: #bcd2fa;
+            color: #293765;
             font-size: 15px;
             transition: all 0.3s;
         }
 
         input:focus,
         textarea:focus {
-            outline: 2px solid var(--on-dark);
-            background: #252525;
+            outline: 2px solid #fdb32e;
+            /* background: #252525; */
         }
 
         textarea {
@@ -189,7 +189,7 @@
         }
 
         .tag {
-            background: #222;
+            background: #37a772;
             border: 1px solid var(--on-dark);
             color: var(--on-dark);
             padding: 6px 10px;
@@ -224,6 +224,8 @@
             width: auto;
             padding: 0 16px;
             font-size: 14px;
+            height: 48px;
+            margin-top: 8px;
         }
 
         .import-btn {
@@ -246,7 +248,7 @@
             font-size: 13px;
             margin-top: 6px;
             padding: 8px;
-            background: rgba(255, 68, 68, 0.1);
+            /* background: rgba(255, 68, 68, 0.1); */
             border-radius: 6px;
         }
 
@@ -288,26 +290,24 @@
             display: flex;
             align-items: center;
             padding: 12px;
-            background: #4c647d;
+            background: #bcd2fa;
             border-radius: var(--r);
             border: 2px solid transparent;
             transition: all 0.3s;
             cursor: pointer;
-            color: var(--on-dark);
-            /* readable on dark option background */
+            color: #4c647d;
         }
 
         .radio-option:hover {
             /* background: #2a2a2a; */
-            opacity: 0.9;
+            opacity: 0.7;
             border-color: var(--on-dark);
         }
 
         .radio-option.selected {
-            background: rgb(151 165 223);
             border-color: var(--on-dark);
             color: var(--text);
-            /* selected becomes light background -> use dark text */
+            outline: 4px solid #ff6a00;
         }
 
         .radio-option:disabled {
@@ -372,8 +372,7 @@
 
         .place-image {
             width: 100%;
-            max-width: 200px;
-            height: 120px;
+            height: 150px;
             object-fit: cover;
             border-radius: var(--r);
             margin-top: 8px;
@@ -482,7 +481,7 @@
         }
 
         .modal-content {
-            background: var(--card);
+            background: rgb(122 162 216);
             padding: 24px;
             border-radius: var(--r);
             box-shadow: var(--shadow);
@@ -502,7 +501,7 @@
         .modal-close {
             background: none;
             border: none;
-            color: var(--text);
+            color: #ff0000;
             font-size: 24px;
             cursor: pointer;
             padding: 0;
@@ -529,6 +528,7 @@
 
         /* Login Page Styles */
         .login-container {
+            /* background-image: url(/public/bg.png); */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -537,12 +537,20 @@
         }
 
         .login-card {
-            background: var(--card);
-            padding: 30px;
+            background: rgb(122 162 216);
+            /* padding: 30px; */
             border-radius: var(--r);
             box-shadow: var(--shadow);
             width: 100%;
             max-width: 400px;
+        }
+
+        .login-card-header {
+            display: flex;
+            /* padding: 5px 15px; */
+            justify-content: flex-end;
+            align-items: center;
+            border-bottom: 2px solid #bcd2fa;
         }
 
         .login-title {
@@ -562,18 +570,18 @@
             padding: 14px;
             border: none;
             border-radius: var(--r);
-            background: #426b74;
-            color: var(--on-dark);
+            background: #bcd2fa;
+            color: #426b74;
             font-size: 16px;
         }
 
         .form-input:focus {
-            outline: 2px solid var(--on-dark);
-            background: #252525;
+            outline: 4px solid #fdb32e;
+            /* background: #252525; */
         }
 
         .place-details {
-            background: #222;
+            background: #37a772;
             padding: 12px;
             border-radius: var(--r);
             margin-top: 8px;
@@ -645,7 +653,7 @@
 
             .card {
                 padding: 14px;
-                background: rgb(242 242 242);
+                background: rgb(122 162 216);
                 color: black;
             }
 
@@ -674,7 +682,7 @@
                 padding: 18px;
             }
 
-            .login-card {
+            .login-card-body {
                 padding: 24px;
             }
 
@@ -696,18 +704,26 @@
     <!-- LOGIN PAGE -->
     <div id="loginPage" class="login-container">
         <div class="login-card">
-            <img src="logo.png" alt="Nyabultangkis" width="200">
-            <div class="login-form">
-                <input id="username" type="text" class="form-input" placeholder="Username" value="got">
-                <input id="password" type="password" class="form-input" placeholder="Password (6 angka)" value="901234">
-                <button class="btn" onclick="login()">Login</button>
-                <div id="loginMessage" class="error"></div>
+            <div class="login-card-header">
+                <div style="color: red;border-left: 2px solid #bcd2fa;padding: 10px 19px;">X</div>
+            </div>
+            <div class="login-card-body">
+                <div style="display: flex;align-items: center;justify-content: center;margin-bottom: 20px;">
+                    <img src="logo.png" alt="Nyabultangkis" width="200">
+                </div>
+                <div class="login-form">
+                    <input id="username" type="text" class="form-input" placeholder="Username" value="got">
+                    <input id="password" type="password" class="form-input" placeholder="Password (6 angka)"
+                        value="901234">
+                    <button class="btn" onclick="login()">Login</button>
+                    <div id="loginMessage" class="error"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- APP PAGE -->
-    <div id="appPage" style="display:none">
+    <div id="appPage">
         <div class="header">
             <div class="header-left">
                 <img src="logo.png" alt="Nyabultangkis" width="200">
@@ -738,7 +754,7 @@
     <div id="eventModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Buat Event Baru</h3>
+                <h3 style="margin: 0px;">Buat Event Baru</h3>
                 <button class="modal-close" onclick="closeEventModal()">&times;</button>
             </div>
 
@@ -808,7 +824,7 @@
 
     <!-- Audio Element -->
     <audio id="backgroundMusic" loop>
-        <source src="https://www.soundjay.com/misc/sounds/fail-buzzer-02.wav" type="audio/wav">
+        <source src="amv.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung elemen audio.
     </audio>
 
@@ -867,19 +883,19 @@
         function toggleMusic() {
             const music = document.getElementById('backgroundMusic');
             const controlBtn = document.getElementById('musicControl');
-            
-            if (isMusicPlaying) {
-                music.pause();
-                controlBtn.textContent = '🎵';
-            } else {
-                music.play().catch(e => {
-                    console.log('Autoplay blocked:', e);
+            if (!music) return;
+            if (music.paused) {
+                music.play().then(() => {
+                    if (controlBtn) controlBtn.textContent = '🔊';
+                }).catch(e => {
                     alert('Klik tombol musik untuk memutar lagu');
                 });
-                controlBtn.textContent = '🔊';
+            } else {
+                music.pause();
+                if (controlBtn) controlBtn.textContent = '🎵';
             }
-            isMusicPlaying = !isMusicPlaying;
         }
+        window.toggleMusic = toggleMusic;
 
         // ===== MODAL FUNCTIONS =====
         window.openEventModal = () => {
@@ -1351,9 +1367,9 @@
                     >
                     <span class="radio-custom"></span>
                     <span class="radio-label">
+                        ${additionalContent}
                         <span class="option-main">${displayValue}</span>
                         <span class="option-votes">${data.votes || 0} votes</span>
-                        ${additionalContent}
                     </span>
                 `;
                 
