@@ -8,13 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --n: #00ff88;
+            --n: #00796b;
+            /* accent (green) */
             --a: #ff6a00;
+            /* accent orange */
             --bg: #bcd2fa;
+            /* page background (light) */
             --card: rgb(242 242 242);
-            --text: #f2f2f2;
-            --r: 12px;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            /* card background (light) */
+            --text: #111827;
+            /* primary text on light backgrounds (dark) */
+            --on-dark: #ffffff;
+            /* text color for dark surfaces */
+            --r: 5px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -33,14 +40,14 @@
         }
 
         h1 {
-            color: var(--n);
+            color: var(--text);
             margin-bottom: 16px;
             font-size: 24px;
             text-align: center;
         }
 
         h2 {
-            color: var(--n);
+            color: var(--text);
             margin-bottom: 12px;
             font-size: 20px;
         }
@@ -61,8 +68,8 @@
 
         .btn {
             padding: 14px;
-            background: var(--n);
-            color: #000;
+            background: #fdb32e;
+            color: #3b6070;
             font-size: 16px;
             margin-top: 8px;
         }
@@ -107,16 +114,16 @@
             margin-top: 8px;
             border: none;
             border-radius: var(--r);
-            background: #222;
-            color: var(--text);
+            background: #bcd2fa;
+            color: #293765;
             font-size: 15px;
             transition: all 0.3s;
         }
 
         input:focus,
         textarea:focus {
-            outline: 2px solid var(--n);
-            background: #252525;
+            outline: 2px solid #fdb32e;
+            /* background: #252525; */
         }
 
         textarea {
@@ -130,18 +137,21 @@
             margin-bottom: 16px;
             border-radius: var(--r);
             box-shadow: var(--shadow);
+            color: var(--text);
+            /* ensure dark text on light cards */
         }
 
         .small {
             font-size: 13px;
-            opacity: 0.8;
+            opacity: 0.9;
             margin-bottom: 8px;
+            color: var(--text);
         }
 
         .pill {
             background: #4f74b6;
-            border: 2px solid var(--n);
-            color: #ffffff;
+            border: 2px solid var(--on-dark);
+            color: var(--on-dark);
             padding: 10px 14px;
             border-radius: var(--r);
             font-size: 14px;
@@ -158,7 +168,7 @@
         }
 
         .pill.sel {
-            background: var(--n);
+            background: #ffffff;
             color: #000;
             font-weight: 600;
         }
@@ -179,9 +189,9 @@
         }
 
         .tag {
-            background: #222;
-            border: 1px solid var(--n);
-            color: var(--n);
+            background: #37a772;
+            border: 1px solid var(--on-dark);
+            color: var(--on-dark);
             padding: 6px 10px;
             border-radius: 8px;
             font-size: 13px;
@@ -214,6 +224,8 @@
             width: auto;
             padding: 0 16px;
             font-size: 14px;
+            height: 48px;
+            margin-top: 8px;
         }
 
         .import-btn {
@@ -221,7 +233,7 @@
         }
 
         .voted-message {
-            color: var(--n);
+            color: var(--text);
             font-weight: bold;
             margin-top: 12px;
             text-align: center;
@@ -236,12 +248,12 @@
             font-size: 13px;
             margin-top: 6px;
             padding: 8px;
-            background: rgba(255, 68, 68, 0.1);
+            /* background: rgba(255, 68, 68, 0.1); */
             border-radius: 6px;
         }
 
         .success {
-            color: var(--n);
+            color: var(--text);
             font-size: 13px;
             margin-top: 6px;
             padding: 8px;
@@ -256,7 +268,7 @@
         .poll-title {
             font-weight: 600;
             margin-bottom: 8px;
-            color: var(--n);
+            color: var(--text);
             font-size: 15px;
         }
 
@@ -264,6 +276,118 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+        }
+
+        /* Radio Button Styles */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: #bcd2fa;
+            border-radius: var(--r);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+            color: #4c647d;
+        }
+
+        .radio-option:hover {
+            /* background: #2a2a2a; */
+            opacity: 0.7;
+            border-color: var(--on-dark);
+        }
+
+        .radio-option.selected {
+            border-color: var(--on-dark);
+            color: var(--text);
+            outline: 4px solid #ff6a00;
+        }
+
+        .radio-option:disabled {
+            background: #333341;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .radio-option:disabled:hover {
+            border-color: transparent;
+        }
+
+        .radio-input {
+            display: none;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--on-dark);
+            border-radius: 50%;
+            margin-right: 12px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .radio-custom::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--on-dark);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .radio-input:checked+.radio-custom::after {
+            opacity: 1;
+        }
+
+        .radio-label {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .option-main {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .option-votes {
+            font-size: 12px;
+            color: var(--on-dark);
+            opacity: 0.85;
+        }
+
+        .place-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: var(--r);
+            margin-top: 8px;
+        }
+
+        .place-link {
+            color: var(--on-dark);
+            text-decoration: none;
+            font-size: 12px;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .place-link:hover {
+            text-decoration: underline;
         }
 
         .header {
@@ -357,7 +481,7 @@
         }
 
         .modal-content {
-            background: var(--card);
+            background: rgb(122 162 216);
             padding: 24px;
             border-radius: var(--r);
             box-shadow: var(--shadow);
@@ -377,7 +501,7 @@
         .modal-close {
             background: none;
             border: none;
-            color: var(--text);
+            color: #ff0000;
             font-size: 24px;
             cursor: pointer;
             padding: 0;
@@ -404,6 +528,7 @@
 
         /* Login Page Styles */
         .login-container {
+            /* background-image: url(/public/bg.png); */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -412,18 +537,26 @@
         }
 
         .login-card {
-            background: var(--card);
-            padding: 30px;
+            background: rgb(122 162 216);
+            /* padding: 30px; */
             border-radius: var(--r);
             box-shadow: var(--shadow);
             width: 100%;
             max-width: 400px;
         }
 
+        .login-card-header {
+            display: flex;
+            /* padding: 5px 15px; */
+            justify-content: flex-end;
+            align-items: center;
+            border-bottom: 2px solid #bcd2fa;
+        }
+
         .login-title {
             text-align: center;
             margin-bottom: 24px;
-            color: var(--n);
+            color: var(--text);
         }
 
         .login-form {
@@ -437,18 +570,18 @@
             padding: 14px;
             border: none;
             border-radius: var(--r);
-            background: #426b74;
-            color: var(--text);
+            background: #bcd2fa;
+            color: #426b74;
             font-size: 16px;
         }
 
         .form-input:focus {
-            outline: 2px solid var(--n);
-            background: #252525;
+            outline: 4px solid #fdb32e;
+            /* background: #252525; */
         }
 
         .place-details {
-            background: #222;
+            background: #37a772;
             padding: 12px;
             border-radius: var(--r);
             margin-top: 8px;
@@ -463,7 +596,8 @@
             padding: 12px;
             background: #252525;
             border-radius: var(--r);
-            border: 1px solid var(--n);
+            border: 1px solid var(--on-dark);
+            color: var(--on-dark);
         }
 
         .place-preview img {
@@ -475,7 +609,7 @@
         }
 
         .place-link {
-            color: var(--n);
+            color: var(--on-dark);
             text-decoration: none;
             font-size: 13px;
             word-break: break-all;
@@ -493,7 +627,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--n);
+            background: #ffffff;
             color: #000;
             border: none;
             border-radius: 50%;
@@ -519,7 +653,7 @@
 
             .card {
                 padding: 14px;
-                background: rgb(242 242 242);
+                background: rgb(122 162 216);
                 color: black;
             }
 
@@ -548,7 +682,7 @@
                 padding: 18px;
             }
 
-            .login-card {
+            .login-card-body {
                 padding: 24px;
             }
 
@@ -570,18 +704,26 @@
     <!-- LOGIN PAGE -->
     <div id="loginPage" class="login-container">
         <div class="login-card">
-            <h1 class="login-title">🏸 Nyabultangkis</h1>
-            <div class="login-form">
-                <input id="username" type="text" class="form-input" placeholder="Username" value="got">
-                <input id="password" type="password" class="form-input" placeholder="Password (6 angka)" value="901234">
-                <button class="btn" onclick="login()">Login</button>
-                <div id="loginMessage" class="error"></div>
+            <div class="login-card-header">
+                <div style="color: red;border-left: 2px solid #bcd2fa;padding: 10px 19px;">X</div>
+            </div>
+            <div class="login-card-body">
+                <div style="display: flex;align-items: center;justify-content: center;margin-bottom: 20px;">
+                    <img src="logo.png" alt="Nyabultangkis" width="200">
+                </div>
+                <div class="login-form">
+                    <input id="username" type="text" class="form-input" placeholder="Username" value="got">
+                    <input id="password" type="password" class="form-input" placeholder="Password (6 angka)"
+                        value="901234">
+                    <button class="btn" onclick="login()">Login</button>
+                    <div id="loginMessage" class="error"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- APP PAGE -->
-    <div id="appPage" style="display:none">
+    <div id="appPage">
         <div class="header">
             <div class="header-left">
                 <img src="logo.png" alt="Nyabultangkis" width="200">
@@ -612,7 +754,7 @@
     <div id="eventModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Buat Event Baru</h3>
+                <h3 style="margin: 0px;">Buat Event Baru</h3>
                 <button class="modal-close" onclick="closeEventModal()">&times;</button>
             </div>
 
@@ -682,7 +824,7 @@
 
     <!-- Audio Element -->
     <audio id="backgroundMusic" loop>
-        <source src="https://www.soundjay.com/misc/sounds/fail-buzzer-02.wav" type="audio/wav">
+        <source src="amv.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung elemen audio.
     </audio>
 
@@ -716,6 +858,22 @@
         let currentUser = null;
         let isMusicPlaying = false;
 
+        // Fungsi untuk mendapatkan nama hari dalam bahasa Indonesia
+        function getHariIndonesia(dateString) {
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const date = new Date(dateString);
+            return days[date.getDay()];
+        }
+
+        // Fungsi untuk format tanggal dengan hari
+        function formatTanggalDenganHari(dateString) {
+            const date = new Date(dateString);
+            const hari = getHariIndonesia(dateString);
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            const tanggal = date.toLocaleDateString('id-ID', options);
+            return `${hari}, ${tanggal}`;
+        }
+
         // Email dummy generator
         function toEmail(username) {
             return `${username}@nyabultangkis.web.app`;
@@ -725,19 +883,19 @@
         function toggleMusic() {
             const music = document.getElementById('backgroundMusic');
             const controlBtn = document.getElementById('musicControl');
-            
-            if (isMusicPlaying) {
-                music.pause();
-                controlBtn.textContent = '🎵';
-            } else {
-                music.play().catch(e => {
-                    console.log('Autoplay blocked:', e);
+            if (!music) return;
+            if (music.paused) {
+                music.play().then(() => {
+                    if (controlBtn) controlBtn.textContent = '🔊';
+                }).catch(e => {
                     alert('Klik tombol musik untuk memutar lagu');
                 });
-                controlBtn.textContent = '🔊';
+            } else {
+                music.pause();
+                if (controlBtn) controlBtn.textContent = '🎵';
             }
-            isMusicPlaying = !isMusicPlaying;
         }
+        window.toggleMusic = toggleMusic;
 
         // ===== MODAL FUNCTIONS =====
         window.openEventModal = () => {
@@ -913,7 +1071,12 @@
         };
         function renderTanggal() {
             const box = document.getElementById('listTanggal');
-            box.innerHTML = daftarTanggal.map(t => `<span class="tag">${t}<span class="del" onclick="hapusTanggal('${t}')">×</span></span>`).join('');
+            box.innerHTML = daftarTanggal.map(t => `
+                <span class="tag">
+                    ${formatTanggalDenganHari(t)}
+                    <span class="del" onclick="hapusTanggal('${t}')">×</span>
+                </span>
+            `).join('');
         }
 
         // ===== LOGIN / LOGOUT =====
@@ -957,31 +1120,42 @@
 
         // ===== STATE USER =====
         onAuthStateChanged(auth, async u => {
-            if (!u) {
-                document.getElementById('loginPage').style.display = 'flex';
-                document.getElementById('appPage').style.display = 'none';
-                return;
+            try {
+                if (!u) {
+                    const loginPageEl = document.getElementById('loginPage');
+                    const appPageEl = document.getElementById('appPage');
+                    if (loginPageEl) loginPageEl.style.display = 'flex';
+                    if (appPageEl) appPageEl.style.display = 'none';
+                    return;
+                }
+
+                userId = u.uid;
+
+                // Cek apakah user adalah admin
+                const userDoc = await getDoc(doc(db, 'users', userId));
+                if (userDoc.exists()) {
+                    currentUser = userDoc.data();
+                    isAdmin = currentUser.username === 'got';
+
+                    // Tampilkan info user (jika elemen ada)
+                    const userInfoEl = document.getElementById('userInfo');
+                    if (userInfoEl) userInfoEl.textContent = `Halo, ${currentUser.nama}`;
+
+                    // Tampilkan tombol admin jika user adalah got (jika elemen ada)
+                    const importBtn = document.getElementById('importUserBtn');
+                    const tambahBtn = document.getElementById('tambahEventBtn');
+                    if (importBtn) importBtn.style.display = isAdmin ? 'block' : 'none';
+                    if (tambahBtn) tambahBtn.style.display = isAdmin ? 'block' : 'none';
+                }
+
+                const loginPageEl = document.getElementById('loginPage');
+                const appPageEl = document.getElementById('appPage');
+                if (loginPageEl) loginPageEl.style.display = 'none';
+                if (appPageEl) appPageEl.style.display = 'block';
+                loadEvents();
+            } catch (err) {
+                console.error('Error in onAuthStateChanged handler:', err);
             }
-            
-            userId = u.uid;
-            
-            // Cek apakah user adalah admin
-            const userDoc = await getDoc(doc(db, 'users', userId));
-            if (userDoc.exists()) {
-                currentUser = userDoc.data();
-                isAdmin = currentUser.username === 'got';
-                
-                // Tampilkan info user
-                document.getElementById('userInfo').textContent = `Halo, ${currentUser.nama}`;
-                
-                // Tampilkan tombol admin jika user adalah got
-                document.getElementById('importUserBtn').style.display = isAdmin ? 'block' : 'none';
-                document.getElementById('tambahEventBtn').style.display = isAdmin ? 'block' : 'none';
-            }
-            
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('appPage').style.display = 'block';
-            loadEvents();
         });
 
         // ===== BUAT EVENT =====
@@ -1015,7 +1189,12 @@
                 // 2. buat polls (date, place & time)
                 const pollCol = collection(db, 'events', evRef.id, 'polls');
                 const batch = [];
-                daftarTanggal.forEach(v => batch.push({ type: 'date', value: v, votes: 0 }));
+                daftarTanggal.forEach(v => batch.push({ 
+                    type: 'date', 
+                    value: v,
+                    displayValue: formatTanggalDenganHari(v),
+                    votes: 0 
+                }));
                 tempatData.forEach(v => batch.push({ 
                     type: 'place', 
                     value: v.nama,
@@ -1062,11 +1241,8 @@
             const now = new Date();
             const isExpired = deadlineDate < now;
             
-            // Format tempat untuk tampilan
-            const tempatNames = ev.tempat.map(t => typeof t === 'object' ? t.nama : t);
-            
             card.innerHTML = `
-                <h3 style="color:black">${ev.title}</h3>
+                <h3 style="color:black;">${ev.title}</h3>
                 <div class="event-info">
                     <div class="event-info-item">
                         <i>🕒</i><span>Deadline: ${deadlineDate.toLocaleString('id-ID')}</span>
@@ -1121,27 +1297,27 @@
                     if (data.type === 'time') times.push(data);
                 });
                 
-                // Render tanggal dengan sistem voting yang benar
+                // Render tanggal dengan radio button
                 if (dates.length > 0) {
-                    renderPollSection(card, 'date', dates, userVotes, isExpired, eventId, voteRef);
+                    renderRadioSection(card, 'date', dates, userVotes, isExpired, eventId, voteRef);
                 }
                 
-                // Render tempat dengan sistem voting yang benar
+                // Render tempat dengan radio button
                 if (places.length > 0) {
-                    renderPollSection(card, 'place', places, userVotes, isExpired, eventId, voteRef);
+                    renderRadioSection(card, 'place', places, userVotes, isExpired, eventId, voteRef);
                 }
                 
-                // Render waktu dengan sistem voting yang benar
+                // Render waktu dengan radio button
                 if (times.length > 0) {
-                    renderPollSection(card, 'time', times, userVotes, isExpired, eventId, voteRef);
+                    renderRadioSection(card, 'time', times, userVotes, isExpired, eventId, voteRef);
                 }
             });
 
             document.getElementById('eventList').appendChild(card);
         }
 
-        // Fungsi untuk render section polling dengan sistem voting yang benar
-        function renderPollSection(card, type, options, userVotes, isExpired, eventId, voteRef) {
+        // Fungsi untuk render section dengan radio button
+        function renderRadioSection(card, type, options, userVotes, isExpired, eventId, voteRef) {
             const section = document.createElement('div');
             section.className = 'poll-section';
             
@@ -1152,105 +1328,110 @@
                 case 'time': title = 'Pilih Waktu (Pilih 1):'; break;
             }
             
-            section.innerHTML = `<div class="poll-title">${title}</div><div class="poll-options"></div>`;
+            section.innerHTML = `<div class="poll-title">${title}</div><div class="radio-group" id="${type}Group"></div>`;
             
             const currentVoteId = userVotes[`${type}Id`];
+            const radioGroup = section.querySelector('.radio-group');
             
             options.forEach(data => {
                 const isSelected = currentVoteId === data.id;
-                const span = document.createElement('span');
-                span.className = `pill ${isSelected ? 'sel' : ''}`;
+                const radioId = `${type}_${data.id}`;
                 
-                // Untuk tempat, tampilkan informasi tambahan
+                const radioOption = document.createElement('label');
+                radioOption.className = `radio-option ${isSelected ? 'selected' : ''}`;
+                if (isExpired || currentVoteId) {
+                    radioOption.style.cursor = 'not-allowed';
+                }
+                
+                // Untuk tempat, tampilkan gambar dan link
+                let additionalContent = '';
                 if (type === 'place' && data.gambar) {
-                    span.innerHTML = `
-                        <div style="text-align: center;">
-                            <div style="font-weight: bold;">${data.value}</div>
-                            ${data.votes || 0} votes
-                        </div>
+                    additionalContent = `
+                        <img src="${data.gambar}" alt="${data.value}" class="place-image" onerror="this.style.display='none'">
+                        ${data.link ? `<a href="${data.link}" target="_blank" class="place-link">📍 Lihat Lokasi</a>` : ''}
                     `;
-                } else {
-                    span.textContent = `${data.value} (${data.votes || 0})`;
                 }
                 
-                // Jika sudah memilih di kategori ini atau voting expired, nonaktifkan
-                if (currentVoteId || isExpired) {
-                    span.style.cursor = 'not-allowed';
-                    if (!isSelected) {
-                        span.style.opacity = '0.5';
-                    }
-                } else {
-                    span.onclick = async () => {
-                        await voteForOption(eventId, type, data.id, voteRef, userVotes);
-                    };
-                }
+                const displayValue = data.displayValue ? data.displayValue : (type === 'date' ? formatTanggalDenganHari(data.value) : data.value);
                 
-                // Jika ini adalah opsi yang dipilih, tambahkan tombol unselect
-                if (isSelected && !isExpired) {
-                    const unselectBtn = document.createElement('button');
-                    unselectBtn.className = 'btn btn-small btn-second';
-                    unselectBtn.textContent = '×';
-                    unselectBtn.style.marginLeft = '8px';
-                    unselectBtn.style.padding = '2px 6px';
-                    unselectBtn.style.fontSize = '12px';
-                    unselectBtn.onclick = async (e) => {
-                        e.stopPropagation();
-                        await unvoteOption(eventId, type, data.id, voteRef, userVotes);
-                    };
-                    span.appendChild(unselectBtn);
-                }
+                radioOption.innerHTML = `
+                    <input 
+                        type="radio" 
+                        class="radio-input" 
+                        name="${type}" 
+                        value="${data.id}" 
+                        id="${radioId}"
+                        ${isSelected ? 'checked' : ''}
+                        ${isExpired || currentVoteId ? 'disabled' : ''}
+                        onchange="voteForOption('${eventId}', '${type}', '${data.id}', '${voteRef.id}')"
+                    >
+                    <span class="radio-custom"></span>
+                    <span class="radio-label">
+                        ${additionalContent}
+                        <span class="option-main">${displayValue}</span>
+                        <span class="option-votes">${data.votes || 0} votes</span>
+                    </span>
+                `;
                 
-                section.querySelector('.poll-options').appendChild(span);
+                radioGroup.appendChild(radioOption);
             });
             
             card.appendChild(section);
         }
 
         // Fungsi untuk memilih opsi voting
-        async function voteForOption(eventId, type, optionId, voteRef, currentVotes) {
+        window.voteForOption = async (eventId, type, optionId, voterId) => {
             try {
-                // Update vote user - hanya satu pilihan per kategori
-                const updateData = { ...currentVotes };
-                updateData[`${type}Id`] = optionId;
-                
-                await setDoc(voteRef, updateData, { merge: true });
-                
-                // Update vote count untuk opsi yang dipilih
+                if (!voterId) {
+                    alert('Anda harus login untuk memilih');
+                    return;
+                }
+
+                // Referensi doc vote user
+                const voteRef = doc(db, 'events', eventId, 'votes', voterId);
+                const voteDoc = await getDoc(voteRef);
+                const currentVotes = voteDoc.exists() ? voteDoc.data() : {};
+
+                const prevOptionId = currentVotes[`${type}Id`];
+
+                // Jika user memilih opsi yang sama, hentikan
+                if (prevOptionId === optionId) {
+                    console.log('Sudah memilih opsi ini sebelumnya');
+                    return;
+                }
+
+                // Disable inputs sementara untuk mencegah klik ganda cepat
+                const inputs = document.querySelectorAll(`input[name="${type}"]`);
+                inputs.forEach(i => i.disabled = true);
+
+                // Jika ada pilihan sebelumnya, kurangi count-nya
+                if (prevOptionId) {
+                    const prevRef = doc(db, 'events', eventId, 'polls', prevOptionId);
+                    await updateDoc(prevRef, { votes: increment(-1) });
+                }
+
+                // Simpan pilihan baru pada dokumen vote user
+                await setDoc(voteRef, { ...currentVotes, [`${type}Id`]: optionId }, { merge: true });
+
+                // Tambah count pada opsi yang dipilih
                 const optionRef = doc(db, 'events', eventId, 'polls', optionId);
-                await updateDoc(optionRef, {
-                    votes: increment(1)
-                });
-                
+                await updateDoc(optionRef, { votes: increment(1) });
+
                 console.log(`User memilih ${type}: ${optionId}`);
-                
+
+                // Re-enable inputs (snapshot onSnapshot akan merender ulang juga)
+                inputs.forEach(i => i.disabled = false);
+
             } catch (error) {
                 console.error('Error voting:', error);
                 alert('Gagal memilih: ' + error.message);
+                // Pastikan inputs di-enable kembali jika terjadi error
+                try {
+                    const inputs = document.querySelectorAll(`input[name="${type}"]`);
+                    inputs.forEach(i => i.disabled = false);
+                } catch (e) {}
             }
-        }
-
-        // Fungsi untuk membatalkan pilihan voting
-        async function unvoteOption(eventId, type, optionId, voteRef, currentVotes) {
-            try {
-                // Hapus pilihan user untuk kategori ini
-                const updateData = { ...currentVotes };
-                delete updateData[`${type}Id`];
-                
-                await setDoc(voteRef, updateData, { merge: true });
-                
-                // Kurangi vote count untuk opsi yang dibatalkan
-                const optionRef = doc(db, 'events', eventId, 'polls', optionId);
-                await updateDoc(optionRef, {
-                    votes: increment(-1)
-                });
-                
-                console.log(`User membatalkan pilihan ${type}: ${optionId}`);
-                
-            } catch (error) {
-                console.error('Error unvoting:', error);
-                alert('Gagal membatalkan pilihan: ' + error.message);
-            }
-        }
+        };
     </script>
 </body>
 

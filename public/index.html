@@ -1336,11 +1336,16 @@
             options.forEach(data => {
                 const isSelected = currentVoteId === data.id;
                 const radioId = `${type}_${data.id}`;
-                
+
                 const radioOption = document.createElement('label');
                 radioOption.className = `radio-option ${isSelected ? 'selected' : ''}`;
-                if (isExpired || currentVoteId) {
+                // If expired or user already has a different selection for this category,
+                // mark as not-allowed. Keep the currently selected option clickable so
+                // the user can cancel by clicking it again.
+                if (isExpired || (currentVoteId && !isSelected)) {
                     radioOption.style.cursor = 'not-allowed';
+                } else {
+                    radioOption.style.cursor = 'pointer';
                 }
                 
                 // Untuk tempat, tampilkan gambar dan link
@@ -1362,7 +1367,7 @@
                         value="${data.id}" 
                         id="${radioId}"
                         ${isSelected ? 'checked' : ''}
-                        ${isExpired || currentVoteId ? 'disabled' : ''}
+                        ${isExpired ? 'disabled' : (currentVoteId && !isSelected) ? 'disabled' : ''}
                         onchange="voteForOption('${eventId}', '${type}', '${data.id}', '${voteRef.id}')"
                     >
                     <span class="radio-custom"></span>
@@ -1394,9 +1399,22 @@
 
                 const prevOptionId = currentVotes[`${type}Id`];
 
-                // Jika user memilih opsi yang sama, hentikan
+                // Jika user memilih opsi yang sama, anggap sebagai pembatalan (unvote)
                 if (prevOptionId === optionId) {
-                    console.log('Sudah memilih opsi ini sebelumnya');
+                    // Disable inputs sementara untuk mencegah klik ganda saat memproses
+                    const inputs = document.querySelectorAll(`input[name="${type}"]`);
+                    inputs.forEach(i => i.disabled = true);
+
+                    // Kurangi count pada opsi yang dibatalkan
+                    const optionRef = doc(db, 'events', eventId, 'polls', optionId);
+                    await updateDoc(optionRef, { votes: increment(-1) });
+
+                    // Hapus/bersihkan pilihan pada dokumen vote user
+                    await setDoc(voteRef, { ...currentVotes, [`${type}Id`]: '' }, { merge: true });
+
+                    // Re-enable inputs; onSnapshot akan merender ulang juga
+                    inputs.forEach(i => i.disabled = false);
+                    console.log(`User membatalkan ${type}: ${optionId}`);
                     return;
                 }
 
