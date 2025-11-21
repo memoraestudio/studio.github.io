@@ -198,7 +198,7 @@ Lapangan B</textarea></label>
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
     import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, where, doc, getDoc, setDoc, Timestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
+    
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
@@ -209,18 +209,18 @@ Lapangan B</textarea></label>
     }
 
     window.importData = async () => {
-      const list = [
-  { nama: 'goy',  username: 'goy',  pass: '123456' },
-  { nama: 'gungun', username: 'gungun', pass: '234567' },
-  { nama: 'adit', username: 'adit', pass: '345678' },
-  { nama: 'rere', username: 'rere', pass: '456789' },
-  { nama: 'mitha', username: 'mitha', pass: '567890' },
-  { nama: 'putri', username: 'putri', pass: '678901' },
-  { nama: 'yor', username: 'yor', pass: '789012' },
-  { nama: 'uji', username: 'uji', pass: '890123' },
-  { nama: 'got',  username: 'got',  pass: '901234' },
-  { nama: 'amat', username: 'amat', pass: '012345' }
-];
+    const list = [
+        { nama: 'goy',  username: 'goy',  pass: '123456' },
+        { nama: 'gungun', username: 'gungun', pass: '234567' },
+        { nama: 'adit', username: 'adit', pass: '345678' },
+        { nama: 'rere', username: 'rere', pass: '456789' },
+        { nama: 'mitha', username: 'mitha', pass: '567890' },
+        { nama: 'putri', username: 'putri', pass: '678901' },
+        { nama: 'yor', username: 'yor', pass: '789012' },
+        { nama: 'uji', username: 'uji', pass: '890123' },
+        { nama: 'got',  username: 'got',  pass: '901234' },
+        { nama: 'amat', username: 'amat', pass: '012345' }
+    ];
       for (const u of list) {
         try {
           const email = toEmail(u.username);
