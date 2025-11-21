@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Nyabultangkis – Vote Lapangan</title>
+    <title>Tepok Dulu</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --n: #00ff88;
@@ -13,14 +13,15 @@
             --bg: #111;
             --card: #1a1a1a;
             --text: #f2f2f2;
-            --r: 10px
+            --r: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Poppins, system-ui
+            font-family: 'Poppins', system-ui, sans-serif;
         }
 
         body {
@@ -28,314 +29,966 @@
             color: var(--text);
             min-height: 100vh;
             padding: 16px;
-            font-size: 14px
+            font-size: 15px;
+            line-height: 1.5;
         }
 
-        h1,
+        h1 {
+            color: var(--n);
+            margin-bottom: 16px;
+            font-size: 24px;
+            text-align: center;
+        }
+
         h2 {
             color: var(--n);
-            margin-bottom: 12px
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        h3 {
+            color: var(--text);
+            margin-bottom: 12px;
+            font-size: 18px;
         }
 
         button {
             cursor: pointer;
             border: none;
-            font-weight: 700;
-            border-radius: var(--r)
+            font-weight: 600;
+            border-radius: var(--r);
+            transition: all 0.3s ease;
         }
 
         .btn {
-            width: 100%;
             padding: 14px;
             background: var(--n);
             color: #000;
-            transition: .3s
+            font-size: 16px;
+            margin-top: 8px;
         }
 
         .btn:hover {
-            background: #fff
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn:active {
+            transform: translateY(0);
         }
 
         .btn:disabled {
             background: #555;
-            color: #888
+            color: #888;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         .btn-second {
             background: var(--a);
             color: #fff;
-            margin-top: 8px
+        }
+
+        .btn-second:hover {
+            background: #ff8533;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+            margin: 0;
         }
 
         input,
         textarea {
             width: 100%;
             padding: 12px;
-            margin-top: 6px;
+            margin-top: 8px;
             border: none;
             border-radius: var(--r);
             background: #222;
-            color: var(--text)
+            color: var(--text);
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: 2px solid var(--n);
+            background: #252525;
         }
 
         textarea {
             resize: vertical;
-            min-height: 60px
+            min-height: 80px;
         }
 
         .card {
             background: var(--card);
-            padding: 16px;
+            padding: 18px;
             margin-bottom: 16px;
             border-radius: var(--r);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, .4)
-        }
-
-        .row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px
-        }
-
-        .col {
-            flex: 1
+            box-shadow: var(--shadow);
         }
 
         .small {
-            font-size: .8rem;
-            opacity: .7
-        }
-
-        .lapang-list,
-        .waktu-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 8px;
         }
 
         .pill {
             background: #222;
             border: 2px solid var(--n);
             color: var(--n);
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: var(--r);
-            font-size: 13px
+            font-size: 14px;
+            margin: 6px 6px 0 0;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .pill:hover {
+            background: #2a2a2a;
+            transform: translateY(-2px);
         }
 
         .pill.sel {
             background: var(--n);
-            color: #000
+            color: #000;
+            font-weight: 600;
+        }
+
+        .pill:disabled {
+            background: #333;
+            border-color: #555;
+            color: #777;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            background: #222;
+            border: 1px solid var(--n);
+            color: var(--n);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tag .del {
+            margin-left: 8px;
+            cursor: pointer;
+            color: var(--a);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .date-box,
+        .place-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .date-box input,
+        .place-box input {
+            flex: 1;
+        }
+
+        .date-box button,
+        .place-box button {
+            width: auto;
+            padding: 0 16px;
+            font-size: 14px;
         }
 
         .import-btn {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background: var(--a);
-            color: #fff;
+            margin-top: 12px;
+        }
+
+        .voted-message {
+            color: var(--n);
+            font-weight: bold;
+            margin-top: 12px;
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: var(--r);
+            border: 1px solid var(--n);
+        }
+
+        .error {
+            color: #ff4444;
+            font-size: 13px;
+            margin-top: 6px;
+            padding: 8px;
+            background: rgba(255, 68, 68, 0.1);
+            border-radius: 6px;
+        }
+
+        .success {
+            color: var(--n);
+            font-size: 13px;
+            margin-top: 6px;
+            padding: 8px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 6px;
+        }
+
+        .poll-section {
+            margin: 16px 0;
+        }
+
+        .poll-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--n);
+            font-size: 15px;
+        }
+
+        .poll-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .user-info {
+            font-size: 14px;
+            color: var(--n);
+            font-weight: 500;
+        }
+
+        .event-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .event-info-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+        }
+
+        .event-info-item i {
+            color: var(--n);
+            width: 16px;
+            text-align: center;
+        }
+
+        .no-events {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-style: italic;
+        }
+
+        .vote-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
             padding: 8px 12px;
-            font-size: 12px;
-            border-radius: 20px
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: var(--r);
+            font-size: 13px;
+        }
+
+        .vote-status.complete {
+            border-left: 4px solid var(--n);
+        }
+
+        .vote-status.partial {
+            border-left: 4px solid var(--a);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--card);
+            padding: 24px;
+            border-radius: var(--r);
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--a);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .card {
+                padding: 14px;
+            }
+
+            .pill {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .btn {
+                padding: 12px;
+                font-size: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .header-right {
+                justify-content: space-between;
+            }
+
+            .modal-content {
+                padding: 18px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>🏸 Nyabultangkis</h1>
+    <h1>TEPOK DULU</h1>
 
     <!-- LOGIN -->
     <div id="loginPage" class="card">
-        <label>Username
-            <input id="username" type="text" placeholder="got">
-        </label>
-        <label>Password (3 angka berurutan)
-            <input id="password" type="password" placeholder="567">
-        </label>
+        <h2>Login</h2>
+        <label>Username<input id="username" type="text" placeholder="got"></label>
+        <label>Password (6 angka)<input id="password" type="password" placeholder="901234"></label>
         <button class="btn" onclick="login()">Login</button>
+        <div id="loginMessage" class="error"></div>
     </div>
 
     <!-- APP -->
     <div id="appPage" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-            <h2 id="pageTitle">Event</h2>
-            <button class="btn btn-second" onclick="logout()">Logout</button>
-        </div>
-
-        <!-- FORM BUAT EVENT (khusus got) -->
-        <div id="adminForm" class="card" style="display:none">
-            <h3>Buat Event</h3>
-            <label>Nama Acara<input id="title" required></label>
-            <label>Tanggal<input type="date" id="tanggal" required></label>
-            <label>Lapang (satu per baris)<textarea id="places" rows="2">Lapangan A
-Lapangan B</textarea></label>
-            <label>Waktu (satu per baris, 19:00)<textarea id="times" rows="2">19:00
-20:00</textarea></label>
-            <button class="btn" onclick="buatEvent()">Buat Event</button>
+        <div class="header">
+            <div class="header-left" style="display: flex; justify-content: space-between;">
+                <h2 id="pageTitle">Event</h2>
+                <div class="user-info" id="userInfo"></div>
+            </div>
+            <div class="header-right">
+                <!-- Tombol untuk admin (got) -->
+                <div style="display: flex; gap: 7px;">
+                    <button id="importUserBtn" class="btn btn-second btn-small" style="display:none"
+                        onclick="openImportModal()">Import User</button>
+                    <button id="tambahEventBtn" class="btn btn-small" style="display:none" onclick="openEventModal()">+
+                        Event</button>
+                </div>
+                <button class="btn btn-second btn-small" onclick="logout()">Logout</button>
+            </div>
         </div>
 
         <!-- DAFTAR EVENT -->
         <div id="eventList"></div>
     </div>
 
-    <!-- TOMBOL IMPORT DATA (sekali saja) -->
-    <button class="import-btn" onclick="importData()">Import User</button>
+    <!-- MODAL BUAT EVENT -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Buat Event Baru</h3>
+                <button class="modal-close" onclick="closeEventModal()">&times;</button>
+            </div>
+
+            <div class="form-group">
+                <label>Nama Acara</label>
+                <input id="title" required placeholder="Contoh: Latihan Mingguan">
+            </div>
+
+            <div class="form-group">
+                <label>Tanggal</label>
+                <div class="date-box">
+                    <input type="date" id="inpTanggal">
+                    <button class="btn btn-small" type="button" onclick="tambahTanggal()">+</button>
+                </div>
+                <div id="listTanggal" class="tag-list"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Tempat</label>
+                <div class="place-box">
+                    <input type="text" id="inpTempat" placeholder="Contoh: Lapangan A">
+                    <button class="btn btn-small" type="button" onclick="tambahTempat()">+</button>
+                </div>
+                <div id="listTempat" class="tag-list"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Waktu (satu per baris, format 19:00)</label>
+                <textarea id="times" rows="3" placeholder="19:00&#10;20:00&#10;21:00">19:00
+20:00</textarea>
+            </div>
+
+            <button class="btn" onclick="buatEvent()">Buat Event</button>
+            <div id="eventMessage"></div>
+        </div>
+    </div>
+
+    <!-- MODAL IMPORT USER -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Import User</h3>
+                <button class="modal-close" onclick="closeImportModal()">&times;</button>
+            </div>
+
+            <div class="card">
+                <p class="small">Fitur ini untuk mengimport user awal ke sistem. Hanya perlu dilakukan sekali.</p>
+                <p class="small">Daftar user yang akan diimport:</p>
+                <ul class="small" style="margin-left: 20px; margin-top: 8px;">
+                    <li>goy (123456)</li>
+                    <li>gungun (234567)</li>
+                    <li>adit (345678)</li>
+                    <li>rere (456789)</li>
+                    <li>mitha (567890)</li>
+                    <li>putri (678901)</li>
+                    <li>yor (789012)</li>
+                    <li>uji (890123)</li>
+                    <li>got (901234)</li>
+                    <li>amat (012345)</li>
+                </ul>
+
+                <button class="btn btn-second" onclick="importData()">Import User</button>
+                <div id="importMessage"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- FIREBASE -->
     <script type="module">
         // ========= GANTI INI DENGAN CONFIG MILIKMU =========
-   const firebaseConfig = {
-  apiKey: "AIzaSyCJAJR8ODqVXRwUjsIgC1b_Yvdyw6eyJr8",
-  authDomain: "bulutangkis-ca92b.firebaseapp.com",
-  projectId: "bulutangkis-ca92b",
-  storageBucket: "bulutangkis-ca92b.firebasestorage.app",
-  messagingSenderId: "1008111745548",
-  appId: "1:1008111745548:web:4a1f852caac9a2356a0c29",
-  measurementId: "G-B1CK8E3FY0"
-};
-    // ====================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJAJR8ODqVXRwUjsIgC1b_Yvdyw6eyJr8",
+            authDomain: "bulutangkis-ca92b.firebaseapp.com",
+            projectId: "bulutangkis-ca92b",
+            storageBucket: "bulutangkis-ca92b.firebasestorage.app",
+            messagingSenderId: "1008111745548",
+            appId: "1:1008111745548:web:4a1f852caac9a2356a0c29",
+            measurementId: "G-B1CK8E3FY0"
+        };
+        // ====================================================
 
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-    import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, where, doc, getDoc, setDoc, Timestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, where, doc, getDoc, setDoc, Timestamp, updateDoc, increment } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-    // Email dummy generator
-    function toEmail(username) {
-      return `${username}@nyabultangkis.web.app`;
-    }
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-    window.importData = async () => {
-    const list = [
-        { nama: 'goy',  username: 'goy',  pass: '123456' },
-        { nama: 'gungun', username: 'gungun', pass: '234567' },
-        { nama: 'adit', username: 'adit', pass: '345678' },
-        { nama: 'rere', username: 'rere', pass: '456789' },
-        { nama: 'mitha', username: 'mitha', pass: '567890' },
-        { nama: 'putri', username: 'putri', pass: '678901' },
-        { nama: 'yor', username: 'yor', pass: '789012' },
-        { nama: 'uji', username: 'uji', pass: '890123' },
-        { nama: 'got',  username: 'got',  pass: '901234' },
-        { nama: 'amat', username: 'amat', pass: '012345' }
-    ];
-      for (const u of list) {
-        try {
-          const email = toEmail(u.username);
-          const cred = await createUserWithEmailAndPassword(auth, email, u.pass);
-          await setDoc(doc(db, 'users', cred.user.uid), { nama: u.nama, username: u.username });
-          if (u.nama === 'got') await setDoc(doc(db, 'admins', cred.user.uid), {});
-        } catch (e) { console.log(e.message); }
-      }
-      alert('Import selesai! (lihat Firestore)');
-    };
+        // Email dummy generator
+        function toEmail(username) {
+            return `${username}@nyabultangkis.web.app`;
+        }
 
-    window.login = async () => {
-      const username = document.getElementById('username').value.trim();
-      const pass = document.getElementById('password').value.trim();
-      if (!username || !pass) return alert('Lengkapi form');
-      try {
-        const email = toEmail(username);
-        await signInWithEmailAndPassword(auth, email, pass);
-      } catch (e) {
-        alert('Login gagal: ' + e.message);
-      }
-    };
-    window.logout = () => signOut(auth);
+        // ===== MODAL FUNCTIONS =====
+        window.openEventModal = () => {
+            document.getElementById('eventModal').style.display = 'flex';
+        };
 
-    let userId = null; let isAdmin = false;
-    onAuthStateChanged(auth, async u => {
-      if (!u) {
-        document.getElementById('loginPage').style.display = 'block';
-        document.getElementById('appPage').style.display = 'none';
-        return;
-      }
-      userId = u.uid;
-      const adm = await getDoc(doc(db, 'admins', userId));
-      isAdmin = adm.exists;
-      document.getElementById('loginPage').style.display = 'none';
-      document.getElementById('appPage').style.display = 'block';
-      document.getElementById('adminForm').style.display = isAdmin ? 'block' : 'none';
-      loadEvents();
-    });
+        window.closeEventModal = () => {
+            document.getElementById('eventModal').style.display = 'none';
+            // Reset form
+            document.getElementById('title').value = '';
+            document.getElementById('times').value = '19:00\n20:00';
+            daftarTanggal = []; 
+            daftarTempat = [];
+            renderTanggal(); 
+            renderTempat();
+            document.getElementById('eventMessage').textContent = '';
+        };
 
-    window.buatEvent = async () => {
-      const title = document.getElementById('title').value.trim();
-      const tgl = document.getElementById('tanggal').value;
-      const places = document.getElementById('places').value.split('\n').map(x => x.trim()).filter(x => x);
-      const times = document.getElementById('times').value.split('\n').map(x => x.trim()).filter(x => x);
-      if (!title || !tgl || !places.length || !times.length) return alert('Lengkapi form');
-      const deadline = new Date(Date.now() + 60 * 60 * 1000); // 1 jam
-      const evRef = await addDoc(collection(db, 'events'), {
-        title, tanggal: tgl,
-        status: 'polling',
-        deadline: Timestamp.fromDate(deadline),
-        createdBy: userId,
-        createdAt: serverTimestamp()
-      });
-      const pollCol = collection(db, 'events', evRef.id, 'polls');
-      const batch = [];
-      places.forEach(v => batch.push({ type: 'place', value: v, votes: 0 }));
-      times.forEach(v => batch.push({ type: 'time', value: v, votes: 0 }));
-      await Promise.all(batch.map(d => addDoc(pollCol, d)));
-      alert('Event dibuat!');
-      document.getElementById('title').value = '';
-      document.getElementById('tanggal').value = '';
-    };
+        window.openImportModal = () => {
+            document.getElementById('importModal').style.display = 'flex';
+        };
 
-    function loadEvents() {
-      const q = query(collection(db, 'events'), where('status', '==', 'polling'));
-      onSnapshot(q, snap => {
-        const box = document.getElementById('eventList');
-        box.innerHTML = '';
-        snap.forEach(d => renderEvent(d));
-        if (snap.empty) box.innerHTML = '<div class="small">Belum ada event.</div>';
-      });
-    }
+        window.closeImportModal = () => {
+            document.getElementById('importModal').style.display = 'none';
+            document.getElementById('importMessage').textContent = '';
+        };
 
-    async function renderEvent(docSnap) {
-      const ev = docSnap.data();
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `<h3>${ev.title}</h3><div class="small">Tanggal: ${ev.tanggal}</div><div class="small">Deadline: ${ev.deadline.toDate().toLocaleString()}</div>`;
+        // Close modal when clicking outside
+        window.onclick = (event) => {
+            const eventModal = document.getElementById('eventModal');
+            const importModal = document.getElementById('importModal');
+            
+            if (event.target === eventModal) {
+                closeEventModal();
+            }
+            if (event.target === importModal) {
+                closeImportModal();
+            }
+        };
 
-      const voteSnap = doc(db, 'events', docSnap.id, 'votes', userId);
-      const vs = await getDoc(voteSnap);
-      const sudah = vs.exists;
-      const pilihanku = vs.data() || {};
+        // ===== IMPORT USER =====
+        window.importData = async () => {
+            const list = [
+                { nama: 'goy',  username: 'goy',  pass: '123456' },
+                { nama: 'gungun', username: 'gungun', pass: '234567' },
+                { nama: 'adit', username: 'adit', pass: '345678' },
+                { nama: 'rere', username: 'rere', pass: '456789' },
+                { nama: 'mitha', username: 'mitha', pass: '567890' },
+                { nama: 'putri', username: 'putri', pass: '678901' },
+                { nama: 'yor', username: 'yor', pass: '789012' },
+                { nama: 'uji', username: 'uji', pass: '890123' },
+                { nama: 'got',  username: 'got',  pass: '901234' },
+                { nama: 'amat', username: 'amat', pass: '012345' }
+            ];
+            
+            const messageEl = document.getElementById('importMessage');
+            messageEl.textContent = 'Sedang mengimport user...';
+            messageEl.className = 'success';
+            
+            let importedCount = 0;
+            let errorCount = 0;
+            
+            for (const u of list) {
+                try {
+                    const email = toEmail(u.username);
+                    const cred = await createUserWithEmailAndPassword(auth, email, u.pass);
+                    await setDoc(doc(db, 'users', cred.user.uid), { nama: u.nama, username: u.username });
+                    if (u.username === 'got') await setDoc(doc(db, 'admins', cred.user.uid), {});
+                    importedCount++;
+                } catch (e) { 
+                    console.log(e.message);
+                    errorCount++;
+                }
+            }
+            
+            messageEl.textContent = `Import selesai! Berhasil: ${importedCount}, Gagal: ${errorCount}`;
+            messageEl.className = importedCount === list.length ? 'success' : 'error';
+        };
 
-      const pollCol = collection(db, 'events', docSnap.id, 'polls');
-      onSnapshot(pollCol, qs => {
-        const placeGroup = document.createElement('div');
-        placeGroup.innerHTML = '<div class="small">Pilih Lapang:</div>';
-        const timeGroup = document.createElement('div');
-        timeGroup.innerHTML = '<div class="small">Pilih Waktu:</div>';
-        qs.forEach(p => {
-          const data = p.data();
-          const isPil = (pilihanku.placeId === p.id) || (pilihanku.timeId === p.id);
-          const span = document.createElement('span');
-          span.className = 'pill ' + (isPil ? 'sel' : '');
-          span.textContent = `${data.value} (${data.votes || 0})`;
-          if (!sudah) {
-            span.style.cursor = 'pointer';
-            span.onclick = async () => {
-              if (data.type === 'place') await setDoc(voteSnap, { ...pilihanku, placeId: p.id }, { merge: true });
-              if (data.type === 'time') await setDoc(voteSnap, { ...pilihanku, timeId: p.id }, { merge: true });
-            };
-          }
-          if (data.type === 'place') placeGroup.appendChild(span);
-          if (data.type === 'time') timeGroup.appendChild(span);
+        // ===== TANGGAL & TEMPAT =====
+        let daftarTanggal = [];
+        let daftarTempat = [];
+
+        window.tambahTanggal = () => {
+            const inp = document.getElementById('inpTanggal');
+            const val = inp.value;
+            if (!val) return alert('Pilih tanggal dulu');
+            if (daftarTanggal.includes(val)) return alert('Tanggal sudah ada');
+            daftarTanggal.push(val);
+            inp.value = '';
+            renderTanggal();
+        };
+        window.hapusTanggal = (tgl) => {
+            daftarTanggal = daftarTanggal.filter(x => x !== tgl);
+            renderTanggal();
+        };
+        function renderTanggal() {
+            const box = document.getElementById('listTanggal');
+            box.innerHTML = daftarTanggal.map(t => `<span class="tag">${t}<span class="del" onclick="hapusTanggal('${t}')">×</span></span>`).join('');
+        }
+
+        window.tambahTempat = () => {
+            const inp = document.getElementById('inpTempat');
+            const val = inp.value.trim();
+            if (!val) return alert('Isi nama tempat');
+            if (daftarTempat.includes(val)) return alert('Tempat sudah ada');
+            daftarTempat.push(val);
+            inp.value = '';
+            renderTempat();
+        };
+        window.hapusTempat = (tmp) => {
+            daftarTempat = daftarTempat.filter(x => x !== tmp);
+            renderTempat();
+        };
+        function renderTempat() {
+            const box = document.getElementById('listTempat');
+            box.innerHTML = daftarTempat.map(t => `<span class="tag">${t}<span class="del" onclick="hapusTempat('${t}')">×</span></span>`).join('');
+        }
+
+        // ===== LOGIN / LOGOUT =====
+        window.login = async () => {
+            const username = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            const messageEl = document.getElementById('loginMessage');
+            
+            if (!username || !pass) {
+                messageEl.textContent = 'Lengkapi form';
+                messageEl.className = 'error';
+                return;
+            }
+            
+            try {
+                const email = toEmail(username);
+                await signInWithEmailAndPassword(auth, email, pass);
+                messageEl.textContent = '';
+            } catch (e) {
+                messageEl.textContent = 'Login gagal: ' + e.message;
+                messageEl.className = 'error';
+            }
+        };
+        window.logout = () => signOut(auth);
+
+        // ===== STATE USER =====
+        let userId = null; 
+        let isAdmin = false;
+        let currentUser = null;
+        
+        onAuthStateChanged(auth, async u => {
+            if (!u) {
+                document.getElementById('loginPage').style.display = 'block';
+                document.getElementById('appPage').style.display = 'none';
+                return;
+            }
+            
+            userId = u.uid;
+            
+            // Cek apakah user adalah admin
+            const userDoc = await getDoc(doc(db, 'users', userId));
+            if (userDoc.exists()) {
+                currentUser = userDoc.data();
+                isAdmin = currentUser.username === 'got';
+                
+                // Tampilkan info user
+                document.getElementById('userInfo').textContent = `Halo, ${currentUser.nama}`;
+                
+                // Tampilkan tombol admin jika user adalah got
+                document.getElementById('importUserBtn').style.display = isAdmin ? 'block' : 'none';
+                document.getElementById('tambahEventBtn').style.display = isAdmin ? 'block' : 'none';
+            }
+            
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('appPage').style.display = 'block';
+            loadEvents();
         });
-        card.appendChild(placeGroup);
-        card.appendChild(timeGroup);
-        if (sudah) card.insertAdjacentHTML('beforeend', '<div class="small">Kamu sudah memilih ✔</div>');
-      });
 
-      document.getElementById('eventList').appendChild(card);
-    }
-  </script>
+        // ===== BUAT EVENT =====
+        window.buatEvent = async () => {
+            const title = document.getElementById('title').value.trim();
+            const times = document.getElementById('times').value.split('\n').map(x => x.trim()).filter(x => x);
+            const messageEl = document.getElementById('eventMessage');
+            
+            if (!title || daftarTanggal.length === 0 || daftarTempat.length === 0 || times.length === 0) {
+                messageEl.textContent = 'Lengkapi semua data';
+                messageEl.className = 'error';
+                return;
+            }
+
+            try {
+                // 1. buat event
+                const evRef = await addDoc(collection(db, 'events'), {
+                    title,
+                    tanggal: daftarTanggal,
+                    tempat: daftarTempat,
+                    waktu: times,
+                    status: 'polling',
+                    deadline: Timestamp.fromDate(new Date(Date.now() + 12 * 60 * 60 * 1000)), 
+                    createdBy: userId,
+                    createdAt: serverTimestamp()
+                });
+
+                // 2. buat polls (date, place & time)
+                const pollCol = collection(db, 'events', evRef.id, 'polls');
+                const batch = [];
+                daftarTanggal.forEach(v => batch.push({ type: 'date', value: v, votes: 0 }));
+                daftarTempat.forEach(v => batch.push({ type: 'place', value: v, votes: 0 }));
+                times.forEach(v => batch.push({ type: 'time', value: v, votes: 0 }));
+                await Promise.all(batch.map(d => addDoc(pollCol, d)));
+
+                messageEl.textContent = 'Event berhasil dibuat!';
+                messageEl.className = 'success';
+                
+                // Tutup modal setelah 2 detik
+                setTimeout(() => {
+                    closeEventModal();
+                }, 2000);
+                
+            } catch (error) {
+                messageEl.textContent = 'Gagal membuat event: ' + error.message;
+                messageEl.className = 'error';
+            }
+        };
+
+        // ===== LOAD & RENDER EVENT =====
+        function loadEvents() {
+            const q = query(collection(db, 'events'), where('status', '==', 'polling'));
+            onSnapshot(q, snap => {
+                const box = document.getElementById('eventList');
+                box.innerHTML = '';
+                snap.forEach(d => renderEvent(d));
+                if (snap.empty) box.innerHTML = '<div class="no-events">Belum ada event yang aktif.</div>';
+            });
+        }
+
+        async function renderEvent(docSnap) {
+            const ev = docSnap.data();
+            const eventId = docSnap.id;
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            // Format tanggal untuk tampilan
+            const deadlineDate = ev.deadline.toDate();
+            const now = new Date();
+            const isExpired = deadlineDate < now;
+            
+            card.innerHTML = `
+                <h2>${ev.title}</h2>
+                <div class="event-info">
+                   
+                    <div class="event-info-item">
+                        <i>🕒</i> <span>Deadline: ${deadlineDate.toLocaleString('id-ID')}</span>
+                    </div>
+                </div>
+                ${isExpired ? '<div class="error">Voting sudah berakhir</div>' : ''}
+            `;
+
+            // Cek apakah user sudah vote
+            const voteRef = doc(db, 'events', eventId, 'votes', userId);
+            const voteDoc = await getDoc(voteRef);
+            const userVotes = voteDoc.exists() ? voteDoc.data() : {};
+            
+            // Hitung berapa banyak kategori yang sudah dipilih
+            const votedCategories = Object.keys(userVotes).filter(key => 
+                key.endsWith('Id') && userVotes[key]
+            ).length;
+            const totalCategories = 3; // date, place, time
+
+            // Tampilkan status voting
+            const voteStatus = document.createElement('div');
+            voteStatus.className = `vote-status ${votedCategories === totalCategories ? 'complete' : 'partial'}`;
+            
+            if (votedCategories === totalCategories) {
+                voteStatus.innerHTML = '✅ Anda sudah memilih semua kategori';
+            } else if (votedCategories > 0) {
+                voteStatus.innerHTML = `⚠️ Anda sudah memilih ${votedCategories} dari ${totalCategories} kategori`;
+            } else {
+                voteStatus.innerHTML = '📝 Pilih satu opsi untuk setiap kategori';
+            }
+            
+            card.appendChild(voteStatus);
+
+            // Load dan render polling options
+            const pollCol = collection(db, 'events', eventId, 'polls');
+            onSnapshot(pollCol, qs => {
+                // Hapus konten polling yang lama
+                const existingPollElements = card.querySelectorAll('.poll-section');
+                existingPollElements.forEach(el => el.remove());
+                
+                // Kelompokkan opsi berdasarkan tipe
+                const dates = [];
+                const places = [];
+                const times = [];
+                
+                qs.forEach(p => {
+                    const data = p.data();
+                    data.id = p.id;
+                    
+                    if (data.type === 'date') dates.push(data);
+                    if (data.type === 'place') places.push(data);
+                    if (data.type === 'time') times.push(data);
+                });
+                
+                // Render tanggal
+                if (dates.length > 0) {
+                    const dateSection = document.createElement('div');
+                    dateSection.className = 'poll-section';
+                    dateSection.innerHTML = '<div class="poll-title">Pilih Tanggal (Pilih 1):</div><div class="poll-options"></div>';
+                    
+                    dates.forEach(data => {
+                        const isSelected = userVotes.dateId === data.id;
+                        const span = document.createElement('span');
+                        span.className = `pill ${isSelected ? 'sel' : ''}`;
+                        span.textContent = `${data.value} (${data.votes || 0})`;
+                        
+                        // Nonaktifkan jika sudah memilih di kategori ini atau voting expired
+                        if (userVotes.dateId || isExpired) {
+                            span.style.cursor = 'not-allowed';
+                            if (!isSelected) {
+                                span.style.opacity = '0.5';
+                            }
+                        } else {
+                            span.onclick = async () => {
+                                await voteForOption(eventId, 'date', data.id, voteRef, userVotes);
+                            };
+                        }
+                        
+                        dateSection.querySelector('.poll-options').appendChild(span);
+                    });
+                    
+                    card.appendChild(dateSection);
+                }
+                
+                // Render tempat
+                if (places.length > 0) {
+                    const placeSection = document.createElement('div');
+                    placeSection.className = 'poll-section';
+                    placeSection.innerHTML = '<div class="poll-title">Pilih Tempat (Pilih 1):</div><div class="poll-options"></div>';
+                    
+                    places.forEach(data => {
+                        const isSelected = userVotes.placeId === data.id;
+                        const span = document.createElement('span');
+                        span.className = `pill ${isSelected ? 'sel' : ''}`;
+                        span.textContent = `${data.value} (${data.votes || 0})`;
+                        
+                        // Nonaktifkan jika sudah memilih di kategori ini atau voting expired
+                        if (userVotes.placeId || isExpired) {
+                            span.style.cursor = 'not-allowed';
+                            if (!isSelected) {
+                                span.style.opacity = '0.5';
+                            }
+                        } else {
+                            span.onclick = async () => {
+                                await voteForOption(eventId, 'place', data.id, voteRef, userVotes);
+                            };
+                        }
+                        
+                        placeSection.querySelector('.poll-options').appendChild(span);
+                    });
+                    
+                    card.appendChild(placeSection);
+                }
+                
+                // Render waktu
+                if (times.length > 0) {
+                    const timeSection = document.createElement('div');
+                    timeSection.className = 'poll-section';
+                    timeSection.innerHTML = '<div class="poll-title">Pilih Waktu (Pilih 1):</div><div class="poll-options"></div>';
+                    
+                    times.forEach(data => {
+                        const isSelected = userVotes.timeId === data.id;
+                        const span = document.createElement('span');
+                        span.className = `pill ${isSelected ? 'sel' : ''}`;
+                        span.textContent = `${data.value} (${data.votes || 0})`;
+                        
+                        // Nonaktifkan jika sudah memilih di kategori ini atau voting expired
+                        if (userVotes.timeId || isExpired) {
+                            span.style.cursor = 'not-allowed';
+                            if (!isSelected) {
+                                span.style.opacity = '0.5';
+                            }
+                        } else {
+                            span.onclick = async () => {
+                                await voteForOption(eventId, 'time', data.id, voteRef, userVotes);
+                            };
+                        }
+                        
+                        timeSection.querySelector('.poll-options').appendChild(span);
+                    });
+                    
+                    card.appendChild(timeSection);
+                }
+            });
+
+            document.getElementById('eventList').appendChild(card);
+        }
+
+        // Fungsi untuk memilih opsi voting
+        async function voteForOption(eventId, type, optionId, voteRef, currentVotes) {
+            try {
+                // Update vote user - hanya satu pilihan per kategori
+                const updateData = { ...currentVotes };
+                updateData[`${type}Id`] = optionId;
+                
+                await setDoc(voteRef, updateData, { merge: true });
+                
+                // Update vote count untuk opsi yang dipilih
+                const optionRef = doc(db, 'events', eventId, 'polls', optionId);
+                await updateDoc(optionRef, {
+                    votes: increment(1)
+                });
+                
+                console.log(`User memilih ${type}: ${optionId}`);
+                
+            } catch (error) {
+                console.error('Error voting:', error);
+                alert('Gagal memilih: ' + error.message);
+            }
+        }
+    </script>
 </body>
 
 </html>
