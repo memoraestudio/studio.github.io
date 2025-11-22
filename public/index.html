@@ -822,6 +822,43 @@
         </div>
     </div>
 
+    <!-- MODAL PROMO (ditampilkan setelah login) -->
+    <div id="promoModal" class="modal">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3>Halo</h3>
+                <button class="modal-close" onclick="closePromoModal()">&times;</button>
+            </div>
+
+            <!-- <div style="display:flex; flex-direction:column; gap:14px; margin-top:12px;">
+
+                <div class="card">
+                    <div>Main 1 x</div>
+                    <div style="color:#4c647d">Harga: Rp 15.000</div>
+                    <button class="btn btn-small" style="margin-top:10px;" onclick="claimPromo('1x')">
+                        Pilih Promo
+                    </button> 
+                </div>
+
+                <div class="card">
+                    <div>Main 4 kali</div>
+                    <div style="color:#4c647d">Harga: Rp 50.000</div>
+                    <button class="btn btn-small btn-second" style="margin-top:10px;" onclick="claimPromo('4x')">
+                        Pilih Promo
+                    </button> 
+                </div>
+
+            </div>
+
+            <div style="margin-top:18px;">
+                <button class="btn" onclick="closePromoModal()">Tutup</button>
+            </div> -->
+
+        </div>
+    </div>
+
+
     <!-- Audio Element -->
     <audio id="backgroundMusic" loop>
         <source src="amv.mp3" type="audio/mpeg">
@@ -923,10 +960,32 @@
             document.getElementById('importMessage').textContent = '';
         };
 
+        // Promo modal functions
+        window.showPromoModal = () => {
+            const el = document.getElementById('promoModal');
+            if (el) el.style.display = 'flex';
+        };
+
+        window.closePromoModal = () => {
+            const el = document.getElementById('promoModal');
+            if (el) el.style.display = 'none';
+        };
+
+        window.claimPromo = (code) => {
+            // Simple placeholder: show alert and close modal. Integrate with payment/claim flow as needed.
+            if (code === '1x') {
+                alert('Anda memilih promo: Main 1 x — Rp 15.000');
+            } else if (code === '4x') {
+                alert('Anda memilih promo: Main 4 kali — Rp 50.000');
+            }
+            closePromoModal();
+        };
+
         // Close modal when clicking outside
         window.onclick = (event) => {
             const eventModal = document.getElementById('eventModal');
             const importModal = document.getElementById('importModal');
+            const promoModal = document.getElementById('promoModal');
             
             if (event.target === eventModal) {
                 closeEventModal();
@@ -934,7 +993,25 @@
             if (event.target === importModal) {
                 closeImportModal();
             }
+            if (promoModal && event.target === promoModal) {
+                closePromoModal();
+            }
         };
+
+        // Helper untuk menangani error pada onSnapshot
+        function handleSnapshotError(err, context) {
+            console.error(`Firestore snapshot error (${context}):`, err);
+            // Jika permission denied, beri tahu user (jangan throw)
+            if (err && err.code === 'permission-denied') {
+                // Tampilkan pesan singkat di console dan (opsional) di UI
+                console.warn('Akses Firestore ditolak. Periksa aturan security rules atau autentikasi.');
+                // Jika ada area UI untuk menampilkan error (mis. eventList), tampilkan pesan
+                try {
+                    const box = document.getElementById('eventList');
+                    if (box) box.innerHTML = '<div class="error">Tidak dapat memuat event: akses ditolak.</div>';
+                } catch (e) {}
+            }
+        }
 
         // ===== TEMPAT FUNCTIONS =====
         let tempatCounter = 0;
@@ -1103,6 +1180,10 @@
                         console.log('Autoplay blocked, user harus mengklik tombol musik');
                     });
                 }, 1000);
+                // Tampilkan promo singkat setelah login
+                setTimeout(() => {
+                    try { showPromoModal(); } catch (e) { console.log('Promo modal error', e); }
+                }, 1200);
                 
             } catch (e) {
                 messageEl.textContent = 'Login gagal: ' + e.message;
@@ -1224,10 +1305,11 @@
             const q = query(collection(db, 'events'), where('status', '==', 'polling'));
             onSnapshot(q, snap => {
                 const box = document.getElementById('eventList');
+                if (!box) return; // safeguard: avoid setting innerHTML on null
                 box.innerHTML = '';
                 snap.forEach(d => renderEvent(d));
                 if (snap.empty) box.innerHTML = '<div class="no-events">Belum ada event yang aktif.</div>';
-            });
+            }, (err) => handleSnapshotError(err, 'loadEvents'));
         }
 
         async function renderEvent(docSnap) {
@@ -1311,9 +1393,10 @@
                 if (times.length > 0) {
                     renderRadioSection(card, 'time', times, userVotes, isExpired, eventId, voteRef);
                 }
-            });
+            }, (err) => handleSnapshotError(err, `polls for event ${eventId}`));
 
-            document.getElementById('eventList').appendChild(card);
+            const container = document.getElementById('eventList');
+            if (container) container.appendChild(card);
         }
 
         // Fungsi untuk render section dengan radio button
