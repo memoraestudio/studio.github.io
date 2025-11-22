@@ -768,7 +768,7 @@
                     <img src="logo.png" alt="Nyabultangkis" width="200">
                 </div>
                 <div class="login-form">
-                    <input id="username" type="text" class="form-input" placeholder="Username" value="got">
+                    <input id="username" type="text" class="form-input" placeholder="Username">
                     <input id="password" type="password" class="form-input" placeholder="Password (6 angka)"
                         value="901234">
                     <button class="btn" onclick="login()">Login</button>
@@ -1292,7 +1292,7 @@
                     tempat: tempatData, // Sekarang berisi objek dengan nama, link, gambar
                     waktu: times,
                     status: 'polling',
-                    deadline: Timestamp.fromDate(new Date(Date.now() + 60 * 60 * 1000)), // 1 jam
+                    deadline: Timestamp.fromDate(new Date(Date.now() + 24 * 60 * 60 * 1000)), // 1 hari
                     createdBy: userId,
                     createdAt: serverTimestamp()
                 });
@@ -1347,6 +1347,8 @@
             const eventId = docSnap.id;
             const card = document.createElement('div');
             card.className = 'card';
+            // attach event id to card for later queries
+            card.dataset.eventId = eventId;
             
             // Format tanggal untuk tampilan
             const deadlineDate = ev.deadline.toDate();
@@ -1409,19 +1411,33 @@
                     if (data.type === 'time') times.push(data);
                 });
                 
-                // Render tanggal dengan radio button
+                // Render tanggal dengan radio button (urutkan tanggal dari kecil ke besar)
                 if (dates.length > 0) {
+                    dates.sort((a, b) => new Date(a.value) - new Date(b.value));
                     renderRadioSection(card, 'date', dates, userVotes, isExpired, eventId, voteRef);
                 }
-                
+
                 // Render tempat dengan radio button
                 if (places.length > 0) {
                     renderRadioSection(card, 'place', places, userVotes, isExpired, eventId, voteRef);
                 }
-                
+
                 // Render waktu dengan radio button
                 if (times.length > 0) {
                     renderRadioSection(card, 'time', times, userVotes, isExpired, eventId, voteRef);
+                }
+
+                // Add or reuse a single Save-all button at the bottom of the card
+                const existingSaveAll = document.getElementById(`save_all_${eventId}`);
+                if (!existingSaveAll) {
+                    const saveAll = document.createElement('button');
+                    saveAll.className = 'btn btn-second';
+                    saveAll.id = `save_all_${eventId}`;
+                    saveAll.textContent = 'Simpan Semua';
+                    saveAll.style.marginTop = '12px';
+                    saveAll.disabled = true; // will be enabled when user selects any option
+                    saveAll.onclick = () => commitAllVotes(eventId, voteRef.id);
+                    card.appendChild(saveAll);
                 }
             }, (err) => handleSnapshotError(err, `polls for event ${eventId}`));
 
@@ -1442,10 +1458,10 @@
             }
             
             section.innerHTML = `<div class="poll-title">${title}</div><div class="radio-group" id="${type}Group"></div>`;
-            
+
             const currentVoteId = userVotes[`${type}Id`];
             const radioGroup = section.querySelector('.radio-group');
-            
+
             options.forEach(data => {
                 const isSelected = currentVoteId === data.id;
                 const radioId = `${type}_${data.id}`;
@@ -1472,6 +1488,7 @@
                 
                 const displayValue = data.displayValue ? data.displayValue : (type === 'date' ? formatTanggalDenganHari(data.value) : data.value);
                 
+                // onchange now only selects temporarily; user must click 'Simpan' to commit
                 radioOption.innerHTML = `
                     <input 
                         type="radio" 
@@ -1481,7 +1498,7 @@
                         id="${radioId}"
                         ${isSelected ? 'checked' : ''}
                         ${isExpired ? 'disabled' : (currentVoteId && !isSelected) ? 'disabled' : ''}
-                        onchange="voteForOption('${eventId}', '${type}', '${data.id}', '${voteRef.id}')"
+                        onchange="selectTempOption('${eventId}', '${type}', '${data.id}')"
                     >
                     <span class="radio-custom"></span>
                     <span class="radio-label">
@@ -1498,6 +1515,70 @@
         }
 
         // Fungsi untuk memilih opsi voting
+        // tempSelections stores user's temporary choices before saving
+        const tempSelections = {};
+
+        window.selectTempOption = (eventId, type, optionId) => {
+            tempSelections[eventId] = tempSelections[eventId] || {};
+            tempSelections[eventId][type] = optionId;
+
+            // update UI: mark selected label and check input
+            const card = document.querySelector(`[data-event-id="${eventId}"]`);
+            if (!card) return;
+            const inputs = card.querySelectorAll(`input[name="${type}"]`);
+            inputs.forEach(i => {
+                const lbl = i.closest('label');
+                if (!lbl) return;
+                if (i.value === optionId) {
+                    lbl.classList.add('selected');
+                    i.checked = true;
+                } else {
+                    // if this input was the previously saved one, keep its visual until saved
+                    if (!i.checked) lbl.classList.remove('selected');
+                }
+            });
+
+            // enable the single Save-all button for this event
+            const saveAllBtn = document.getElementById(`save_all_${eventId}`);
+            if (saveAllBtn) saveAllBtn.disabled = false;
+        };
+
+        window.commitVote = async (eventId, type, voterId) => {
+            try {
+                const optionId = tempSelections[eventId] && tempSelections[eventId][type];
+                if (!optionId) return alert('Pilih opsi dulu sebelum menyimpan');
+                await voteForOption(eventId, type, optionId, voterId);
+                const saveBtn = document.getElementById(`save_${eventId}_${type}`);
+                if (saveBtn) saveBtn.disabled = true;
+            } catch (e) {
+                console.error('commitVote error', e);
+                alert('Gagal menyimpan pilihan: ' + e.message);
+            }
+        };
+
+        // Commit all temp selections for an event
+        window.commitAllVotes = async (eventId, voterId) => {
+            try {
+                const selections = tempSelections[eventId];
+                if (!selections) return alert('Tidak ada pilihan untuk disimpan');
+
+                // Iterate over each type and commit sequentially
+                for (const [type, optionId] of Object.entries(selections)) {
+                    await voteForOption(eventId, type, optionId, voterId);
+                }
+
+                // disable save-all button after successful commit
+                const saveAllBtn = document.getElementById(`save_all_${eventId}`);
+                if (saveAllBtn) saveAllBtn.disabled = true;
+
+                // clear temporary selections for this event
+                delete tempSelections[eventId];
+            } catch (e) {
+                console.error('commitAllVotes error', e);
+                alert('Gagal menyimpan pilihan: ' + e.message);
+            }
+        };
+
         window.voteForOption = async (eventId, type, optionId, voterId) => {
             try {
                 if (!voterId) {
