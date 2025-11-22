@@ -491,11 +491,67 @@
             overflow-y: auto;
         }
 
+        /* Promo modal specific styles: image-only layout */
+        .promo-modal-content {
+            padding: 0;
+            background: transparent;
+            max-width: 900px;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .promo-image-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .promo-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--r);
+        }
+
+        .promo-close-btn {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            color: #ff0000;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 3;
+        }
+
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+        }
+
+        .modal-content-promo {
+            background: rgb(122 162 216);
+            padding: 24px;
+            border-radius: var(--r);
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header-promo {
+            display: flex;
+            margin-top: 60px;
+            justify-content: space-between;
         }
 
         .modal-close {
@@ -824,37 +880,11 @@
 
     <!-- MODAL PROMO (ditampilkan setelah login) -->
     <div id="promoModal" class="modal">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h3>Halo</h3>
-                <button class="modal-close" onclick="closePromoModal()">&times;</button>
+        <div class="modal-content promo-modal-content">
+            <div class="promo-image-container">
+                <button class="promo-close-btn" onclick="closePromoModal()">&times;</button>
+                <img src="promo.png" alt="Promo" class="promo-image">
             </div>
-
-            <!-- <div style="display:flex; flex-direction:column; gap:14px; margin-top:12px;">
-
-                <div class="card">
-                    <div>Main 1 x</div>
-                    <div style="color:#4c647d">Harga: Rp 15.000</div>
-                    <button class="btn btn-small" style="margin-top:10px;" onclick="claimPromo('1x')">
-                        Pilih Promo
-                    </button> 
-                </div>
-
-                <div class="card">
-                    <div>Main 4 kali</div>
-                    <div style="color:#4c647d">Harga: Rp 50.000</div>
-                    <button class="btn btn-small btn-second" style="margin-top:10px;" onclick="claimPromo('4x')">
-                        Pilih Promo
-                    </button> 
-                </div>
-
-            </div>
-
-            <div style="margin-top:18px;">
-                <button class="btn" onclick="closePromoModal()">Tutup</button>
-            </div> -->
-
         </div>
     </div>
 
