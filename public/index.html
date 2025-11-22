@@ -769,8 +769,7 @@
                 </div>
                 <div class="login-form">
                     <input id="username" type="text" class="form-input" placeholder="Username">
-                    <input id="password" type="password" class="form-input" placeholder="Password (6 angka)"
-                        value="901234">
+                    <input id="password" type="password" class="form-input" placeholder="Password (6 angka)">
                     <button class="btn" onclick="login()">Login</button>
                     <div id="loginMessage" class="error"></div>
                 </div>
@@ -1438,6 +1437,7 @@
                     saveAll.disabled = true; // will be enabled when user selects any option
                     saveAll.onclick = () => commitAllVotes(eventId, voteRef.id);
                     card.appendChild(saveAll);
+                    
                 }
             }, (err) => handleSnapshotError(err, `polls for event ${eventId}`));
 
@@ -1550,6 +1550,8 @@
                 await voteForOption(eventId, type, optionId, voterId);
                 const saveBtn = document.getElementById(`save_${eventId}_${type}`);
                 if (saveBtn) saveBtn.disabled = true;
+                // refresh page after saving single vote for consistency
+                try { setTimeout(() => { window.location.reload(); }, 300); } catch (e) {}
             } catch (e) {
                 console.error('commitVote error', e);
                 alert('Gagal menyimpan pilihan: ' + e.message);
@@ -1573,6 +1575,8 @@
 
                 // clear temporary selections for this event
                 delete tempSelections[eventId];
+                // reload page so UI reflects final committed state
+                try { setTimeout(() => { window.location.reload(); }, 300); } catch (e) {}
             } catch (e) {
                 console.error('commitAllVotes error', e);
                 alert('Gagal menyimpan pilihan: ' + e.message);
