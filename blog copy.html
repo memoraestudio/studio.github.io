@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LPK Yuuki Gakkou</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #a10f1f;
+        --dark: #111;
+        --light: #fafafa;
+        --gray: #666;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--light);
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+
+      /* JAPAN PATTERN */
+      body:before {
+        content: "";
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+          rgba(161, 15, 31, 0.03) 1px,
+          transparent 1px
+        );
+        background-size: 30px 30px;
+        z-index: -1;
+      }
+
+      /* NAVBAR FLOATING */
+      .navbar {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        max-width: 1200px;
+        padding: 8px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: 0.4s;
+        z-index: 1000;
+      }
+
+      .navbar.scrolled {
+        background: white;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        margin-left: 30px;
+        font-size: 14px;
+        position: relative;
+      }
+
+      .nav-links a:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 0%;
+        height: 2px;
+        background: var(--primary);
+        transition: 0.3s;
+      }
+
+      .nav-links a:hover:after {
+        width: 100%;
+      }
+
+      /* HERO */
+      .hero {
+        height: 100vh;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.55), rgba(161, 15, 31, 0.6)),
+          url("https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e")
+            center/cover;
+        display: flex;
+        align-items: center;
+        padding: 0 8%;
+        color: white;
+      }
+
+      .hero-content {
+        margin-top: 120px;
+        max-width: 700px;
+      }
+
+      .hero h1 {
+        font-family: "Noto Serif JP", serif;
+        font-size: 54px;
+        margin-bottom: 25px;
+      }
+
+      .hero p {
+        margin-bottom: 30px;
+        font-size: 18px;
+      }
+
+      .btn {
+        padding: 14px 35px;
+        border-radius: 40px;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        background: #7c0c17;
+      }
+
+      /* SECTION */
+      section {
+        padding: 120px 8%;
+      }
+
+      .section-title {
+        text-align: center;
+        font-family: "Noto Serif JP", serif;
+        font-size: 36px;
+        margin-bottom: 70px;
+        position: relative;
+      }
+
+      .section-title:after {
+        content: "";
+        width: 60px;
+        height: 2px;
+        background: var(--primary);
+        display: block;
+        margin: 20px auto 0;
+      }
+
+      /* ZIGZAG PROGRAM */
+      .program-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        margin-bottom: 100px;
+      }
+
+      .program-item img {
+        width: 100%;
+        border-radius: 16px;
+        height: 320px;
+        object-fit: cover;
+      }
+
+      .program-text h3 {
+        font-family: "Noto Serif JP", serif;
+        margin-bottom: 20px;
+        font-size: 26px;
+      }
+
+      .program-text p {
+        color: var(--gray);
+        line-height: 1.8;
+      }
+
+      /* LEGALITAS */
+      .legal-box {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 50px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        line-height: 2;
+      }
+
+      /* DOKUMENTASI SLIDER */
+      .slider {
+        max-width: 900px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 16px;
+      }
+
+      .slider img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+      }
+
+      /* TESTIMONI */
+      .testimoni {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .testimoni p {
+        font-size: 20px;
+        font-style: italic;
+        line-height: 1.8;
+      }
+
+      .testimoni strong {
+        display: block;
+        margin-top: 15px;
+        color: var(--primary);
+      }
+
+      /* FOOTER */
+      footer {
+        background: #000;
+        color: #888;
+        text-align: center;
+        padding: 40px;
+      }
+
+      /* SAKURA */
+      .sakura {
+        position: fixed;
+        top: -10px;
+        color: #ffb7c5;
+        font-size: 20px;
+        animation: fall linear infinite;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(110vh) rotate(360deg);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .program-item {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="logo">
+        <img
+          src="logo.png"
+          alt="L"
+          style="border-radius: 50%; margin-right: 10px; width: 70px"
+        />
+        <h2>LPK YUUKI GAKKOU</h2>
+      </div>
+      <div class="nav-links">
+        <a href="#beranda" class="active">Beranda</a>
+        <a href="#program">Program</a>
+        <a href="#legalitas">Legalitas</a>
+        <a href="#dokumentasi">Dokumentasi</a>
+        <a href="#testimoni">Testimoni</a>
+        <a href="#about_us">Tentang Kami</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Lembaga Pelatihan Bahasa & Persiapan Kerja ke Jepang</h1>
+        <p>
+          Mencetak generasi Indonesia siap kerja dan berkarier profesional di
+          Jepang.
+        </p>
+        <a href="#program" class="btn">Lihat Program</a>
+      </div>
+    </section>
+
+    <section id="program">
+      <h2 class="section-title">Program Pelatihan</h2>
+
+      <div class="program-item">
+        <img
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644"
+        />
+        <div class="program-text">
+          <h3>JLPT Intensif</h3>
+          <p>
+            Program N5 hingga lanjutan dengan sistem pembelajaran terstruktur
+            dan disiplin ala Jepang.
+          </p>
+        </div>
+      </div>
+
+      <div class="program-item">
+        <div class="program-text">
+          <h3>Pelatihan Kerja Jepang</h3>
+          <p>Pelatihan Kaigo & Industri sesuai standar perusahaan Jepang.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df" />
+      </div>
+    </section>
+
+    <section id="legalitas">
+      <h2 class="section-title">Legalitas</h2>
+      <div class="legal-box">
+        NIB: XXXXXXXX<br />
+        Akta Pendirian: XXXXXXXX<br />
+        Izin LPK Resmi<br />
+        Terdaftar & Legal di Indonesia
+      </div>
+    </section>
+
+    <section id="dokumentasi">
+      <h2 class="section-title">Dokumentasi Kegiatan</h2>
+      <div class="slider">
+        <img
+          id="slideImg"
+          src="https://images.unsplash.com/photo-1505066836043-7dbe9a0f0d9b"
+        />
+      </div>
+    </section>
+
+    <section id="testimoni">
+      <h2 class="section-title">Testimoni</h2>
+      <div class="testimoni">
+        <p id="testiText">
+          “Saya berhasil lolos pemagangan Jepang berkat Yuuki Gakkou.”
+        </p>
+        <strong id="testiName">- Andi</strong>
+      </div>
+    </section>
+
+    <section id="about_us">
+      <h2 class="section-title">Tentang Kami</h2>
+      <div class="legal-box">
+        Email: info@yuukigakkou.com<br />
+        Telp: 08xxxxxxxxxx<br />
+        Alamat: Indonesia
+      </div>
+    </section>
+
+    <footer>© 2026 LPK Yuuki Gakkou</footer>
+  </body>
+</html>

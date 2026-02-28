@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Legalitas - LPK Yuuki Gakkou</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <style>
+      :root {
+        --primary-color: #9b2c2c;
+        --secondary-color: #1a1a1a;
+        --accent-bg: #f5f3ef;
+        --text-muted: #6b6b6b;
+        --font-heading: "Cormorant Garamond", serif;
+        --font-body: "Plus Jakarta Sans", sans-serif;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background-color: #fdfcfa;
+        color: var(--secondary-color);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: var(--font-heading);
+      }
+
+      /* Navbar Custom */
+      .navbar-custom {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .navbar-custom.scrolled {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: var(--secondary-color) !important;
+        margin: 0 0.5rem;
+        position: relative;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary-color);
+        transition: width 0.3s;
+      }
+
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      .nav-link.active {
+        color: var(--primary-color) !important;
+        font-weight: 600;
+      }
+
+      .btn-custom-primary {
+        background-color: var(--primary-color);
+        border: none;
+        color: white;
+        padding: 0.6rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-custom-primary:hover {
+        background-color: #7c1f1f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(155, 44, 44, 0.3);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(26, 26, 26, 0.8),
+            rgba(155, 44, 44, 0.7)
+          ),
+          url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1920");
+        background-size: cover;
+        background-position: center;
+        padding-top: 160px;
+        padding-bottom: 80px;
+        color: white;
+      }
+
+      /* Content Styles */
+      .legal-card {
+        border: 1px solid #e8e6e3;
+        border-radius: 1rem;
+        overflow: hidden;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        background: white;
+        height: 100%;
+      }
+
+      .legal-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .legal-icon {
+        width: 60px;
+        height: 60px;
+        background-color: var(--accent-bg);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        font-size: 1.8rem;
+      }
+
+      .accent-line {
+        width: 60px;
+        height: 3px;
+        background-color: var(--primary-color);
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--secondary-color);
+        color: #adb5bd;
+      }
+
+      footer h5 {
+        color: white;
+        font-family: var(--font-heading);
+      }
+
+      .footer-link {
+        color: #adb5bd;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-link:hover {
+        color: var(--primary-color);
+      }
+
+      /* Animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <div
+            class="bg-danger rounded-circle d-flex justify-content-center align-items-center me-2"
+            style="
+              width: 40px;
+              height: 40px;
+              background-color: var(--primary-color) !important;
+            "
+          >
+            <span
+              class="text-white fw-bold"
+              style="font-family: var(--font-heading)"
+              >YG</span
+            >
+          </div>
+          <div>
+            <span class="fw-bold d-block" style="font-size: 1.1rem"
+              >Yuuki Gakkou</span
+            >
+            <span
+              class="text-muted"
+              style="font-size: 0.7rem; letter-spacing: 0.5px"
+              >LPK RESMI</span
+            >
+          </div>
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="program.html">Program</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="legalitas.html">Legalitas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dokumentasi.html">Dokumentasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="testimoni.html">Testimoni</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tentang.html">Tentang Kami</a>
+            </li>
+          </ul>
+          <a href="pendaftaran.html" class="btn btn-custom-primary"
+            >Daftar Sekarang</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-section text-center">
+      <div class="container">
+        <span class="badge bg-white bg-opacity-10 text-white px-3 py-2 mb-3"
+          >Transparansi & Kepercayaan</span
+        >
+        <h1 class="display-4 fw-bold mb-3">Legalitas Lembaga</h1>
+        <p class="lead opacity-75 col-md-8 mx-auto">
+          LPK Yuuki Gakkou beroperasi secara resmi dan terdaftar di instansi
+          terkait.
+        </p>
+      </div>
+    </section>
+
+    <!-- Legalitas Content -->
+    <section class="py-5">
+      <div class="container">
+        <div class="text-center mb-5 reveal">
+          <h2 class="fw-bold mb-3">Dokumen Resmi</h2>
+          <div class="accent-line mx-auto"></div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Card 1 -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="legal-card p-4 text-center">
+              <div class="legal-icon mx-auto mb-4">
+                <i class="bi bi-file-earmark-text"></i>
+              </div>
+              <h4 class="fw-semibold mb-3">NIB (Nomor Induk Berusaha)</h4>
+              <p class="text-muted small">
+                Terdaftar sebagai lembaga pelatihan kerja melalui sistem OSS
+                (Online Single Submission).
+              </p>
+              <p class="fw-bold text-danger mb-0">No: 12XX-XXXX-XXXX</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="legal-card p-4 text-center">
+              <div class="legal-icon mx-auto mb-4">
+                <i class="bi bi-bank"></i>
+              </div>
+              <h4 class="fw-semibold mb-3">Akta Pendirian</h4>
+              <p class="text-muted small">
+                Akta notaris pendirian yayasan/perusahaan yang sah secara hukum.
+              </p>
+              <p class="fw-bold text-danger mb-0">No: XX/Not/2026/YY</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="legal-card p-4 text-center">
+              <div class="legal-icon mx-auto mb-4">
+                <i class="bi bi-award"></i>
+              </div>
+              <h4 class="fw-semibold mb-3">Izin Operasional LPK</h4>
+              <p class="text-muted small">
+                Izin resmi dari Dinas Tenaga Kerja (Disnaker) setempat.
+              </p>
+              <p class="fw-bold text-danger mb-0">No: XXX/KPTS/Disnaker</p>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="legal-card p-4 text-center">
+              <div class="legal-icon mx-auto mb-4">
+                <i class="bi bi-globe-asia-australia"></i>
+              </div>
+              <h4 class="fw-semibold mb-3">Izin IMJP</h4>
+              <p class="text-muted small">
+                Terdaftar sebagai lembaga pengirim tenaga kerja ke Jepang.
+              </p>
+              <p class="fw-bold text-danger mb-0">Kementerian Tenaga Kerja</p>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="legal-card p-4 text-center">
+              <div class="legal-icon mx-auto mb-4">
+                <i class="bi bi-shield-check"></i>
+              </div>
+              <h4 class="fw-semibold mb-3">NPWP Perusahaan</h4>
+              <p class="text-muted small">
+                Nomor Pokok Wajib Pajak badan usaha yang aktif.
+              </p>
+              <p class="fw-bold text-danger mb-0">XX.XXX.XXX.X-XXX</p>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="legal-card p-4 text-center">
+              <div class="legal-icon mx-auto mb-4">
+                <i class="bi bi-people"></i>
+              </div>
+              <h4 class="fw-semibold mb-3">Kerjasama HIMADEKI</h4>
+              <p class="text-muted small">
+                Terdaftar sebagai anggota asosiasi pengirim TKI ke Jepang.
+              </p>
+              <p class="fw-bold text-danger mb-0">Member Resmi</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Section -->
+        <div class="row mt-5 pt-5 align-items-center reveal">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <img
+              src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80"
+              alt="Legalitas Dokumen"
+              class="img-fluid rounded-4 shadow-lg"
+            />
+          </div>
+          <div class="col-lg-6 ps-lg-5">
+            <h2 class="fw-bold mb-4">Komitmen Kepatuhan Hukum</h2>
+            <p class="text-muted mb-4">
+              Kami berkomitmen untuk menjalankan seluruh kegiatan pelatihan dan
+              penempatan kerja sesuai dengan peraturan perundang-undangan yang
+              berlaku di Indonesia maupun standar hukum di Jepang.
+            </p>
+            <ul class="list-unstyled">
+              <li class="d-flex align-items-center mb-3">
+                <i class="bi bi-check-circle-fill text-danger me-3"></i>
+                <span>Transparansi biaya tanpa biaya tersembunyi</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                <i class="bi bi-check-circle-fill text-danger me-3"></i>
+                <span>Kontrak kerja yang jelas dan sah hukum</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                <i class="bi bi-check-circle-fill text-danger me-3"></i>
+                <span>Pendampingan legalitas dokumen peserta</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+      <div class="container">
+        <div class="row border-bottom border-secondary pb-4 mb-4">
+          <div class="col-md-4 mb-4">
+            <h5 class="fw-bold text-white mb-3">Yuuki Gakkou</h5>
+            <p class="small">
+              Lembaga Pelatihan Kerja yang berfokus pada persiapan sumber daya
+              manusia Indonesia untuk berkarier di Jepang.
+            </p>
+          </div>
+          <div class="col-6 col-md-2">
+            <h6 class="fw-bold text-white mb-3">Menu</h6>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="index.html" class="footer-link small">Beranda</a>
+              </li>
+              <li class="mb-2">
+                <a href="program.html" class="footer-link small">Program</a>
+              </li>
+              <li class="mb-2">
+                <a href="legalitas.html" class="footer-link small">Legalitas</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-2">
+            <h6 class="fw-bold text-white mb-3">Layanan</h6>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="#" class="footer-link small">JLPT</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="footer-link small">Kaigo</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="footer-link small">Ginou Jisshusei</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h6 class="fw-bold text-white mb-3">Hubungi Kami</h6>
+            <p class="small mb-1">
+              <i class="bi bi-envelope me-2"></i> info@yuukigakkou.com
+            </p>
+            <p class="small">
+              <i class="bi bi-telephone me-2"></i> 08xx-xxxx-xxxx
+            </p>
+          </div>
+        </div>
+        <div class="text-center small">
+          &copy; 2024 LPK Yuuki Gakkou. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Scroll Animation
+      const reveals = document.querySelectorAll(".reveal");
+      const revealOnScroll = () => {
+        reveals.forEach((el) => {
+          const windowHeight = window.innerHeight;
+          const elementTop = el.getBoundingClientRect().top;
+          if (elementTop < windowHeight - 50) {
+            el.classList.add("visible");
+          }
+        });
+      };
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+
+      // Navbar Scroll Effect
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar-custom");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+    </script>
+  </body>
+</html>

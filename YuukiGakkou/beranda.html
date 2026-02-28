@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Beranda | LPK Yuuki Gakkou - Pelatihan Bahasa & Kerja ke Jepang
+    </title>
+
+    <!-- Meta Tags untuk SEO -->
+    <meta
+      name="description"
+      content="LPK Yuuki Gakkou - Lembaga Pelatihan Bahasa Jepang dan Persiapan Kerja ke Jepang. Informasi terbaru seputar program dan kegiatan."
+    />
+    <meta
+      name="keywords"
+      content="LPK Jepang, kursus bahasa jepang, berita terbaru, informasi jepang"
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome untuk Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --primary: #a10f1f;
+        --primary-dark: #7c0c17;
+        --primary-light: #ff4d5e;
+        --dark: #1a1a1a;
+        --light: #f8f9fa;
+        --gray: #6c757d;
+        --gray-light: #e9ecef;
+        --white: #ffffff;
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--dark);
+        background: var(--light);
+        line-height: 1.6;
+      }
+
+      /* Japanese Pattern Background */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+        background-size: 40px 40px;
+        opacity: 0.02;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        max-width: 1200px;
+        padding: 8px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: 0.4s;
+        z-index: 1000;
+      }
+
+      .navbar.scrolled {
+        padding: 0.5rem 5%;
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: var(--shadow-md);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .logo img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .logo h2 {
+        font-size: 1.5rem;
+        color: var(--primary);
+        font-weight: 700;
+        font-family: "Noto Serif JP", serif;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+        font-size: 0.95rem;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--primary);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(161, 15, 31, 0.7) 100%
+          ),
+          url("https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5%;
+        color: white;
+        position: relative;
+      }
+
+      .hero-content {
+        max-width: 900px;
+        text-align: center;
+        margin-top: 60px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        letter-spacing: 1px;
+      }
+
+      .hero h1 {
+        font-size: 4.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        font-family: "Noto Serif JP", serif;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero h1 span {
+        color: #ffb3b3;
+        display: block;
+        font-size: 2.5rem;
+        margin-top: 0.5rem;
+        font-weight: 400;
+        letter-spacing: 2px;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.95;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+        box-shadow: 0 4px 15px rgba(161, 15, 31, 0.3);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(161, 15, 31, 0.4);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .btn-outline:hover {
+        background: white;
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      /* Scroll Indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        color: white;
+        font-size: 0.9rem;
+        opacity: 0.7;
+        animation: bounce 2s infinite;
+      }
+
+      .scroll-indicator i {
+        font-size: 1.5rem;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-20px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+      }
+
+      /* Berita Terbaru Section */
+      .berita {
+        padding: 5rem 5%;
+        background: var(--light);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-family: "Noto Serif JP", serif;
+        font-size: 2.5rem;
+        color: var(--dark);
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+
+      .section-subtitle {
+        color: var(--gray);
+        font-size: 1.1rem;
+      }
+
+      .berita-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .berita-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        transition: var(--transition);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .berita-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .berita-image {
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .berita-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .berita-card:hover .berita-image img {
+        transform: scale(1.1);
+      }
+
+      .berita-category {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--primary);
+        color: white;
+        padding: 0.4rem 1rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 2;
+      }
+
+      .berita-date {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 0.4rem 1rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        backdrop-filter: blur(5px);
+      }
+
+      .berita-content {
+        padding: 1.8rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .berita-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: var(--dark);
+        line-height: 1.4;
+        font-family: "Noto Serif JP", serif;
+      }
+
+      .berita-content p {
+        color: var(--gray);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        flex: 1;
+      }
+
+      .berita-meta {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: var(--gray);
+        border-top: 1px solid var(--gray-light);
+        padding-top: 1rem;
+      }
+
+      .berita-meta i {
+        color: var(--primary);
+        margin-right: 0.3rem;
+      }
+
+      .berita-link {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: var(--transition);
+      }
+
+      .berita-link:hover {
+        gap: 1rem;
+        color: var(--primary-dark);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark);
+        color: white;
+        padding: 3rem 5% 1.5rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-col h4 {
+        margin-bottom: 1.2rem;
+        color: var(--primary-light);
+        font-family: "Noto Serif JP", serif;
+        font-size: 1.1rem;
+      }
+
+      .footer-col p {
+        color: #aaa;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .footer-col i {
+        margin-right: 0.5rem;
+        color: var(--primary);
+        width: 20px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-links a {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        text-decoration: none;
+      }
+
+      .social-links a:hover {
+        background: var(--primary);
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 1.5rem;
+        border-top: 1px solid #333;
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          padding: 1rem;
+        }
+
+        .nav-links {
+          margin-top: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+
+        .hero h1 span {
+          font-size: 1.8rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .berita-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero h1 span {
+          font-size: 1.4rem;
+        }
+
+        .hero-buttons .btn {
+          padding: 0.8rem 1.5rem;
+          font-size: 0.9rem;
+        }
+
+        .berita-content {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">
+        <img
+          src="logo.png"
+          alt="LPK Yuuki Gakkou Logo"
+          onerror="
+            this.src = 'https://via.placeholder.com/50x50/a10f1f/ffffff?text=YG'
+          "
+        />
+        <h2>LPK YUUKI GAKKOU</h2>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" class="active">Beranda</a>
+        <a href="program.html">Program</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="kontak.html">Kontak</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <span class="hero-badge">🇯🇵 ようこそ - Selamat Datang</span>
+        <h1>
+          LPK Yuuki Gakkou
+          <span>勇気学校</span>
+        </h1>
+        <p>
+          Lembaga pelatihan bahasa Jepang dan persiapan kerja ke Jepang. Bersama
+          kami, wujudkan mimpi Anda berkarier di Negeri Sakura.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="program.html" class="btn btn-primary">Lihat Program</a>
+          <a href="kontak.html" class="btn btn-outline">Konsultasi Gratis</a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll untuk berita terbaru</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- Berita Terbaru Section -->
+    <section class="berita">
+      <div class="section-header">
+        <h2 class="section-title">Berita & Informasi Terbaru</h2>
+        <p class="section-subtitle">
+          Update seputar program, kegiatan, dan informasi penting lainnya
+        </p>
+      </div>
+
+      <div class="berita-grid">
+        <!-- Berita 1 -->
+        <article class="berita-card">
+          <div class="berita-image">
+            <img
+              src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Pembukaan Kelas Baru"
+            />
+            <span class="berita-category">Pengumuman</span>
+            <span class="berita-date"
+              ><i class="far fa-calendar-alt"></i> 28 Feb 2026</span
+            >
+          </div>
+          <div class="berita-content">
+            <h3>Pembukaan Kelas Baru JLPT N5 & N4</h3>
+            <p>
+              Kelas baru untuk persiapan JLPT N5 dan N4 akan dibuka mulai Maret
+              2026. Tersedia kelas pagi, sore, dan akhir pekan dengan pengajar
+              native speaker.
+            </p>
+            <div class="berita-meta">
+              <span><i class="far fa-user"></i> Admin</span>
+              <span><i class="far fa-eye"></i> 234 views</span>
+            </div>
+            <a href="#" class="berita-link"
+              >Baca Selengkapnya <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </article>
+
+        <!-- Berita 2 -->
+        <article class="berita-card">
+          <div class="berita-image">
+            <img
+              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Alumni Berangkat ke Jepang"
+            />
+            <span class="berita-category">Keberangkatan</span>
+            <span class="berita-date"
+              ><i class="far fa-calendar-alt"></i> 25 Feb 2026</span
+            >
+          </div>
+          <div class="berita-content">
+            <h3>12 Alumni Diberangkatkan ke Osaka</h3>
+            <p>
+              Alumni program Kaigo dan Industri telah diberangkatkan ke Osaka
+              untuk bekerja di 5 perusahaan mitra di Jepang. Selamat bertugas!
+            </p>
+            <div class="berita-meta">
+              <span><i class="far fa-user"></i> Admin</span>
+              <span><i class="far fa-eye"></i> 456 views</span>
+            </div>
+            <a href="#" class="berita-link"
+              >Baca Selengkapnya <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </article>
+
+        <!-- Berita 3 -->
+        <article class="berita-card">
+          <div class="berita-image">
+            <img
+              src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Workshop Budaya Jepang"
+            />
+            <span class="berita-category">Kegiatan</span>
+            <span class="berita-date"
+              ><i class="far fa-calendar-alt"></i> 20 Feb 2026</span
+            >
+          </div>
+          <div class="berita-content">
+            <h3>Workshop Calligraphy & Tea Ceremony</h3>
+            <p>
+              Dalam rangka memperkenalkan budaya Jepang, Yuuki Gakkou mengadakan
+              workshop kaligrafi dan upacara minum teh bersama sensei dari
+              Kyoto.
+            </p>
+            <div class="berita-meta">
+              <span><i class="far fa-user"></i> Admin</span>
+              <span><i class="far fa-eye"></i> 189 views</span>
+            </div>
+            <a href="#" class="berita-link"
+              >Baca Selengkapnya <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </article>
+
+        <!-- Berita 4 -->
+        <article class="berita-card">
+          <div class="berita-image">
+            <img
+              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Kerjasama dengan Perusahaan Jepang"
+            />
+            <span class="berita-category">Kerjasama</span>
+            <span class="berita-date"
+              ><i class="far fa-calendar-alt"></i> 15 Feb 2026</span
+            >
+          </div>
+          <div class="berita-content">
+            <h3>MoU dengan 3 Perusahaan Baru di Tokyo</h3>
+            <p>
+              Yuuki Gakkou resmi menjalin kerjasama dengan 3 perusahaan baru di
+              Tokyo untuk penempatan alumni program Industri dan Kaigo.
+            </p>
+            <div class="berita-meta">
+              <span><i class="far fa-user"></i> Admin</span>
+              <span><i class="far fa-eye"></i> 321 views</span>
+            </div>
+            <a href="#" class="berita-link"
+              >Baca Selengkapnya <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </article>
+
+        <!-- Berita 5 -->
+        <article class="berita-card">
+          <div class="berita-image">
+            <img
+              src="https://images.unsplash.com/photo-1517048676738-d65ab937ac67?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Siswa Lulus JLPT"
+            />
+            <span class="berita-category">Prestasi</span>
+            <span class="berita-date"
+              ><i class="far fa-calendar-alt"></i> 10 Feb 2026</span
+            >
+          </div>
+          <div class="berita-content">
+            <h3>95% Siswa Lulus JLPT Desember 2025</h3>
+            <p>
+              Kabar membanggakan, 95% siswa Yuuki Gakkou dinyatakan lulus ujian
+              JLPT Desember 2025 dengan nilai memuaskan.
+            </p>
+            <div class="berita-meta">
+              <span><i class="far fa-user"></i> Admin</span>
+              <span><i class="far fa-eye"></i> 567 views</span>
+            </div>
+            <a href="#" class="berita-link"
+              >Baca Selengkapnya <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </article>
+
+        <!-- Berita 6 -->
+        <article class="berita-card">
+          <div class="berita-image">
+            <img
+              src="https://images.unsplash.com/photo-1561489422-45de3d015e3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Seminar Persiapan Magang"
+            />
+            <span class="berita-category">Seminar</span>
+            <span class="berita-date"
+              ><i class="far fa-calendar-alt"></i> 5 Feb 2026</span
+            >
+          </div>
+          <div class="berita-content">
+            <h3>Seminar "Sukses Magang ke Jepang"</h3>
+            <p>
+              Yuuki Gakkou mengadakan seminar gratis tentang tips dan trik
+              sukses magang ke Jepang bersama alumni yang sudah bekerja di
+              Tokyo.
+            </p>
+            <div class="berita-meta">
+              <span><i class="far fa-user"></i> Admin</span>
+              <span><i class="far fa-eye"></i> 143 views</span>
+            </div>
+            <a href="#" class="berita-link"
+              >Baca Selengkapnya <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-col">
+          <h4>LPK Yuuki Gakkou</h4>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> Jl. Asia Afrika No. 123,
+            Jakarta
+          </p>
+          <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+          <p><i class="fas fa-envelope"></i> info@yuukigakkou.com</p>
+        </div>
+        <div class="footer-col">
+          <h4>Program</h4>
+          <p>JLPT N5 - N2</p>
+          <p>Pelatihan Kaigo</p>
+          <p>Pelatihan Industri</p>
+        </div>
+        <div class="footer-col">
+          <h4>Tautan</h4>
+          <p>Tentang Kami</p>
+          <p>Syarat & Ketentuan</p>
+          <p>FAQ</p>
+        </div>
+        <div class="footer-col">
+          <h4>Media Sosial</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 LPK Yuuki Gakkou. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll effect
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+    </script>
+  </body>
+</html>

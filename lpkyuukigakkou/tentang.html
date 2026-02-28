@@ -1,0 +1,1001 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tentang Kami - LPK Yuuki Gakkou</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: "#FDFCFA",
+              fg: "#1A1A1A",
+              muted: "#6B6B6B",
+              accent: "#9B2C2C",
+              accentLight: "#C53030",
+              card: "#FFFFFF",
+              border: "#E8E6E3",
+              cream: "#F5F3EF",
+            },
+            fontFamily: {
+              display: ["Cormorant Garamond", "serif"],
+              body: ["Plus Jakarta Sans", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --bg: #fdfcfa;
+        --fg: #1a1a1a;
+        --muted: #6b6b6b;
+        --accent: #9b2c2c;
+        --accent-light: #c53030;
+        --card: #ffffff;
+        --border: #e8e6e3;
+        --cream: #f5f3ef;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+      }
+      .pattern-bg {
+        background-image:
+          linear-gradient(rgba(155, 44, 44, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(155, 44, 44, 0.02) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+      .navbar {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+      }
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+      .nav-link.active {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .hero-overlay {
+        background: linear-gradient(
+          135deg,
+          rgba(26, 26, 26, 0.8) 0%,
+          rgba(155, 44, 44, 0.6) 100%
+        );
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .btn-primary {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(155, 44, 44, 0.3);
+      }
+      .accent-line {
+        width: 60px;
+        height: 3px;
+        background: var(--accent);
+      }
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+      .team-card {
+        transition: all 0.4s ease;
+      }
+      .team-card:hover {
+        transform: translateY(-5px);
+      }
+      .team-card:hover img {
+        transform: scale(1.05);
+      }
+      .team-card img {
+        transition: transform 0.4s ease;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+        .btn-primary:hover,
+        .team-card:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="pattern-bg">
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 py-4 px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3">
+          <div
+            class="w-12 h-12 rounded-full bg-accent flex items-center justify-center"
+          >
+            <span class="text-white font-display text-xl font-bold">YG</span>
+          </div>
+          <div class="hidden sm:block">
+            <h1 class="font-display text-xl font-semibold text-fg">
+              Yuuki Gakkou
+            </h1>
+            <p class="text-xs text-muted tracking-wider">
+              LEMBAGA PELATIHAN KERJA
+            </p>
+          </div>
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a
+            href="index.html"
+            class="nav-link text-sm font-medium text-muted hover:text-fg"
+            >Beranda</a
+          >
+          <a
+            href="program.html"
+            class="nav-link text-sm font-medium text-muted hover:text-fg"
+            >Program</a
+          >
+          <a
+            href="legalitas.html"
+            class="nav-link text-sm font-medium text-muted hover:text-fg"
+            >Legalitas</a
+          >
+          <a
+            href="dokumentasi.html"
+            class="nav-link text-sm font-medium text-muted hover:text-fg"
+            >Dokumentasi</a
+          >
+          <a
+            href="testimoni.html"
+            class="nav-link text-sm font-medium text-muted hover:text-fg"
+            >Testimoni</a
+          >
+          <a
+            href="tentang.html"
+            class="nav-link active text-sm font-medium text-fg"
+            >Tentang Kami</a
+          >
+        </div>
+        <a
+          href="pendaftaran.html"
+          class="hidden lg:inline-flex btn-primary bg-accent text-white px-6 py-3 rounded-full text-sm font-semibold"
+          >Daftar Sekarang</a
+        >
+        <button
+          id="mobileMenuBtn"
+          class="lg:hidden p-2"
+          aria-label="Toggle menu"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobileMenu"
+      class="mobile-menu fixed inset-y-0 right-0 w-80 bg-white z-50 shadow-2xl lg:hidden"
+    >
+      <div class="p-6">
+        <button
+          id="closeMobileMenu"
+          class="absolute top-4 right-4 p-2"
+          aria-label="Close menu"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <div class="mt-12 flex flex-col gap-4">
+          <a
+            href="index.html"
+            class="py-3 px-4 text-muted hover:text-fg hover:bg-cream rounded-lg transition-colors"
+            >Beranda</a
+          >
+          <a
+            href="program.html"
+            class="py-3 px-4 text-muted hover:text-fg hover:bg-cream rounded-lg transition-colors"
+            >Program</a
+          >
+          <a
+            href="legalitas.html"
+            class="py-3 px-4 text-muted hover:text-fg hover:bg-cream rounded-lg transition-colors"
+            >Legalitas</a
+          >
+          <a
+            href="dokumentasi.html"
+            class="py-3 px-4 text-muted hover:text-fg hover:bg-cream rounded-lg transition-colors"
+            >Dokumentasi</a
+          >
+          <a
+            href="testimoni.html"
+            class="py-3 px-4 text-muted hover:text-fg hover:bg-cream rounded-lg transition-colors"
+            >Testimoni</a
+          >
+          <a
+            href="tentang.html"
+            class="py-3 px-4 text-fg font-medium bg-cream rounded-lg"
+            >Tentang Kami</a
+          >
+          <hr class="my-4 border-border" />
+          <a
+            href="pendaftaran.html"
+            class="btn-primary bg-accent text-white px-6 py-3 rounded-full text-sm font-semibold text-center"
+            >Daftar Sekarang</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28">
+      <div class="absolute inset-0 h-96">
+        <img
+          src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1920&q=80"
+          alt="About"
+          class="w-full h-full object-cover"
+        />
+        <div class="hero-overlay absolute inset-0"></div>
+      </div>
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-16">
+        <div class="reveal text-center max-w-3xl mx-auto">
+          <span
+            class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-6"
+            >Tentang Kami</span
+          >
+          <h1
+            class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
+          >
+            Membangun Jembatan Menuju Karier Global
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="py-20 lg:py-28 px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div class="reveal">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80"
+              alt="Our Story"
+              class="rounded-2xl shadow-xl w-full h-auto object-cover"
+            />
+          </div>
+          <div class="reveal reveal-delay-1">
+            <span
+              class="text-accent text-sm font-semibold tracking-widest uppercase"
+              >Cerita Kami</span
+            >
+            <h2
+              class="font-display text-3xl lg:text-4xl font-bold text-fg mt-4 mb-6"
+            >
+              Berawal dari Kepedulian
+            </h2>
+            <div class="accent-line mb-8"></div>
+            <p class="text-muted leading-relaxed mb-4">
+              LPK Yuuki Gakkou didirikan pada tahun 2016 dengan satu misi
+              sederhana: membantu tenaga kerja Indonesia meraih kesempatan
+              berkarier di Jepang dengan persiapan yang memadai.
+            </p>
+            <p class="text-muted leading-relaxed mb-4">
+              Berawal dari keprihatinan terhadap banyaknya penerima magang yang
+              kurang siap secara bahasa dan mental, kami membangun lembaga
+              pelatihan yang fokus pada kualitas, bukan kuantitas.
+            </p>
+            <p class="text-muted leading-relaxed">
+              Hingga kini, kami telah berhasil menempatkan lebih dari 500 alumni
+              di berbagai perusahaan di Jepang dengan tingkat kepuasan tinggi
+              dari penerima magang maupun perusahaan pengguna.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision Mission -->
+    <section class="py-20 lg:py-28 px-6 lg:px-12 bg-cream">
+      <div class="max-w-7xl mx-auto">
+        <div class="reveal text-center mb-16">
+          <span
+            class="text-accent text-sm font-semibold tracking-widest uppercase"
+            >Visi & Misi</span
+          >
+          <h2 class="font-display text-3xl lg:text-4xl font-bold text-fg mt-4">
+            Arah dan Tujuan Kami
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+          <div
+            class="reveal bg-card rounded-2xl p-8 lg:p-10 border border-border"
+          >
+            <div
+              class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6"
+            >
+              <svg
+                class="w-7 h-7 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl font-semibold text-fg mb-4">
+              Visi
+            </h3>
+            <p class="text-muted leading-relaxed">
+              Menjadi lembaga pelatihan kerja terkemuka yang menghasilkan tenaga
+              kerja Indonesia berkualitas, berintegritas, dan siap berkontribusi
+              di kancah internasional khususnya Jepang.
+            </p>
+          </div>
+          <div
+            class="reveal reveal-delay-1 bg-card rounded-2xl p-8 lg:p-10 border border-border"
+          >
+            <div
+              class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6"
+            >
+              <svg
+                class="w-7 h-7 text-accent"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl font-semibold text-fg mb-4">
+              Misi
+            </h3>
+            <ul class="text-muted space-y-3">
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Menyelenggarakan pelatihan bahasa dan keterampilan berkualitas
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Membangun karakter disiplin dan etos kerja Jepang
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Menjalin kerjasama dengan perusahaan mitra di Jepang
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Memberikan pendampingan menyeluruh bagi peserta
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-20 lg:py-28 px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto">
+        <div class="reveal text-center mb-16">
+          <span
+            class="text-accent text-sm font-semibold tracking-widest uppercase"
+            >Tim Kami</span
+          >
+          <h2
+            class="font-display text-3xl lg:text-4xl font-bold text-fg mt-4 mb-6"
+          >
+            Pengajar Profesional
+          </h2>
+          <div class="accent-line mx-auto"></div>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Team 1 -->
+          <div
+            class="reveal team-card bg-card rounded-2xl overflow-hidden border border-border text-center"
+          >
+            <div class="overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+                alt="Team"
+                class="w-full h-56 object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <h4 class="font-display text-lg font-semibold text-fg">
+                Hiroshi Tanaka
+              </h4>
+              <p class="text-accent text-sm font-medium mb-2">
+                Kepala Pengajar Bahasa
+              </p>
+              <p class="text-muted text-xs">
+                Native speaker dengan pengalaman 15+ tahun mengajar
+              </p>
+            </div>
+          </div>
+          <!-- Team 2 -->
+          <div
+            class="reveal reveal-delay-1 team-card bg-card rounded-2xl overflow-hidden border border-border text-center"
+          >
+            <div class="overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
+                alt="Team"
+                class="w-full h-56 object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <h4 class="font-display text-lg font-semibold text-fg">
+                Dewi Kartika
+              </h4>
+              <p class="text-accent text-sm font-medium mb-2">
+                Instruktur Kaigo
+              </p>
+              <p class="text-muted text-xs">
+                Ex-Caregiver di Osaka dengan sertifikasi internasional
+              </p>
+            </div>
+          </div>
+          <!-- Team 3 -->
+          <div
+            class="reveal reveal-delay-2 team-card bg-card rounded-2xl overflow-hidden border border-border text-center"
+          >
+            <div class="overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+                alt="Team"
+                class="w-full h-56 object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <h4 class="font-display text-lg font-semibold text-fg">
+                Budi Santoso
+              </h4>
+              <p class="text-accent text-sm font-medium mb-2">
+                Koordinator Penempatan
+              </p>
+              <p class="text-muted text-xs">
+                Berpengalaman dalam penempatan kerja ke Jepang
+              </p>
+            </div>
+          </div>
+          <!-- Team 4 -->
+          <div
+            class="reveal reveal-delay-3 team-card bg-card rounded-2xl overflow-hidden border border-border text-center"
+          >
+            <div class="overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80"
+                alt="Team"
+                class="w-full h-56 object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <h4 class="font-display text-lg font-semibold text-fg">
+                Yuki Matsuda
+              </h4>
+              <p class="text-accent text-sm font-medium mb-2">
+                Instruktur Budaya Jepang
+              </p>
+              <p class="text-muted text-xs">
+                Spesialis etika bisnis dan budaya kerja Jepang
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section class="py-20 lg:py-28 px-6 lg:px-12 bg-fg">
+      <div class="max-w-7xl mx-auto">
+        <div class="reveal text-center mb-16">
+          <span
+            class="text-accent text-sm font-semibold tracking-widest uppercase"
+            >Fasilitas</span
+          >
+          <h2
+            class="font-display text-3xl lg:text-4xl font-bold text-white mt-4 mb-6"
+          >
+            Fasilitas Lengkap
+          </h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            class="reveal bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+          >
+            <svg
+              class="w-8 h-8 text-accent mb-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+              />
+            </svg>
+            <h4 class="text-white font-semibold mb-2">Ruang Kelas Modern</h4>
+            <p class="text-white/60 text-sm">
+              Dilengkapi AC, proyektor, dan kapasitas 20 siswa per kelas
+            </p>
+          </div>
+          <div
+            class="reveal reveal-delay-1 bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+          >
+            <svg
+              class="w-8 h-8 text-accent mb-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              />
+            </svg>
+            <h4 class="text-white font-semibold mb-2">Asrama Peserta</h4>
+            <p class="text-white/60 text-sm">
+              Asrama nyaman dengan kapasitas 100 orang dan fasilitas lengkap
+            </p>
+          </div>
+          <div
+            class="reveal reveal-delay-2 bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+          >
+            <svg
+              class="w-8 h-8 text-accent mb-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+              />
+            </svg>
+            <h4 class="text-white font-semibold mb-2">Lab Komputer</h4>
+            <p class="text-white/60 text-sm">
+              Lab komputer untuk pembelajaran digital dan ujian online
+            </p>
+          </div>
+          <div
+            class="reveal bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+          >
+            <svg
+              class="w-8 h-8 text-accent mb-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              />
+            </svg>
+            <h4 class="text-white font-semibold mb-2">Perpustakaan</h4>
+            <p class="text-white/60 text-sm">
+              Koleksi buku bahasa Jepang dan materi persiapan ujian
+            </p>
+          </div>
+          <div
+            class="reveal reveal-delay-1 bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+          >
+            <svg
+              class="w-8 h-8 text-accent mb-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+            <h4 class="text-white font-semibold mb-2">Ruang Praktik Kaigo</h4>
+            <p class="text-white/60 text-sm">
+              Simulasi ruang perawatan lengkap dengan peralatan medis
+            </p>
+          </div>
+          <div
+            class="reveal reveal-delay-2 bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+          >
+            <svg
+              class="w-8 h-8 text-accent mb-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+              />
+            </svg>
+            <h4 class="text-white font-semibold mb-2">Dapur & Kantin</h4>
+            <p class="text-white/60 text-sm">
+              Fasilitas makan dengan menu bergizi untuk peserta asrama
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 lg:px-12 bg-cream">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="font-display text-3xl lg:text-4xl font-bold text-fg mb-4">
+          Bergabung Bersama Kami
+        </h2>
+        <p class="text-muted mb-8">
+          Ratusan alumni telah memulai karier impian mereka di Jepang. Giliran
+          Anda selanjutnya.
+        </p>
+        <a
+          href="pendaftaran.html"
+          class="btn-primary inline-flex bg-accent text-white px-8 py-4 rounded-full text-base font-semibold"
+          >Daftar Sekarang</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-fg border-t border-white/10 py-16 px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <div class="lg:col-span-1">
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-12 h-12 rounded-full bg-accent flex items-center justify-center"
+              >
+                <span class="text-white font-display text-xl font-bold"
+                  >YG</span
+                >
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-semibold text-white">
+                  Yuuki Gakkou
+                </h3>
+                <p class="text-xs text-muted tracking-wider">
+                  LEMBAGA PELATIHAN KERJA
+                </p>
+              </div>
+            </div>
+            <p class="text-muted text-sm leading-relaxed">
+              Mencetak tenaga kerja Indonesia siap berkarier profesional di
+              Jepang.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-6">Menu</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="index.html"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Beranda</a
+                >
+              </li>
+              <li>
+                <a
+                  href="program.html"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Program</a
+                >
+              </li>
+              <li>
+                <a
+                  href="legalitas.html"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Legalitas</a
+                >
+              </li>
+              <li>
+                <a
+                  href="dokumentasi.html"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Dokumentasi</a
+                >
+              </li>
+              <li>
+                <a
+                  href="testimoni.html"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Testimoni</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-6">Program</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >JLPT Intensif</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Pelatihan Kaigo</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Pelatihan Industri</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Tokutei Ginou</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-6">Kontak</h4>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  /></svg
+                ><span class="text-muted text-sm"
+                  >Jl. Contoh No. 123, Kota, Indonesia</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <svg
+                  class="w-5 h-5 text-accent flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  /></svg
+                ><a
+                  href="mailto:info@yuukigakkou.com"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >info@yuukigakkou.com</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p class="text-muted text-sm">
+            &copy; 2024 LPK Yuuki Gakkou. Hak cipta dilindungi.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar");
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const closeMobileMenu = document.getElementById("closeMobileMenu");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        mobileMenuBtn.addEventListener("click", function () {
+          mobileMenu.classList.add("open");
+        });
+        closeMobileMenu.addEventListener("click", function () {
+          mobileMenu.classList.remove("open");
+        });
+
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (!prefersReducedMotion) {
+          const observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+          );
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            observer.observe(el);
+          });
+        } else {
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            el.classList.add("visible");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

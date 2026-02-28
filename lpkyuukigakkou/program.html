@@ -1,0 +1,1309 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program Pelatihan - LPK Yuuki Gakkou</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: "#FDFCFA",
+              fg: "#1A1A1A",
+              muted: "#6B6B6B",
+              accent: "#9B2C2C",
+              accentLight: "#C53030",
+              card: "#FFFFFF",
+              border: "#E8E6E3",
+              cream: "#F5F3EF",
+            },
+            fontFamily: {
+              display: ["Cormorant Garamond", "serif"],
+              body: ["Plus Jakarta Sans", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --bg: #fdfcfa;
+        --fg: #1a1a1a;
+        --muted: #6b6b6b;
+        --accent: #9b2c2c;
+        --accent-light: #c53030;
+        --card: #ffffff;
+        --border: #e8e6e3;
+        --cream: #f5f3ef;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+      }
+
+      .pattern-bg {
+        background-image:
+          linear-gradient(rgba(155, 44, 44, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(155, 44, 44, 0.02) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+      .navbar {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+      }
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+      .nav-link.active {
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .hero-overlay {
+        background: linear-gradient(
+          135deg,
+          rgba(26, 26, 26, 0.8) 0%,
+          rgba(155, 44, 44, 0.6) 100%
+        );
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .btn-primary {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(155, 44, 44, 0.3);
+      }
+      .btn-outline {
+        transition: all 0.3s ease;
+      }
+      .btn-outline:hover {
+        background: var(--accent);
+        color: white;
+        border-color: var(--accent);
+      }
+      .program-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .program-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      .program-card:hover .program-img {
+        transform: scale(1.05);
+      }
+      .program-img {
+        transition: transform 0.6s ease;
+      }
+      .accent-line {
+        width: 60px;
+        height: 3px;
+        background: var(--accent);
+      }
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .btn-primary:hover,
+        .program-card:hover {
+          transform: none;
+        }
+      }
+      .tab-btn.active {
+        background: var(--accent);
+        color: white;
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="pattern-bg">
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 py-4 px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3">
+          <div
+            class="w-12 h-12 rounded-full bg-accent flex items-center justify-center"
+          >
+            <span class="text-white font-display text-xl font-bold">YG</span>
+          </div>
+          <div class="hidden sm:block">
+            <h1 class="font-display text-xl font-semibold text-fg">
+              Yuuki Gakkou
+            </h1>
+            <p class="text-xs text-muted tracking-wider">
+              LEMBAGA PELATIHAN KERJA
+            </p>
+          </div>
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a
+            href="index.html"
+            class="nav-link text-sm font-medium text-muted hover:text-fg"
+            >Beranda</a
+          >
+          <a
+            href="program.html"
+            class="nav-link active text-sm font-medium text-fg"
+            >Program</a
+          >
+          <a
+            href="legalitas.html"
+            class="nav-link text-sm font-medium text-muted hover:text-fg"
+            >Legalitas</a
+          >
+          <a
+            href="dokumentasi.html"
+            class="nav-link text-sm font-medium text-muted hover:text-fg"
+            >Dokumentasi</a
+          >
+          <a
+            href="testimoni.html"
+            class="nav-link text-sm font-medium text-muted hover:text-fg"
+            >Testimoni</a
+          >
+          <a
+            href="tentang.html"
+            class="nav-link text-sm font-medium text-muted hover:text-fg"
+            >Tentang Kami</a
+          >
+        </div>
+        <a
+          href="pendaftaran.html"
+          class="hidden lg:inline-flex btn-primary bg-accent text-white px-6 py-3 rounded-full text-sm font-semibold"
+          >Daftar Sekarang</a
+        >
+        <button
+          id="mobileMenuBtn"
+          class="lg:hidden p-2"
+          aria-label="Toggle menu"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobileMenu"
+      class="mobile-menu fixed inset-y-0 right-0 w-80 bg-white z-50 shadow-2xl lg:hidden"
+    >
+      <div class="p-6">
+        <button
+          id="closeMobileMenu"
+          class="absolute top-4 right-4 p-2"
+          aria-label="Close menu"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <div class="mt-12 flex flex-col gap-4">
+          <a
+            href="index.html"
+            class="py-3 px-4 text-muted hover:text-fg hover:bg-cream rounded-lg transition-colors"
+            >Beranda</a
+          >
+          <a
+            href="program.html"
+            class="py-3 px-4 text-fg font-medium bg-cream rounded-lg"
+            >Program</a
+          >
+          <a
+            href="legalitas.html"
+            class="py-3 px-4 text-muted hover:text-fg hover:bg-cream rounded-lg transition-colors"
+            >Legalitas</a
+          >
+          <a
+            href="dokumentasi.html"
+            class="py-3 px-4 text-muted hover:text-fg hover:bg-cream rounded-lg transition-colors"
+            >Dokumentasi</a
+          >
+          <a
+            href="testimoni.html"
+            class="py-3 px-4 text-muted hover:text-fg hover:bg-cream rounded-lg transition-colors"
+            >Testimoni</a
+          >
+          <a
+            href="tentang.html"
+            class="py-3 px-4 text-muted hover:text-fg hover:bg-cream rounded-lg transition-colors"
+            >Tentang Kami</a
+          >
+          <hr class="my-4 border-border" />
+          <a
+            href="pendaftaran.html"
+            class="btn-primary bg-accent text-white px-6 py-3 rounded-full text-sm font-semibold text-center"
+            >Daftar Sekarang</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28">
+      <div class="absolute inset-0 h-96">
+        <img
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80"
+          alt="Program"
+          class="w-full h-full object-cover"
+        />
+        <div class="hero-overlay absolute inset-0"></div>
+      </div>
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-16">
+        <div class="reveal text-center max-w-3xl mx-auto">
+          <span
+            class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-6"
+            >Program Pelatihan</span
+          >
+          <h1
+            class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
+          >
+            Pilih Program Sesuai Tujuanmu
+          </h1>
+          <p class="text-lg text-white/80">
+            Berbagai program pelatihan untuk mempersiapkan karier impianmu di
+            Jepang
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Program Filter -->
+    <section
+      class="py-8 px-6 lg:px-12 bg-card border-b border-border sticky top-0 z-40"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-wrap justify-center gap-3" role="tablist">
+          <button
+            class="tab-btn active px-5 py-2 rounded-full text-sm font-medium border border-border transition-all"
+            data-tab="semua"
+            role="tab"
+            aria-selected="true"
+          >
+            Semua Program
+          </button>
+          <button
+            class="tab-btn px-5 py-2 rounded-full text-sm font-medium border border-border transition-all hover:border-accent hover:text-accent"
+            data-tab="bahasa"
+            role="tab"
+            aria-selected="false"
+          >
+            Bahasa Jepang
+          </button>
+          <button
+            class="tab-btn px-5 py-2 rounded-full text-sm font-medium border border-border transition-all hover:border-accent hover:text-accent"
+            data-tab="keahlian"
+            role="tab"
+            aria-selected="false"
+          >
+            Keahlian
+          </button>
+          <button
+            class="tab-btn px-5 py-2 rounded-full text-sm font-medium border border-border transition-all hover:border-accent hover:text-accent"
+            data-tab="persiapan"
+            role="tab"
+            aria-selected="false"
+          >
+            Persiapan Kerja
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs Grid -->
+    <section class="py-16 lg:py-24 px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto">
+        <!-- Tab: Semua -->
+        <div id="tab-semua" class="tab-content active">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Program 1: JLPT -->
+            <div
+              class="reveal program-card bg-card rounded-2xl overflow-hidden border border-border"
+              data-category="bahasa"
+            >
+              <div class="overflow-hidden h-48">
+                <img
+                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80"
+                  alt="JLPT Intensif"
+                  class="program-img w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span
+                    class="px-2 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full"
+                    >Bahasa</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cream text-muted text-xs font-semibold rounded-full"
+                    >6 Bulan</span
+                  >
+                </div>
+                <h3 class="font-display text-xl font-semibold text-fg mb-2">
+                  JLPT Intensif
+                </h3>
+                <p class="text-muted text-sm leading-relaxed mb-4">
+                  Persiapan ujian JLPT N5-N2 dengan kurikulum terstruktur dan
+                  latihan soal intensif.
+                </p>
+                <ul class="text-sm text-muted space-y-1 mb-4">
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Persiapan N5, N4, N3, N2
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Kelas pagi & sore
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Simulasi ujian bulanan
+                  </li>
+                </ul>
+                <a
+                  href="pendaftaran.html?program=jlpt"
+                  class="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:gap-3 transition-all"
+                >
+                  Daftar Program
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Program 2: Kaigo -->
+            <div
+              class="reveal reveal-delay-1 program-card bg-card rounded-2xl overflow-hidden border border-border"
+              data-category="keahlian"
+            >
+              <div class="overflow-hidden h-48">
+                <img
+                  src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&q=80"
+                  alt="Pelatihan Kaigo"
+                  class="program-img w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span
+                    class="px-2 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full"
+                    >Keahlian</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cream text-muted text-xs font-semibold rounded-full"
+                    >3-6 Bulan</span
+                  >
+                </div>
+                <h3 class="font-display text-xl font-semibold text-fg mb-2">
+                  Pelatihan Kaigo
+                </h3>
+                <p class="text-muted text-sm leading-relaxed mb-4">
+                  Pelatihan perawatan lansia sesuai standar Jepang untuk Tokutei
+                  Ginou Kaigo.
+                </p>
+                <ul class="text-sm text-muted space-y-1 mb-4">
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Praktik langsung
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Sertifikasi Tokutei
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Bahasa Jepang inklusif
+                  </li>
+                </ul>
+                <a
+                  href="pendaftaran.html?program=kaigo"
+                  class="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:gap-3 transition-all"
+                >
+                  Daftar Program
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Program 3: Industri -->
+            <div
+              class="reveal reveal-delay-2 program-card bg-card rounded-2xl overflow-hidden border border-border"
+              data-category="keahlian"
+            >
+              <div class="overflow-hidden h-48">
+                <img
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80"
+                  alt="Pelatihan Industri"
+                  class="program-img w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span
+                    class="px-2 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full"
+                    >Keahlian</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cream text-muted text-xs font-semibold rounded-full"
+                    >6 Bulan</span
+                  >
+                </div>
+                <h3 class="font-display text-xl font-semibold text-fg mb-2">
+                  Pelatihan Industri
+                </h3>
+                <p class="text-muted text-sm leading-relaxed mb-4">
+                  Pelatihan keterampilan teknis untuk bekerja di pabrik dan
+                  industri manufaktur Jepang.
+                </p>
+                <ul class="text-sm text-muted space-y-1 mb-4">
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Safety & prosedur kerja
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Teknik produksi
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    K3 dan budaya kerja
+                  </li>
+                </ul>
+                <a
+                  href="pendaftaran.html?program=industri"
+                  class="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:gap-3 transition-all"
+                >
+                  Daftar Program
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Program 4: Ginou Jisshusei -->
+            <div
+              class="reveal program-card bg-card rounded-2xl overflow-hidden border border-border"
+              data-category="persiapan"
+            >
+              <div class="overflow-hidden h-48">
+                <img
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80"
+                  alt="Tokutei Ginou"
+                  class="program-img w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span
+                    class="px-2 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full"
+                    >Persiapan Kerja</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cream text-muted text-xs font-semibold rounded-full"
+                    >4 Bulan</span
+                  >
+                </div>
+                <h3 class="font-display text-xl font-semibold text-fg mb-2">
+                  Tokutei Ginou
+                </h3>
+                <p class="text-muted text-sm leading-relaxed mb-4">
+                  Persiapan lengkap untuk program Tokutei Ginou (Specified
+                  Skilled Worker) visa Jepang.
+                </p>
+                <ul class="text-sm text-muted space-y-1 mb-4">
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Persiapan ujian skill
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Persiapan JLPT N4/N3
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Pendampingan dokumen
+                  </li>
+                </ul>
+                <a
+                  href="pendaftaran.html?program=ginou"
+                  class="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:gap-3 transition-all"
+                >
+                  Daftar Program
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Program 5: JITCO -->
+            <div
+              class="reveal reveal-delay-1 program-card bg-card rounded-2xl overflow-hidden border border-border"
+              data-category="persiapan"
+            >
+              <div class="overflow-hidden h-48">
+                <img
+                  src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80"
+                  alt="Program Pemagangan"
+                  class="program-img w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span
+                    class="px-2 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full"
+                    >Persiapan Kerja</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cream text-muted text-xs font-semibold rounded-full"
+                    >6 Bulan</span
+                  >
+                </div>
+                <h3 class="font-display text-xl font-semibold text-fg mb-2">
+                  Program Pemagangan (Ginou Jisshusei)
+                </h3>
+                <p class="text-muted text-sm leading-relaxed mb-4">
+                  Program pemagangan 3 tahun ke Jepang dengan berbagai bidang
+                  keahlian.
+                </p>
+                <ul class="text-sm text-muted space-y-1 mb-4">
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Berbagai bidang keahlian
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Kontrak 3 tahun
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Bahasa + Skill
+                  </li>
+                </ul>
+                <a
+                  href="pendaftaran.html?program=pemagangan"
+                  class="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:gap-3 transition-all"
+                >
+                  Daftar Program
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Program 6: Private Class -->
+            <div
+              class="reveal reveal-delay-2 program-card bg-card rounded-2xl overflow-hidden border border-border"
+              data-category="bahasa"
+            >
+              <div class="overflow-hidden h-48">
+                <img
+                  src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80"
+                  alt="Kelas Privat"
+                  class="program-img w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span
+                    class="px-2 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full"
+                    >Bahasa</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cream text-muted text-xs font-semibold rounded-full"
+                    >Fleksibel</span
+                  >
+                </div>
+                <h3 class="font-display text-xl font-semibold text-fg mb-2">
+                  Kelas Privat Bahasa Jepang
+                </h3>
+                <p class="text-muted text-sm leading-relaxed mb-4">
+                  Kelas one-on-one dengan jadwal fleksibel sesuai kebutuhan dan
+                  target Anda.
+                </p>
+                <ul class="text-sm text-muted space-y-1 mb-4">
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Jadwal fleksibel
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Materi disesuaikan
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Online & Offline
+                  </li>
+                </ul>
+                <a
+                  href="pendaftaran.html?program=privat"
+                  class="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:gap-3 transition-all"
+                >
+                  Daftar Program
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6 lg:px-12 bg-cream">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="font-display text-3xl lg:text-4xl font-bold text-fg mb-4">
+          Butuh Bantuan Memilih Program?
+        </h2>
+        <p class="text-muted mb-8">
+          Konsultasikan tujuan karier Anda dengan tim kami untuk mendapatkan
+          rekomendasi program terbaik.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="pendaftaran.html"
+            class="btn-primary bg-accent text-white px-8 py-4 rounded-full text-base font-semibold"
+            >Daftar Konsultasi</a
+          >
+          <a
+            href="https://wa.me/628xxxxxxxxxx"
+            target="_blank"
+            rel="noopener"
+            class="btn-outline border-2 border-accent text-accent px-8 py-4 rounded-full text-base font-semibold"
+            >Hubungi via WhatsApp</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-fg border-t border-white/10 py-16 px-6 lg:px-12">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <div class="lg:col-span-1">
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-12 h-12 rounded-full bg-accent flex items-center justify-center"
+              >
+                <span class="text-white font-display text-xl font-bold"
+                  >YG</span
+                >
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-semibold text-white">
+                  Yuuki Gakkou
+                </h3>
+                <p class="text-xs text-muted tracking-wider">
+                  LEMBAGA PELATIHAN KERJA
+                </p>
+              </div>
+            </div>
+            <p class="text-muted text-sm leading-relaxed">
+              Mencetak tenaga kerja Indonesia siap berkarier profesional di
+              Jepang dengan pelatihan berkualitas.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-6">Menu</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="index.html"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Beranda</a
+                >
+              </li>
+              <li>
+                <a
+                  href="program.html"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Program</a
+                >
+              </li>
+              <li>
+                <a
+                  href="legalitas.html"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Legalitas</a
+                >
+              </li>
+              <li>
+                <a
+                  href="dokumentasi.html"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Dokumentasi</a
+                >
+              </li>
+              <li>
+                <a
+                  href="testimoni.html"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Testimoni</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-6">Program</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >JLPT Intensif</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Pelatihan Kaigo</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Pelatihan Industri</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >Tokutei Ginou</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-6">Kontak</h4>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-accent mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                <span class="text-muted text-sm"
+                  >Jl. Contoh No. 123, Kota, Indonesia</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <svg
+                  class="w-5 h-5 text-accent flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                <a
+                  href="mailto:info@yuukigakkou.com"
+                  class="text-muted hover:text-accent transition-colors text-sm"
+                  >info@yuukigakkou.com</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p class="text-muted text-sm">
+            &copy; 2024 LPK Yuuki Gakkou. Hak cipta dilindungi.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar");
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const closeMobileMenu = document.getElementById("closeMobileMenu");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        const programCards = document.querySelectorAll(".program-card");
+
+        // Navbar scroll
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Mobile menu
+        mobileMenuBtn.addEventListener("click", function () {
+          mobileMenu.classList.add("open");
+        });
+        closeMobileMenu.addEventListener("click", function () {
+          mobileMenu.classList.remove("open");
+        });
+
+        // Scroll reveal
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (!prefersReducedMotion) {
+          const observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+          );
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            observer.observe(el);
+          });
+        } else {
+          document.querySelectorAll(".reveal").forEach(function (el) {
+            el.classList.add("visible");
+          });
+        }
+
+        // Tab filter
+        tabBtns.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            tabBtns.forEach(function (b) {
+              b.classList.remove("active");
+              b.setAttribute("aria-selected", "false");
+            });
+            btn.classList.add("active");
+            btn.setAttribute("aria-selected", "true");
+            const filter = btn.dataset.tab;
+
+            programCards.forEach(function (card) {
+              if (filter === "semua" || card.dataset.category === filter) {
+                card.style.display = "block";
+                setTimeout(function () {
+                  card.classList.add("visible");
+                }, 50);
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

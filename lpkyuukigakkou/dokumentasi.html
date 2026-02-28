@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dokumentasi - LPK Yuuki Gakkou</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <style>
+      :root {
+        --primary-color: #9b2c2c;
+        --secondary-color: #1a1a1a;
+        --accent-bg: #f5f3ef;
+        --font-heading: "Cormorant Garamond", serif;
+        --font-body: "Plus Jakarta Sans", sans-serif;
+      }
+      body {
+        font-family: var(--font-body);
+        background-color: #fdfcfa;
+        color: var(--secondary-color);
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-heading);
+      }
+
+      /* Navbar & Buttons reused styles */
+      .navbar-custom {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      }
+      .nav-link {
+        font-weight: 500;
+        color: var(--secondary-color) !important;
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary-color);
+        transition: width 0.3s;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+      .nav-link.active {
+        color: var(--primary-color) !important;
+        font-weight: 600;
+      }
+      .btn-custom-primary {
+        background-color: var(--primary-color);
+        border: none;
+        color: white;
+        padding: 0.6rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+      }
+      .btn-custom-primary:hover {
+        background-color: #7c1f1f;
+      }
+
+      .hero-section {
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.6), rgba(155, 44, 44, 0.7)),
+          url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1920");
+        background-size: cover;
+        background-position: center;
+        padding-top: 160px;
+        padding-bottom: 80px;
+        color: white;
+      }
+
+      /* Gallery Grid */
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        min-height: 250px; /* minimum height for uniform look */
+      }
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+      .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.7) 0%,
+          transparent 50%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        display: flex;
+        align-items: flex-end;
+        padding: 1.5rem;
+      }
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+      .gallery-caption {
+        color: white;
+        transform: translateY(20px);
+        transition: transform 0.4s ease;
+      }
+      .gallery-item:hover .gallery-caption {
+        transform: translateY(0);
+      }
+
+      /* Masonry columns */
+      .masonry-grid {
+        column-count: 3;
+        column-gap: 1.5rem;
+      }
+      @media (max-width: 992px) {
+        .masonry-grid {
+          column-count: 2;
+        }
+      }
+      @media (max-width: 576px) {
+        .masonry-grid {
+          column-count: 1;
+        }
+      }
+
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <div
+            class="rounded-circle d-flex justify-content-center align-items-center me-2"
+            style="
+              width: 40px;
+              height: 40px;
+              background-color: var(--primary-color);
+            "
+          >
+            <span
+              class="text-white fw-bold"
+              style="font-family: var(--font-heading)"
+              >YG</span
+            >
+          </div>
+          <div>
+            <span class="fw-bold d-block" style="font-size: 1.1rem"
+              >Yuuki Gakkou</span
+            >
+            <span
+              class="text-muted"
+              style="font-size: 0.7rem; letter-spacing: 0.5px"
+              >LPK RESMI</span
+            >
+          </div>
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="program.html">Program</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="legalitas.html">Legalitas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="dokumentasi.html">Dokumentasi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="testimoni.html">Testimoni</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tentang.html">Tentang Kami</a>
+            </li>
+          </ul>
+          <a href="pendaftaran.html" class="btn btn-custom-primary"
+            >Daftar Sekarang</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-section text-center">
+      <div class="container">
+        <h1 class="display-3 fw-bold mb-3">Galeri Kegiatan</h1>
+        <p class="lead col-md-6 mx-auto opacity-75">
+          Dokumentasi kegiatan pelatihan, kelas, dan kehidupan peserta di LPK
+          Yuuki Gakkou.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section
+      class="py-4 bg-white border-bottom sticky-top"
+      style="z-index: 100"
+    >
+      <div class="container text-center">
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-outline-dark active"
+            data-filter="all"
+          >
+            Semua
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            data-filter="kelas"
+          >
+            Kelas
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            data-filter="kegiatan"
+          >
+            Kegiatan
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            data-filter="fasilitas"
+          >
+            Fasilitas
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-5">
+      <div class="container">
+        <div class="masonry-grid">
+          <!-- Item 1 -->
+          <div class="gallery-item masonry-item" data-category="kelas">
+            <img
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800"
+              alt="Kelas Bahasa"
+            />
+            <div class="gallery-overlay">
+              <div class="gallery-caption">
+                <h5 class="mb-1">Kelas Bahasa Pagi</h5>
+                <p class="small mb-0 opacity-75">
+                  Suasana belajar JLPT intensif
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="gallery-item masonry-item" data-category="fasilitas">
+            <img
+              src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=800"
+              alt="Asrama"
+            />
+            <div class="gallery-overlay">
+              <div class="gallery-caption">
+                <h5 class="mb-1">Asrama Putri</h5>
+                <p class="small mb-0 opacity-75">Fasilitas hunian nyaman</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="gallery-item masonry-item" data-category="kegiatan">
+            <img
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800"
+              alt="Study Tour"
+            />
+            <div class="gallery-overlay">
+              <div class="gallery-caption">
+                <h5 class="mb-1">Study Tour</h5>
+                <p class="small mb-0 opacity-75">
+                  Kunjungan ke kedutaan Jepang
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="gallery-item masonry-item" data-category="kelas">
+            <img
+              src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800"
+              alt="Praktik Kaigo"
+            />
+            <div class="gallery-overlay">
+              <div class="gallery-caption">
+                <h5 class="mb-1">Praktik Kaigo</h5>
+                <p class="small mb-0 opacity-75">Pelatihan perawatan lansia</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="gallery-item masonry-item" data-category="kegiatan">
+            <img
+              src="https://images.unsplash.com/photo-1529543544277-750e9a9e3bd7?q=80&w=800"
+              alt="Upacara"
+            />
+            <div class="gallery-overlay">
+              <div class="gallery-caption">
+                <h5 class="mb-1">Upacara Penutupan</h5>
+                <p class="small mb-0 opacity-75">Wisuda angkatan ke-12</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="gallery-item masonry-item" data-category="fasilitas">
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800"
+              alt="Ruang Kelas"
+            />
+            <div class="gallery-overlay">
+              <div class="gallery-caption">
+                <h5 class="mb-1">Ruang Kelas AC</h5>
+                <p class="small mb-0 opacity-75">Fasilitas modern</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add more items as needed -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-5 text-white-50">
+      <div class="container text-center small">
+        &copy; 2024 LPK Yuuki Gakkou. All Rights Reserved.
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Simple Filter Logic
+      const buttons = document.querySelectorAll(".btn-group button");
+      const items = document.querySelectorAll(".masonry-item");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Remove active from all buttons
+          buttons.forEach((b) => b.classList.remove("active", "btn-dark"));
+          buttons.forEach((b) => b.classList.add("btn-outline-dark"));
+          btn.classList.add("active", "btn-dark");
+          btn.classList.remove("btn-outline-dark");
+
+          const filter = btn.getAttribute("data-filter");
+
+          items.forEach((item) => {
+            if (
+              filter === "all" ||
+              item.getAttribute("data-category") === filter
+            ) {
+              item.style.display = "block";
+            } else {
+              item.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
