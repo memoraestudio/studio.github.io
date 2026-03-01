@@ -56,42 +56,75 @@
         background-size: 60px 60px;
       }
 
+      /* Navbar refined */
       .navbar {
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         background: transparent;
         backdrop-filter: blur(0px);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
       }
 
       .navbar.scrolled {
-        background: rgba(255, 255, 255, 0.95) !important;
+        background: rgba(255, 255, 255, 0.98) !important;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
         backdrop-filter: blur(10px);
+      }
+
+      .navbar:not(.scrolled) .navbar-brand h1,
+      .navbar:not(.scrolled) .navbar-brand p {
+        color: white !important;
+      }
+
+      .navbar-brand h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        font-size: 1.25rem;
+        margin-bottom: 0;
+        color: var(--fg);
+        transition: color 0.3s ease;
+      }
+
+      .navbar-brand .small {
+        color: var(--muted);
+        transition: color 0.3s ease;
       }
 
       .nav-link {
         position: relative;
         transition: color 0.3s ease;
         color: var(--muted) !important;
+        font-weight: 500;
+        padding: 0.5rem 1rem !important;
+      }
+
+      .navbar:not(.scrolled) .nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
       }
 
       .nav-link:hover {
         color: var(--fg) !important;
       }
 
+      .navbar:not(.scrolled) .nav-link:hover {
+        color: white !important;
+      }
+
       .nav-link::after {
         content: "";
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 0;
+        left: 0.5rem;
+        right: 0.5rem;
         height: 2px;
         background: var(--accent);
-        transition: width 0.3s ease;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
       }
 
       .nav-link:hover::after,
       .nav-link.active::after {
-        width: 100%;
+        transform: scaleX(1);
       }
 
       .nav-link.active {
@@ -99,19 +132,260 @@
         font-weight: 600;
       }
 
-      .hero-overlay {
+      .navbar:not(.scrolled) .nav-link.active {
+        color: white !important;
+      }
+
+      .navbar:not(.scrolled) .nav-link.active::after {
+        background: white;
+      }
+
+      /* Hero section rework — lebih proporsional */
+      .hero-section {
         height: 100vh;
+        min-height: 600px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background: linear-gradient(
           135deg,
           rgba(26, 26, 26, 0.8) 0%,
-          rgba(155, 44, 44, 0.6) 100%
+          rgba(155, 44, 44, 0.7) 100%
         );
       }
 
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+        max-width: 900px;
+        padding: 2rem;
+      }
+
+      .hero-content .badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+        border-radius: 100px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .hero-content h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-content p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+      }
+
+      /* filter sticky */
+      .filter-sticky {
+        position: sticky;
+        top: 70px; /* lebih rendah dari navbar */
+        z-index: 40;
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+        padding: 1.25rem 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      }
+
+      /* tab button lebih elegan */
+      .tab-btn {
+        padding: 0.6rem 1.8rem;
+        border-radius: 100px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--muted);
+        transition: all 0.2s ease;
+        cursor: pointer;
+        letter-spacing: 0.3px;
+      }
+
+      .tab-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(155, 44, 44, 0.03);
+      }
+
+      .tab-btn.active {
+        background: var(--accent);
+        color: white !important;
+        border-color: var(--accent);
+        box-shadow: 0 6px 15px rgba(155, 44, 44, 0.2);
+      }
+
+      /* card program */
+      .program-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1.5rem !important;
+        overflow: hidden;
+        height: 100%;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
+      }
+
+      .program-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 40px rgba(0, 0, 0, 0.08) !important;
+        border-color: transparent;
+      }
+
+      .program-card:hover .program-img {
+        transform: scale(1.05);
+      }
+
+      .img-wrapper {
+        overflow: hidden;
+        height: 220px;
+      }
+
+      .program-img {
+        transition: transform 0.7s ease;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .badge-accent {
+        background: rgba(155, 44, 44, 0.08);
+        color: var(--accent);
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.3rem 0.8rem;
+        border-radius: 100px;
+        letter-spacing: 0.3px;
+      }
+
+      .badge-cream {
+        background: var(--cream);
+        color: var(--muted);
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.3rem 0.8rem;
+        border-radius: 100px;
+        letter-spacing: 0.3px;
+      }
+
+      .program-card .btn-link-accent {
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: gap 0.3s ease;
+      }
+
+      .program-card .btn-link-accent:hover {
+        gap: 1rem;
+        color: var(--accent-light);
+      }
+
+      /* CTA */
+      .cta-section {
+        background: var(--cream);
+        padding: 5rem 0;
+      }
+
+      .btn-primary {
+        background: var(--accent) !important;
+        border-color: var(--accent) !important;
+        padding: 0.8rem 2.5rem;
+        border-radius: 100px !important;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(155, 44, 44, 0.15);
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-light) !important;
+        border-color: var(--accent-light) !important;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(155, 44, 44, 0.25);
+      }
+
+      .btn-outline-accent {
+        border: 2px solid var(--accent) !important;
+        color: var(--accent) !important;
+        background: transparent !important;
+        padding: 0.8rem 2.5rem;
+        border-radius: 100px !important;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline-accent:hover {
+        background: var(--accent) !important;
+        color: white !important;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(155, 44, 44, 0.1);
+      }
+
+      /* footer */
+      .footer {
+        background-color: #1a1a1a !important;
+        color: #a0a0a0;
+      }
+
+      .footer-link {
+        color: #a0a0a0;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        font-size: 0.9rem;
+      }
+
+      .footer-link:hover {
+        color: var(--accent) !important;
+      }
+
+      /* reveal animation */
       .reveal {
         opacity: 0;
-        transform: translateY(40px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateY(30px);
+        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .reveal.visible {
@@ -127,240 +401,67 @@
         transition-delay: 0.2s;
       }
 
-      .reveal-delay-3 {
-        transition-delay: 0.3s;
-      }
-
-      .btn-primary {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        background: var(--accent) !important;
-        border-color: var(--accent) !important;
-      }
-
-      .btn-primary::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        );
-        transition: left 0.5s ease;
-      }
-
-      .btn-primary:hover::before {
-        left: 100%;
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(155, 44, 44, 0.3);
-        background: var(--accent-light) !important;
-        border-color: var(--accent-light) !important;
-      }
-
-      .btn-outline-accent {
-        transition: all 0.3s ease;
-        border: 2px solid var(--accent) !important;
-        color: var(--accent) !important;
-      }
-
-      .btn-outline-accent:hover {
-        background: var(--accent) !important;
-        color: white !important;
-      }
-
-      .program-card {
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 1rem !important;
-        overflow: hidden;
-      }
-
-      .program-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
-      }
-
-      .program-card:hover .program-img {
-        transform: scale(1.05);
-      }
-
-      .program-img {
-        transition: transform 0.6s ease;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .img-wrapper {
-        overflow: hidden;
-        height: 200px;
-      }
-
-      .accent-line {
-        width: 60px;
-        height: 3px;
-        background: var(--accent);
-      }
-
-      a:focus-visible,
-      button:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 4px;
-      }
-
       @media (prefers-reduced-motion: reduce) {
         .reveal {
           opacity: 1;
           transform: none;
-          transition: none;
-        }
-        .btn-primary:hover,
-        .program-card:hover {
-          transform: none;
         }
       }
 
-      .tab-btn {
-        padding: 0.5rem 1.5rem;
-        border-radius: 9999px;
-        font-size: 0.875rem;
-        font-weight: 500;
-        border: 1px solid var(--border);
-        background: transparent;
-        color: var(--muted);
-        transition: all 0.3s ease;
-        cursor: pointer;
+      /* mobile navbar fix */
+      @media (max-width: 991.98px) {
+        .navbar-collapse {
+          background: white;
+          padding: 1rem;
+          border-radius: 1rem;
+          margin-top: 0.75rem;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar:not(.scrolled) .navbar-collapse {
+          background: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar:not(.scrolled) .nav-link {
+          color: var(--muted) !important;
+        }
+
+        .navbar:not(.scrolled) .nav-link.active {
+          color: var(--accent) !important;
+        }
+
+        .navbar:not(.scrolled) .nav-link.active::after {
+          background: var(--accent);
+        }
       }
 
-      .tab-btn:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-
-      .tab-btn.active {
-        background: var(--accent);
-        color: white !important;
-        border-color: var(--accent);
-      }
-
-      .tab-content {
-        display: none;
-      }
-
-      .tab-content.active {
-        display: block;
-      }
-
-      .badge-accent {
-        background: rgba(155, 44, 44, 0.1);
-        color: var(--accent);
-        font-size: 0.75rem;
-        font-weight: 600;
-        padding: 0.25rem 0.5rem;
-        border-radius: 9999px;
-      }
-
-      .badge-cream {
-        background: var(--cream);
-        color: var(--muted);
-        font-size: 0.75rem;
-        font-weight: 600;
-        padding: 0.25rem 0.5rem;
-        border-radius: 9999px;
-      }
-
-      .footer-link {
-        color: var(--muted);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .footer-link:hover {
-        color: var(--accent) !important;
-      }
-
+      /* utility */
       .bg-cream {
         background-color: var(--cream) !important;
-      }
-
-      .bg-card {
-        background-color: var(--card) !important;
       }
 
       .text-accent {
         color: var(--accent) !important;
       }
-
-      .border-border {
-        border-color: var(--border) !important;
-      }
-
-      .hero-section {
-        height: 100vh;
-        position: relative;
-        padding: 8rem 0 5rem 0;
-      }
-
-      .hero-image {
-        height: 100vh;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 0;
-      }
-
-      .hero-image img {
-        height: 100%;
-      }
-
-      .filter-sticky {
-        position: sticky;
-        top: 0;
-        z-index: 40;
-        background: var(--card);
-        border-bottom: 1px solid var(--border);
-        padding: 1.5rem 0;
-      }
     </style>
   </head>
   <body class="pattern-bg">
-    <!-- Navbar -->
-    <nav
-      class="navbar navbar-expand-lg fixed-top py-2 px-4 px-lg-5"
-      id="mainNav"
-    >
+    <!-- Navbar (lebih ramping) -->
+    <nav class="navbar navbar-expand-lg fixed-top px-3 px-lg-5" id="mainNav">
       <div class="container-fluid px-lg-4">
         <a
           href="index.html"
-          class="navbar-brand d-flex align-items-center gap-3"
+          class="navbar-brand d-flex align-items-center gap-2"
         >
           <div
-            class="rounded-circle d-flex align-items-center justify-content-center"
-            style="width: 48px; height: 48px; background: #ffffff"
+            class="rounded-circle bg-white d-flex align-items-center justify-content-center"
+            style="width: 48px; height: 48px"
           >
-            <img style="width: 48px; height: 48px" src="logo.png" alt="" />
+            <img src="logo.png" alt="logo" style="width: 48px; height: 48px" />
           </div>
           <div class="d-none d-sm-block">
-            <!-- <h1
-              class="font-display fs-5 fw-semibold text-fg mb-0"
-              style="font-family: &quot;Cormorant Garamond&quot;, serif"
-            >
-              Lembaga Pelatihan Kerja
-            </h1> -->
-            <h1 class="text-muted small mb-0 tracking-wider">
-              LPK YUUKI GAKKOU
-            </h1>
+            <h1 class="mb-0">LPK YUUKI GAKKOU</h1>
+            <p class="small mb-0 text-muted">Lembaga Pelatihan Kerja</p>
           </div>
         </a>
 
@@ -369,19 +470,14 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarMain"
-          aria-controls="navbarMain"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarMain">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-3">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-2">
             <li class="nav-item">
-              <a class="nav-link active" href="program.html" aria-current="page"
-                >Beranda</a
-              >
+              <a class="nav-link active" href="beranda.html">Beranda</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="legalitas.html">Legalitas</a>
@@ -405,35 +501,22 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section elegan -->
     <section class="hero-section">
       <div class="hero-image">
         <img
           src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80"
-          alt="Program"
-          class="w-100 object-fit-cover"
+          alt="Program Hero"
         />
-        <div class="hero-overlay position-absolute top-0 start-0 w-100"></div>
+        <div class="hero-overlay"></div>
       </div>
-      <div class="container position-relative z-1 pt-5">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-8 reveal">
-            <span
-              class="d-inline-block px-4 py-2 bg-white bg-opacity-10 backdrop-blur-sm rounded-pill text-white text-opacity-90 small fw-medium mb-4"
-              >Program Pelatihan</span
-            >
-            <h1
-              class="font-display display-3 fw-bold text-white mb-4"
-              style="font-family: &quot;Cormorant Garamond&quot;, serif"
-            >
-              Pilih Program Sesuai Tujuanmu
-            </h1>
-            <p class="fs-5 text-white text-opacity-75">
-              Berbagai program pelatihan untuk mempersiapkan karier impianmu di
-              Jepang
-            </p>
-          </div>
-        </div>
+      <div class="hero-content">
+        <span class="badge">PROGRAM PELATIHAN</span>
+        <h1>Pilih Program Sesuai Tujuanmu</h1>
+        <p>
+          Berbagai program pelatihan untuk mempersiapkan karier impianmu di
+          Jepang
+        </p>
       </div>
     </section>
 
@@ -483,12 +566,12 @@
     <!-- Programs Grid -->
     <section class="py-5 py-lg-6 px-3 px-lg-4">
       <div class="container">
-        <!-- Tab: Semua -->
+        <!-- Tab: Semua (default) -->
         <div id="tab-semua" class="tab-content active">
           <div class="row g-4">
             <!-- Program 1: JLPT -->
             <div class="col-md-6 col-lg-4">
-              <div class="program-card h-100" data-category="bahasa">
+              <div class="program-card" data-category="bahasa">
                 <div class="img-wrapper">
                   <img
                     src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80"
@@ -502,7 +585,7 @@
                     <span class="badge-cream">6 Bulan</span>
                   </div>
                   <h3
-                    class="font-display fs-4 fw-semibold text-fg mb-2"
+                    class="font-display fs-4 fw-semibold"
                     style="font-family: &quot;Cormorant Garamond&quot;, serif"
                   >
                     JLPT Intensif
@@ -513,32 +596,30 @@
                   </p>
                   <ul class="list-unstyled small text-muted mb-4">
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Persiapan N5, N4, N3, N2
+                      <i class="bi bi-check-lg text-accent"></i> Persiapan N5,
+                      N4, N3, N2
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Kelas pagi & sore
+                      <i class="bi bi-check-lg text-accent"></i> Kelas pagi &
+                      sore
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Simulasi ujian bulanan
+                      <i class="bi bi-check-lg text-accent"></i> Simulasi ujian
+                      bulanan
                     </li>
                   </ul>
                   <a
                     href="pendaftaran.html?program=jlpt"
-                    class="d-inline-flex align-items-center gap-2 text-accent fw-semibold small text-decoration-none hover-gap"
-                  >
-                    Daftar Program
-                    <i class="bi bi-arrow-right"></i>
-                  </a>
+                    class="btn-link-accent"
+                    >Daftar Program <i class="bi bi-arrow-right"></i
+                  ></a>
                 </div>
               </div>
             </div>
 
             <!-- Program 2: Kaigo -->
             <div class="col-md-6 col-lg-4">
-              <div class="program-card h-100" data-category="keahlian">
+              <div class="program-card" data-category="keahlian">
                 <div class="img-wrapper">
                   <img
                     src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&q=80"
@@ -552,7 +633,7 @@
                     <span class="badge-cream">3-6 Bulan</span>
                   </div>
                   <h3
-                    class="font-display fs-4 fw-semibold text-fg mb-2"
+                    class="font-display fs-4 fw-semibold"
                     style="font-family: &quot;Cormorant Garamond&quot;, serif"
                   >
                     Pelatihan Kaigo
@@ -563,32 +644,30 @@
                   </p>
                   <ul class="list-unstyled small text-muted mb-4">
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Praktik langsung
+                      <i class="bi bi-check-lg text-accent"></i> Praktik
+                      langsung
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Sertifikasi Tokutei
+                      <i class="bi bi-check-lg text-accent"></i> Sertifikasi
+                      Tokutei
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Bahasa Jepang inklusif
+                      <i class="bi bi-check-lg text-accent"></i> Bahasa Jepang
+                      inklusif
                     </li>
                   </ul>
                   <a
                     href="pendaftaran.html?program=kaigo"
-                    class="d-inline-flex align-items-center gap-2 text-accent fw-semibold small text-decoration-none"
-                  >
-                    Daftar Program
-                    <i class="bi bi-arrow-right"></i>
-                  </a>
+                    class="btn-link-accent"
+                    >Daftar Program <i class="bi bi-arrow-right"></i
+                  ></a>
                 </div>
               </div>
             </div>
 
             <!-- Program 3: Industri -->
             <div class="col-md-6 col-lg-4">
-              <div class="program-card h-100" data-category="keahlian">
+              <div class="program-card" data-category="keahlian">
                 <div class="img-wrapper">
                   <img
                     src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80"
@@ -602,7 +681,7 @@
                     <span class="badge-cream">6 Bulan</span>
                   </div>
                   <h3
-                    class="font-display fs-4 fw-semibold text-fg mb-2"
+                    class="font-display fs-4 fw-semibold"
                     style="font-family: &quot;Cormorant Garamond&quot;, serif"
                   >
                     Pelatihan Industri
@@ -613,32 +692,29 @@
                   </p>
                   <ul class="list-unstyled small text-muted mb-4">
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Safety & prosedur kerja
+                      <i class="bi bi-check-lg text-accent"></i> Safety &
+                      prosedur kerja
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Teknik produksi
+                      <i class="bi bi-check-lg text-accent"></i> Teknik produksi
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      K3 dan budaya kerja
+                      <i class="bi bi-check-lg text-accent"></i> K3 dan budaya
+                      kerja
                     </li>
                   </ul>
                   <a
                     href="pendaftaran.html?program=industri"
-                    class="d-inline-flex align-items-center gap-2 text-accent fw-semibold small text-decoration-none"
-                  >
-                    Daftar Program
-                    <i class="bi bi-arrow-right"></i>
-                  </a>
+                    class="btn-link-accent"
+                    >Daftar Program <i class="bi bi-arrow-right"></i
+                  ></a>
                 </div>
               </div>
             </div>
 
-            <!-- Program 4: Ginou Jisshusei -->
+            <!-- Program 4: Tokutei Ginou -->
             <div class="col-md-6 col-lg-4">
-              <div class="program-card h-100" data-category="persiapan">
+              <div class="program-card" data-category="persiapan">
                 <div class="img-wrapper">
                   <img
                     src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80"
@@ -652,7 +728,7 @@
                     <span class="badge-cream">4 Bulan</span>
                   </div>
                   <h3
-                    class="font-display fs-4 fw-semibold text-fg mb-2"
+                    class="font-display fs-4 fw-semibold"
                     style="font-family: &quot;Cormorant Garamond&quot;, serif"
                   >
                     Tokutei Ginou
@@ -663,32 +739,30 @@
                   </p>
                   <ul class="list-unstyled small text-muted mb-4">
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Persiapan ujian skill
+                      <i class="bi bi-check-lg text-accent"></i> Persiapan ujian
+                      skill
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Persiapan JLPT N4/N3
+                      <i class="bi bi-check-lg text-accent"></i> Persiapan JLPT
+                      N4/N3
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Pendampingan dokumen
+                      <i class="bi bi-check-lg text-accent"></i> Pendampingan
+                      dokumen
                     </li>
                   </ul>
                   <a
                     href="pendaftaran.html?program=ginou"
-                    class="d-inline-flex align-items-center gap-2 text-accent fw-semibold small text-decoration-none"
-                  >
-                    Daftar Program
-                    <i class="bi bi-arrow-right"></i>
-                  </a>
+                    class="btn-link-accent"
+                    >Daftar Program <i class="bi bi-arrow-right"></i
+                  ></a>
                 </div>
               </div>
             </div>
 
-            <!-- Program 5: JITCO -->
+            <!-- Program 5: Pemagangan -->
             <div class="col-md-6 col-lg-4">
-              <div class="program-card h-100" data-category="persiapan">
+              <div class="program-card" data-category="persiapan">
                 <div class="img-wrapper">
                   <img
                     src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80"
@@ -702,10 +776,10 @@
                     <span class="badge-cream">6 Bulan</span>
                   </div>
                   <h3
-                    class="font-display fs-4 fw-semibold text-fg mb-2"
+                    class="font-display fs-4 fw-semibold"
                     style="font-family: &quot;Cormorant Garamond&quot;, serif"
                   >
-                    Program Pemagangan (Ginou Jisshusei)
+                    Pemagangan (Ginou Jisshusei)
                   </h3>
                   <p class="text-muted small mb-3">
                     Program pemagangan 3 tahun ke Jepang dengan berbagai bidang
@@ -713,32 +787,28 @@
                   </p>
                   <ul class="list-unstyled small text-muted mb-4">
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Berbagai bidang keahlian
+                      <i class="bi bi-check-lg text-accent"></i> Berbagai bidang
+                      keahlian
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Kontrak 3 tahun
+                      <i class="bi bi-check-lg text-accent"></i> Kontrak 3 tahun
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Bahasa + Skill
+                      <i class="bi bi-check-lg text-accent"></i> Bahasa + Skill
                     </li>
                   </ul>
                   <a
                     href="pendaftaran.html?program=pemagangan"
-                    class="d-inline-flex align-items-center gap-2 text-accent fw-semibold small text-decoration-none"
-                  >
-                    Daftar Program
-                    <i class="bi bi-arrow-right"></i>
-                  </a>
+                    class="btn-link-accent"
+                    >Daftar Program <i class="bi bi-arrow-right"></i
+                  ></a>
                 </div>
               </div>
             </div>
 
             <!-- Program 6: Private Class -->
             <div class="col-md-6 col-lg-4">
-              <div class="program-card h-100" data-category="bahasa">
+              <div class="program-card" data-category="bahasa">
                 <div class="img-wrapper">
                   <img
                     src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80"
@@ -752,10 +822,10 @@
                     <span class="badge-cream">Fleksibel</span>
                   </div>
                   <h3
-                    class="font-display fs-4 fw-semibold text-fg mb-2"
+                    class="font-display fs-4 fw-semibold"
                     style="font-family: &quot;Cormorant Garamond&quot;, serif"
                   >
-                    Kelas Privat Bahasa Jepang
+                    Kelas Privat
                   </h3>
                   <p class="text-muted small mb-3">
                     Kelas one-on-one dengan jadwal fleksibel sesuai kebutuhan
@@ -763,25 +833,23 @@
                   </p>
                   <ul class="list-unstyled small text-muted mb-4">
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Jadwal fleksibel
+                      <i class="bi bi-check-lg text-accent"></i> Jadwal
+                      fleksibel
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Materi disesuaikan
+                      <i class="bi bi-check-lg text-accent"></i> Materi
+                      disesuaikan
                     </li>
                     <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i>
-                      Online & Offline
+                      <i class="bi bi-check-lg text-accent"></i> Online &
+                      Offline
                     </li>
                   </ul>
                   <a
                     href="pendaftaran.html?program=privat"
-                    class="d-inline-flex align-items-center gap-2 text-accent fw-semibold small text-decoration-none"
-                  >
-                    Daftar Program
-                    <i class="bi bi-arrow-right"></i>
-                  </a>
+                    class="btn-link-accent"
+                    >Daftar Program <i class="bi bi-arrow-right"></i
+                  ></a>
                 </div>
               </div>
             </div>
@@ -791,12 +859,12 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-5 py-lg-6 bg-cream">
+    <section class="cta-section">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-8">
             <h2
-              class="font-display fs-1 fw-bold text-fg mb-4"
+              class="font-display fs-1 fw-bold mb-4"
               style="font-family: &quot;Cormorant Garamond&quot;, serif"
             >
               Butuh Bantuan Memilih Program?
@@ -808,16 +876,13 @@
             <div
               class="d-flex flex-column flex-sm-row gap-3 justify-content-center"
             >
-              <a
-                href="pendaftaran.html"
-                class="btn btn-primary rounded-pill px-5 py-3 fs-6 fw-semibold"
+              <a href="pendaftaran.html" class="btn btn-primary"
                 >Daftar Konsultasi</a
               >
               <a
                 href="https://wa.me/628xxxxxxxxxx"
                 target="_blank"
-                rel="noopener"
-                class="btn btn-outline-accent rounded-pill px-5 py-3 fs-6 fw-semibold"
+                class="btn btn-outline-accent"
                 ><i class="bi bi-whatsapp me-2"></i>Hubungi via WhatsApp</a
               >
             </div>
@@ -827,38 +892,23 @@
     </section>
 
     <!-- Footer -->
-    <footer
-      class="bg-dark text-white-50 py-5 py-lg-6"
-      style="background-color: #1a1a1a !important"
-    >
+    <footer class="footer py-5">
       <div class="container">
-        <div class="row g-5 mb-5">
+        <div class="row g-5 mb-4">
           <div class="col-lg-4">
-            <div class="d-flex align-items-center gap-3 mb-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
               <div
-                class="rounded-circle bg-accent d-flex align-items-center justify-content-center flex-shrink-0"
-                style="width: 48px; height: 48px"
+                class="bg-white rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 70px; height: 70px"
               >
-                <span
-                  class="text-white font-display fw-bold"
-                  style="
-                    font-family: &quot;Cormorant Garamond&quot;, serif;
-                    font-size: 1.25rem;
-                  "
-                  >YG</span
-                >
+                <img src="logo.png" alt="" style="width: 70px; height: 70px" />
               </div>
-              <div>
-                <h3
-                  class="font-display fs-5 fw-semibold text-white mb-0"
-                  style="font-family: &quot;Cormorant Garamond&quot;, serif"
-                >
-                  LEMBAGA PELATIHAN KERJA
-                </h3>
-                <p class="small text-white-50 mb-0 tracking-wider">
-                  Yuuki Gakkou
-                </p>
-              </div>
+              <h3
+                class="font-display fs-4 fw-semibold text-white mb-0"
+                style="font-family: &quot;Cormorant Garamond&quot;, serif"
+              >
+                LPK YUUKI GAKKOU
+              </h3>
             </div>
             <p class="text-white-50 small">
               Mencetak tenaga kerja Indonesia siap berkarier profesional di
@@ -869,39 +919,16 @@
             <h4 class="text-white fs-6 fw-semibold mb-4">Menu</h4>
             <ul class="list-unstyled">
               <li class="mb-2">
-                <a
-                  href="index.html"
-                  class="footer-link small text-decoration-none"
-                  >Beranda</a
-                >
+                <a href="index.html" class="footer-link">Beranda</a>
               </li>
               <li class="mb-2">
-                <a
-                  href="program.html"
-                  class="footer-link small text-decoration-none"
-                  >Program</a
-                >
+                <a href="program.html" class="footer-link">Program</a>
               </li>
               <li class="mb-2">
-                <a
-                  href="legalitas.html"
-                  class="footer-link small text-decoration-none"
-                  >Legalitas</a
-                >
+                <a href="legalitas.html" class="footer-link">Legalitas</a>
               </li>
               <li class="mb-2">
-                <a
-                  href="dokumentasi.html"
-                  class="footer-link small text-decoration-none"
-                  >Dokumentasi</a
-                >
-              </li>
-              <li class="mb-2">
-                <a
-                  href="testimoni.html"
-                  class="footer-link small text-decoration-none"
-                  >Testimoni</a
-                >
+                <a href="dokumentasi.html" class="footer-link">Dokumentasi</a>
               </li>
             </ul>
           </div>
@@ -909,24 +936,12 @@
             <h4 class="text-white fs-6 fw-semibold mb-4">Program</h4>
             <ul class="list-unstyled">
               <li class="mb-2">
-                <a href="#" class="footer-link small text-decoration-none"
-                  >JLPT Intensif</a
-                >
+                <a href="#" class="footer-link">JLPT Intensif</a>
               </li>
+              <li class="mb-2"><a href="#" class="footer-link">Kaigo</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Industri</a></li>
               <li class="mb-2">
-                <a href="#" class="footer-link small text-decoration-none"
-                  >Pelatihan Kaigo</a
-                >
-              </li>
-              <li class="mb-2">
-                <a href="#" class="footer-link small text-decoration-none"
-                  >Pelatihan Industri</a
-                >
-              </li>
-              <li class="mb-2">
-                <a href="#" class="footer-link small text-decoration-none"
-                  >Tokutei Ginou</a
-                >
+                <a href="#" class="footer-link">Tokutei Ginou</a>
               </li>
             </ul>
           </div>
@@ -934,33 +949,28 @@
             <h4 class="text-white fs-6 fw-semibold mb-4">Kontak</h4>
             <ul class="list-unstyled">
               <li class="d-flex gap-3 mb-3">
-                <i class="bi bi-geo-alt text-accent flex-shrink-0"></i>
-                <span class="small text-white-50"
-                  >Jl. Contoh No. 123, Kota, Indonesia</span
+                <i class="bi bi-geo-alt text-accent"></i
+                ><span class="small text-white-50"
+                  >Jl. Contoh No. 123, Kota</span
                 >
               </li>
               <li class="d-flex gap-3 mb-3">
-                <i class="bi bi-envelope text-accent flex-shrink-0"></i>
-                <a
-                  href="mailto:info@yuukigakkou.com"
-                  class="footer-link small text-decoration-none"
+                <i class="bi bi-envelope text-accent"></i
+                ><a href="mailto:info@yuukigakkou.com" class="footer-link"
                   >info@yuukigakkou.com</a
                 >
               </li>
             </ul>
           </div>
         </div>
-        <div
-          class="pt-4 border-top border-white border-opacity-10 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3"
-        >
-          <p class="small text-white-50 mb-0">
-            &copy; 2024 LPK Yuuki Gakkou. Hak cipta dilindungi.
-          </p>
-        </div>
+        <hr class="border-white border-opacity-10 my-4" />
+        <p class="small text-white-50 text-center mb-0">
+          &copy; 2024 LPK Yuuki Gakkou. Hak cipta dilindungi.
+        </p>
       </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle with Popper -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -968,223 +978,64 @@
         const navbar = document.querySelector(".navbar");
         const tabBtns = document.querySelectorAll(".tab-btn");
         const programCards = document.querySelectorAll(".program-card");
+        const tabContents = document.querySelectorAll(".tab-content");
 
         // Navbar scroll
         window.addEventListener("scroll", function () {
-          if (window.scrollY > 50) {
-            navbar.classList.add("scrolled", "bg-white", "bg-opacity-95");
+          if (window.scrollY > 20) {
+            navbar.classList.add("scrolled");
           } else {
-            navbar.classList.remove("scrolled", "bg-white", "bg-opacity-95");
+            navbar.classList.remove("scrolled");
           }
         });
 
-        // Scroll reveal
-        const prefersReducedMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)",
-        ).matches;
-
-        if (!prefersReducedMotion) {
-          const observer = new IntersectionObserver(
-            function (entries) {
-              entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("visible");
-                }
-              });
-            },
-            { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-          );
-
-          document.querySelectorAll(".reveal").forEach(function (el) {
-            observer.observe(el);
-          });
-
-          // Also observe program cards for reveal effect
-          document.querySelectorAll(".program-card").forEach(function (el) {
-            observer.observe(el);
-          });
-        } else {
-          document
-            .querySelectorAll(".reveal, .program-card")
-            .forEach(function (el) {
-              el.classList.add("visible");
+        // Reveal observer
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("visible");
             });
-        }
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -30px 0px" },
+        );
+
+        document
+          .querySelectorAll(".program-card, .hero-content, .cta-section .row")
+          .forEach((el) => observer.observe(el));
 
         // Tab filter
-        tabBtns.forEach(function (btn) {
+        tabBtns.forEach((btn) => {
           btn.addEventListener("click", function () {
-            tabBtns.forEach(function (b) {
+            tabBtns.forEach((b) => {
               b.classList.remove("active");
               b.setAttribute("aria-selected", "false");
             });
-            btn.classList.add("active");
-            btn.setAttribute("aria-selected", "true");
-            const filter = btn.dataset.tab;
+            this.classList.add("active");
+            this.setAttribute("aria-selected", "true");
+            const filter = this.dataset.tab;
 
-            programCards.forEach(function (card) {
+            programCards.forEach((card) => {
+              const col = card.closest(".col-md-6");
               if (filter === "semua" || card.dataset.category === filter) {
-                card.closest(".col-md-6").style.display = "block";
-                setTimeout(function () {
-                  card.classList.add("visible");
-                }, 50);
+                col.style.display = "block";
+                setTimeout(() => card.classList.add("visible"), 20);
               } else {
-                card.closest(".col-md-6").style.display = "none";
+                col.style.display = "none";
               }
             });
           });
         });
 
-        // Close mobile menu on link click (for better UX)
+        // close mobile menu
         const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-        const navbarCollapse = document.querySelector(".navbar-collapse");
-
-        navLinks.forEach((link) => {
+        const collapse = document.querySelector(".navbar-collapse");
+        navLinks.forEach((link) =>
           link.addEventListener("click", () => {
-            if (navbarCollapse.classList.contains("show")) {
-              new bootstrap.Collapse(navbarCollapse).hide();
-            }
-          });
-        });
+            if (collapse.classList.contains("show"))
+              new bootstrap.Collapse(collapse).hide();
+          }),
+        );
       });
     </script>
-
-    <style>
-      /* Additional custom styles for Bootstrap version */
-      .bg-accent {
-        background-color: var(--accent) !important;
-      }
-
-      .text-accent {
-        color: var(--accent) !important;
-      }
-
-      .text-fg {
-        color: var(--fg) !important;
-      }
-
-      .text-muted {
-        color: var(--muted) !important;
-      }
-
-      .bg-cream {
-        background-color: var(--cream) !important;
-      }
-
-      .border-border {
-        border-color: var(--border) !important;
-      }
-
-      .backdrop-blur-sm {
-        backdrop-filter: blur(4px);
-      }
-
-      .bg-opacity-10 {
-        --bs-bg-opacity: 0.1;
-      }
-
-      .bg-opacity-95 {
-        --bs-bg-opacity: 0.95;
-      }
-
-      .tracking-wider {
-        letter-spacing: 0.05em;
-      }
-
-      .hover-gap:hover {
-        gap: 1rem !important;
-      }
-
-      .program-card:hover .hover-gap {
-        gap: 1rem !important;
-      }
-
-      .btn-outline-accent {
-        border: 2px solid var(--accent) !important;
-        color: var(--accent) !important;
-        background: transparent !important;
-      }
-
-      .btn-outline-accent:hover {
-        background: var(--accent) !important;
-        color: white !important;
-      }
-
-      .footer-link {
-        color: rgba(255, 255, 255, 0.5) !important;
-      }
-
-      .footer-link:hover {
-        color: var(--accent) !important;
-      }
-
-      .z-1 {
-        z-index: 1;
-      }
-
-      /* Fix for hero section spacing */
-      .hero-section {
-        padding-top: 76px;
-      }
-
-      @media (min-width: 992px) {
-        .hero-section {
-          padding-top: 92px;
-        }
-      }
-
-      /* Ensure navbar links have proper color in dark background */
-      .navbar:not(.scrolled) .nav-link {
-        color: rgba(255, 255, 255, 0.9) !important;
-      }
-
-      .navbar:not(.scrolled) .navbar-brand h1,
-      .navbar:not(.scrolled) .navbar-brand p {
-        color: white !important;
-      }
-
-      .navbar:not(.scrolled) .navbar-toggler-icon {
-        filter: brightness(0) invert(1);
-      }
-
-      .navbar.scrolled .nav-link {
-        color: var(--muted) !important;
-      }
-
-      .navbar.scrolled .nav-link.active {
-        color: var(--accent) !important;
-      }
-
-      .navbar.scrolled .navbar-brand h1 {
-        color: var(--fg) !important;
-      }
-
-      .navbar.scrolled .navbar-brand p {
-        color: var(--muted) !important;
-      }
-
-      /* Mobile menu styling */
-      @media (max-width: 991.98px) {
-        .navbar-collapse {
-          background: white;
-          padding: 1rem;
-          border-radius: 0.5rem;
-          margin-top: 0.5rem;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar:not(.scrolled) .navbar-collapse {
-          background: rgba(255, 255, 255, 0.95);
-        }
-
-        .navbar:not(.scrolled) .nav-link {
-          color: var(--muted) !important;
-        }
-
-        .navbar:not(.scrolled) .nav-link.active {
-          color: var(--accent) !important;
-        }
-      }
-    </style>
   </body>
 </html>
