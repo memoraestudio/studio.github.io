@@ -143,8 +143,8 @@
 
       /* Hero section - 100vh */
       .hero-section {
-        height: 100vh;
-        min-height: 650px;
+        height: 60vh;
+        /* min-height: 650px; */
         position: relative;
         display: flex;
         align-items: center;
@@ -183,6 +183,7 @@
 
       .hero-content {
         position: relative;
+        top: 45px;
         z-index: 2;
         text-align: center;
         color: white;
@@ -285,6 +286,55 @@
         color: var(--accent);
         font-size: 2.2rem;
         margin-bottom: 1.5rem;
+      }
+
+      .legal-thumb-wrap {
+        margin-top: 1rem;
+      }
+
+      .legal-thumb {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 0.9rem;
+        border: 1px solid var(--border);
+        transition: transform 0.2s ease;
+      }
+
+      .legal-gallery-btn {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        text-align: left;
+      }
+
+      .legal-gallery-btn:hover .legal-thumb {
+        transform: scale(1.02);
+      }
+
+      .legal-gallery-caption {
+        display: inline-block;
+        margin-top: 0.55rem;
+        font-size: 0.8rem;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .legal-modal .modal-content {
+        background: #121212;
+        border: 1px solid #222;
+      }
+
+      .legal-modal .btn-close {
+        filter: invert(1) grayscale(1);
+      }
+
+      .legal-modal .carousel-item img {
+        width: 100%;
+        max-height: 160vh;
+        object-fit: contain;
       }
 
       /* Buttons */
@@ -489,6 +539,25 @@
                 (Online Single Submission).
               </p>
               <p class="fw-bold text-accent mb-0">No: 12XX-XXXX-XXXX</p>
+              <div class="legal-thumb-wrap">
+                <button
+                  class="legal-gallery-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#legalGalleryModal"
+                  data-legal-title="NIB (Nomor Induk Berusaha)"
+                  data-legal-images="img/nib_cv1.jpg|img/nib_cv2.jpg|img/nib_cv3.jpg"
+                >
+                  <img
+                    src="img/nib_cv1.jpg"
+                    alt="Dokumen NIB"
+                    class="legal-thumb"
+                  />
+                  <span class="legal-gallery-caption"
+                    >Lihat Dokumen (3 Foto)</span
+                  >
+                </button>
+              </div>
             </div>
           </div>
 
@@ -508,6 +577,23 @@
                 Akta notaris pendirian yayasan/perusahaan yang sah secara hukum.
               </p>
               <p class="fw-bold text-accent mb-0">No: XX/Not/2026/YY</p>
+              <div class="legal-thumb-wrap">
+                <button
+                  class="legal-gallery-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#legalGalleryModal"
+                  data-legal-title="Akta Pendirian"
+                  data-legal-images="img/ahu.jpg"
+                >
+                  <img
+                    src="img/ahu.jpg"
+                    alt="Dokumen Akta Pendirian"
+                    class="legal-thumb"
+                  />
+                  <span class="legal-gallery-caption">Lihat Dokumen</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -527,6 +613,23 @@
                 Izin resmi dari Dinas Tenaga Kerja (Disnaker) setempat.
               </p>
               <p class="fw-bold text-accent mb-0">No: XXX/KPTS/Disnaker</p>
+              <div class="legal-thumb-wrap">
+                <button
+                  class="legal-gallery-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#legalGalleryModal"
+                  data-legal-title="Izin Operasional LPK"
+                  data-legal-images="img/slfbg.jpg"
+                >
+                  <img
+                    src="img/slfbg.jpg"
+                    alt="Dokumen Izin Operasional"
+                    class="legal-thumb"
+                  />
+                  <span class="legal-gallery-caption">Lihat Dokumen</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -546,6 +649,25 @@
                 Terdaftar sebagai lembaga pengirim tenaga kerja ke Jepang.
               </p>
               <p class="fw-bold text-accent mb-0">Kementerian Tenaga Kerja</p>
+              <div class="legal-thumb-wrap">
+                <button
+                  class="legal-gallery-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#legalGalleryModal"
+                  data-legal-title="Izin IMJP"
+                  data-legal-images="img/certifcate_imam.jpg|img/certificate_imam_2.jpg|img/certificate_imam_3.jpg"
+                >
+                  <img
+                    src="img/certifcate_imam.jpg"
+                    alt="Dokumen Izin IMJP"
+                    class="legal-thumb"
+                  />
+                  <span class="legal-gallery-caption"
+                    >Lihat Dokumen (3 Foto)</span
+                  >
+                </button>
+              </div>
             </div>
           </div>
 
@@ -565,6 +687,23 @@
                 Nomor Pokok Wajib Pajak badan usaha yang aktif.
               </p>
               <p class="fw-bold text-accent mb-0">XX.XXX.XXX.X-XXX</p>
+              <div class="legal-thumb-wrap">
+                <button
+                  class="legal-gallery-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#legalGalleryModal"
+                  data-legal-title="NPWP Perusahaan"
+                  data-legal-images="img/n3_imam.jpg"
+                >
+                  <img
+                    src="img/n3_imam.jpg"
+                    alt="Dokumen NPWP"
+                    class="legal-thumb"
+                  />
+                  <span class="legal-gallery-caption">Lihat Dokumen</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -584,6 +723,23 @@
                 Terdaftar sebagai anggota asosiasi pengirim TKI ke Jepang.
               </p>
               <p class="fw-bold text-accent mb-0">Member Resmi</p>
+              <div class="legal-thumb-wrap">
+                <button
+                  class="legal-gallery-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#legalGalleryModal"
+                  data-legal-title="Kerjasama HIMADEKI"
+                  data-legal-images="img/certificate_imam_2.jpg"
+                >
+                  <img
+                    src="img/certificate_imam_2.jpg"
+                    alt="Dokumen Kerjasama HIMADEKI"
+                    class="legal-thumb"
+                  />
+                  <span class="legal-gallery-caption">Lihat Dokumen</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -629,6 +785,69 @@
         </div>
       </div>
     </section>
+
+    <div
+      class="modal fade legal-modal"
+      id="legalGalleryModal"
+      tabindex="-1"
+      aria-labelledby="legalGalleryModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title text-white" id="legalGalleryModalLabel">
+              Dokumen Legalitas
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body pt-0">
+            <div
+              id="legalGalleryCarousel"
+              class="carousel slide"
+              data-bs-ride="false"
+            >
+              <div
+                class="carousel-indicators"
+                id="legalGalleryIndicators"
+              ></div>
+              <div class="carousel-inner" id="legalGalleryInner"></div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#legalGalleryCarousel"
+                data-bs-slide="prev"
+                id="legalPrevControl"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#legalGalleryCarousel"
+                data-bs-slide="next"
+                id="legalNextControl"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- CTA Section (konsisten) -->
     <section class="section-padding bg-cream px-3 px-lg-4">
@@ -771,8 +990,65 @@
               new bootstrap.Collapse(collapse).hide();
           }),
         );
+
+        const galleryModal = document.getElementById("legalGalleryModal");
+        const galleryTitle = document.getElementById("legalGalleryModalLabel");
+        const galleryIndicators = document.getElementById(
+          "legalGalleryIndicators",
+        );
+        const galleryInner = document.getElementById("legalGalleryInner");
+        const prevControl = document.getElementById("legalPrevControl");
+        const nextControl = document.getElementById("legalNextControl");
+
+        document.querySelectorAll(".legal-gallery-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const title = btn.dataset.legalTitle || "Dokumen Legalitas";
+            const images = (btn.dataset.legalImages || "")
+              .split("|")
+              .filter(Boolean);
+
+            galleryTitle.textContent = title;
+            galleryIndicators.innerHTML = "";
+            galleryInner.innerHTML = "";
+
+            images.forEach((imgSrc, index) => {
+              const indicator = document.createElement("button");
+              indicator.type = "button";
+              indicator.setAttribute("data-bs-target", "#legalGalleryCarousel");
+              indicator.setAttribute("data-bs-slide-to", String(index));
+              indicator.setAttribute(
+                "aria-label",
+                "Slide " + String(index + 1),
+              );
+              if (index === 0) {
+                indicator.classList.add("active");
+                indicator.setAttribute("aria-current", "true");
+              }
+              galleryIndicators.appendChild(indicator);
+
+              const item = document.createElement("div");
+              item.className = "carousel-item" + (index === 0 ? " active" : "");
+
+              const image = document.createElement("img");
+              image.src = imgSrc;
+              image.alt = title + " - " + String(index + 1);
+              image.className = "d-block";
+
+              item.appendChild(image);
+              galleryInner.appendChild(item);
+            });
+
+            const hasMultiple = images.length > 1;
+            galleryIndicators.style.display = hasMultiple ? "flex" : "none";
+            prevControl.style.display = hasMultiple ? "flex" : "none";
+            nextControl.style.display = hasMultiple ? "flex" : "none";
+
+            bootstrap.Carousel.getOrCreateInstance(
+              document.getElementById("legalGalleryCarousel"),
+            ).to(0);
+          });
+        });
       });
     </script>
   </body>
 </html>
-

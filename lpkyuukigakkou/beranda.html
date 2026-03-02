@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Program Pelatihan - LPK Yuuki Gakkou</title>
+    <title>Beranda - LPK Yuuki Gakkou</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -56,7 +56,7 @@
         background-size: 60px 60px;
       }
 
-      /* Navbar refined */
+      /* Navbar */
       .navbar {
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         background: transparent;
@@ -96,7 +96,6 @@
         color: var(--muted) !important;
         font-weight: 500;
         padding: 0.5rem 1rem !important;
-        font-size: 14px;
         font-size: 14px;
       }
 
@@ -142,10 +141,10 @@
         background: white;
       }
 
-      /* Hero section rework — lebih proporsional */
+      /* Hero Section */
       .hero-section {
         height: 100vh;
-        min-height: 600px;
+        min-height: 700px;
         position: relative;
         display: flex;
         align-items: center;
@@ -177,8 +176,8 @@
         height: 100%;
         background: linear-gradient(
           135deg,
-          rgba(26, 26, 26, 0.8) 0%,
-          rgba(155, 44, 44, 0.7) 100%
+          rgba(26, 26, 26, 0.85) 0%,
+          rgba(155, 44, 44, 0.75) 100%
         );
       }
 
@@ -206,7 +205,7 @@
 
       .hero-content h1 {
         font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-size: clamp(2.5rem, 6vw, 5rem);
         font-weight: 700;
         line-height: 1.1;
         margin-bottom: 1.5rem;
@@ -219,53 +218,93 @@
         margin-bottom: 2rem;
       }
 
-      /* filter sticky */
-      .filter-sticky {
-        position: sticky;
-        top: 70px; /* lebih rendah dari navbar */
-        z-index: 40;
-        background: var(--card);
-        border-bottom: 1px solid var(--border);
-        padding: 1.25rem 0;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
-      /* tab button lebih elegan */
-      .tab-btn {
-        padding: 0.6rem 1.8rem;
-        border-radius: 100px;
-        font-size: 0.9rem;
+      /* Section styling */
+      .section-padding {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--fg);
+        margin-bottom: 1rem;
+      }
+
+      .section-subtitle {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
         font-weight: 600;
-        border: 1px solid var(--border);
-        background: transparent;
-        color: var(--muted);
-        transition: all 0.2s ease;
-        cursor: pointer;
-        letter-spacing: 0.3px;
+        color: var(--fg);
+        margin-bottom: 1.5rem;
       }
 
-      .tab-btn:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-        background: rgba(155, 44, 44, 0.03);
-      }
-
-      .tab-btn.active {
+      .accent-line {
+        width: 60px;
+        height: 3px;
         background: var(--accent);
-        color: white !important;
-        border-color: var(--accent);
-        box-shadow: 0 6px 15px rgba(155, 44, 44, 0.2);
+        margin: 1.5rem 0;
       }
 
-      /* card program */
-      .program-card {
+      .accent-line-center {
+        width: 60px;
+        height: 3px;
+        background: var(--accent);
+        margin: 1.5rem auto;
+      }
+
+      .text-accent {
+        color: var(--accent) !important;
+      }
+
+      .bg-cream {
+        background-color: var(--cream) !important;
+      }
+
+      /* Cards */
+      .feature-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1.5rem !important;
+        padding: 2rem;
+        height: 100%;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-align: center;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 40px rgba(0, 0, 0, 0.08) !important;
+        border-color: transparent;
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(155, 44, 44, 0.08);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 2.5rem;
+        margin: 0 auto 1.5rem;
+      }
+
+      .program-card {
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: 1.5rem !important;
         overflow: hidden;
         height: 100%;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .program-card:hover {
@@ -274,64 +313,64 @@
         border-color: transparent;
       }
 
-      .program-card:hover .program-img {
-        transform: scale(1.05);
-      }
-
-      .img-wrapper {
+      .program-card .img-wrapper {
         overflow: hidden;
-        height: 220px;
+        height: 200px;
       }
 
-      .program-img {
-        transition: transform 0.7s ease;
+      .program-card img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.6s ease;
       }
 
-      .badge-accent {
-        background: rgba(155, 44, 44, 0.08);
-        color: var(--accent);
-        font-size: 0.7rem;
+      .program-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .program-content {
+        padding: 1.5rem;
+      }
+
+      .stat-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        text-align: center;
+        height: 100%;
+      }
+
+      .stat-number {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3rem;
         font-weight: 700;
-        padding: 0.3rem 0.8rem;
-        border-radius: 100px;
-        letter-spacing: 0.3px;
+        color: var(--accent);
+        line-height: 1;
+        margin-bottom: 0.5rem;
       }
 
-      .badge-cream {
-        background: var(--cream);
+      .stat-label {
         color: var(--muted);
-        font-size: 0.7rem;
-        font-weight: 700;
-        padding: 0.3rem 0.8rem;
-        border-radius: 100px;
-        letter-spacing: 0.3px;
+        font-weight: 500;
       }
 
-      .program-card .btn-link-accent {
-        color: var(--accent);
-        font-weight: 600;
-        font-size: 0.9rem;
-        text-decoration: none;
-        display: inline-flex;
+      /* Icon styling */
+      .program-icon-large {
+        width: 180px;
+        height: 180px;
+        background: rgba(155, 44, 44, 0.08);
+        border-radius: 50%;
+        display: flex;
         align-items: center;
-        gap: 0.5rem;
-        transition: gap 0.3s ease;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 5rem;
+        margin: 0 auto;
       }
 
-      .program-card .btn-link-accent:hover {
-        gap: 1rem;
-        color: var(--accent-light);
-      }
-
-      /* CTA */
-      .cta-section {
-        background: var(--cream);
-        padding: 5rem 0;
-      }
-
+      /* Buttons */
       .btn-primary {
         background: var(--accent) !important;
         border-color: var(--accent) !important;
@@ -366,7 +405,23 @@
         box-shadow: 0 15px 30px rgba(155, 44, 44, 0.1);
       }
 
-      /* footer */
+      .btn-outline-light {
+        border: 2px solid white !important;
+        color: white !important;
+        background: transparent !important;
+        padding: 0.8rem 2.5rem;
+        border-radius: 100px !important;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline-light:hover {
+        background: white !important;
+        color: var(--accent) !important;
+        transform: translateY(-3px);
+      }
+
+      /* Footer */
       .footer {
         background-color: #1a1a1a !important;
         color: #a0a0a0;
@@ -383,7 +438,7 @@
         color: var(--accent) !important;
       }
 
-      /* reveal animation */
+      /* Reveal animations */
       .reveal {
         opacity: 0;
         transform: translateY(30px);
@@ -403,6 +458,10 @@
         transition-delay: 0.2s;
       }
 
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .reveal {
           opacity: 1;
@@ -410,7 +469,7 @@
         }
       }
 
-      /* mobile navbar fix */
+      /* Mobile menu */
       @media (max-width: 991.98px) {
         .navbar-collapse {
           background: white;
@@ -436,19 +495,10 @@
           background: var(--accent);
         }
       }
-
-      /* utility */
-      .bg-cream {
-        background-color: var(--cream) !important;
-      }
-
-      .text-accent {
-        color: var(--accent) !important;
-      }
     </style>
   </head>
   <body class="pattern-bg">
-    <!-- Navbar (lebih ramping) -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top px-3" id="mainNav">
       <div class="container-fluid px-lg-4">
         <a
@@ -505,383 +555,306 @@
       </div>
     </nav>
 
-    <!-- Hero Section elegan -->
+    <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-image">
         <img
-          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80"
-          alt="Program Hero"
+          src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=1920&q=80"
+          alt="Japan Career"
         />
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-content">
-        <span class="badge">PROGRAM PELATIHAN</span>
-        <h1>Pilih Program Sesuai Tujuanmu</h1>
+        <span class="badge">LEMBAGA PELATIHAN KERJA RESMI</span>
+        <h1>Wujudkan Impian Berkarier di Jepang</h1>
         <p>
-          Berbagai program pelatihan untuk mempersiapkan karier impianmu di
-          Jepang
+          Bergabunglah dengan ribuan alumni kami yang telah sukses bekerja di
+          berbagai perusahaan ternama di Jepang.
         </p>
+        <div class="hero-buttons">
+          <a href="program.html" class="btn btn-primary">Lihat Program</a>
+          <a href="pendaftaran.html" class="btn btn-outline-light"
+            >Daftar Sekarang</a
+          >
+        </div>
       </div>
     </section>
 
-    <!-- Program Filter -->
-    <div class="filter-sticky">
+    <!-- Why Choose Us -->
+    <section class="section-padding px-3 px-lg-4">
       <div class="container">
-        <div
-          class="d-flex flex-wrap justify-content-center gap-2"
-          role="tablist"
-        >
-          <button
-            class="tab-btn active"
-            data-tab="semua"
-            role="tab"
-            aria-selected="true"
+        <div class="text-center reveal mb-5">
+          <span
+            class="text-accent text-uppercase fw-semibold tracking-wider small"
+            >Mengapa Memilih Kami</span
           >
-            Semua Program
-          </button>
-          <button
-            class="tab-btn"
-            data-tab="bahasa"
-            role="tab"
-            aria-selected="false"
-          >
-            Bahasa Jepang
-          </button>
-          <button
-            class="tab-btn"
-            data-tab="keahlian"
-            role="tab"
-            aria-selected="false"
-          >
-            Keahlian
-          </button>
-          <button
-            class="tab-btn"
-            data-tab="persiapan"
-            role="tab"
-            aria-selected="false"
-          >
-            Persiapan Kerja
-          </button>
+          <h2 class="section-title">Keunggulan LPK Yuuki Gakkou</h2>
+          <div class="accent-line-center"></div>
         </div>
-      </div>
-    </div>
 
-    <!-- Programs Grid -->
-    <section class="py-5 py-lg-6 px-3 px-lg-4">
-      <div class="container">
-        <!-- Tab: Semua (default) -->
-        <div id="tab-semua" class="tab-content active">
-          <div class="row g-4">
-            <!-- Program 1: JLPT -->
-            <div class="col-md-6 col-lg-4">
-              <div class="program-card" data-category="bahasa">
-                <div class="img-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80"
-                    alt="JLPT Intensif"
-                    class="program-img"
-                  />
-                </div>
-                <div class="p-4">
-                  <div class="d-flex gap-2 mb-3">
-                    <span class="badge-accent">Bahasa</span>
-                    <span class="badge-cream">6 Bulan</span>
-                  </div>
-                  <h3
-                    class="font-display fs-4 fw-semibold"
-                    style="font-family: &quot;Cormorant Garamond&quot;, serif"
-                  >
-                    JLPT Intensif
-                  </h3>
-                  <p class="text-muted small mb-3">
-                    Persiapan ujian JLPT N5-N2 dengan kurikulum terstruktur dan
-                    latihan soal intensif.
-                  </p>
-                  <ul class="list-unstyled small text-muted mb-4">
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Persiapan N5,
-                      N4, N3, N2
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Kelas pagi &
-                      sore
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Simulasi ujian
-                      bulanan
-                    </li>
-                  </ul>
-                  <a
-                    href="pendaftaran.html?program=jlpt"
-                    class="btn-link-accent"
-                    >Daftar Program <i class="bi bi-arrow-right"></i
-                  ></a>
-                </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-award"></i>
               </div>
+              <h4 class="fw-semibold mb-3">Terakreditasi Resmi</h4>
+              <p class="text-muted small">
+                Memiliki izin operasional lengkap dari Dinas Tenaga Kerja dan
+                terdaftar resmi.
+              </p>
             </div>
-
-            <!-- Program 2: Kaigo -->
-            <div class="col-md-6 col-lg-4">
-              <div class="program-card" data-category="keahlian">
-                <div class="img-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&q=80"
-                    alt="Pelatihan Kaigo"
-                    class="program-img"
-                  />
-                </div>
-                <div class="p-4">
-                  <div class="d-flex gap-2 mb-3">
-                    <span class="badge-accent">Keahlian</span>
-                    <span class="badge-cream">3-6 Bulan</span>
-                  </div>
-                  <h3
-                    class="font-display fs-4 fw-semibold"
-                    style="font-family: &quot;Cormorant Garamond&quot;, serif"
-                  >
-                    Pelatihan Kaigo
-                  </h3>
-                  <p class="text-muted small mb-3">
-                    Pelatihan perawatan lansia sesuai standar Jepang untuk
-                    Tokutei Ginou Kaigo.
-                  </p>
-                  <ul class="list-unstyled small text-muted mb-4">
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Praktik
-                      langsung
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Sertifikasi
-                      Tokutei
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Bahasa Jepang
-                      inklusif
-                    </li>
-                  </ul>
-                  <a
-                    href="pendaftaran.html?program=kaigo"
-                    class="btn-link-accent"
-                    >Daftar Program <i class="bi bi-arrow-right"></i
-                  ></a>
-                </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal reveal-delay-1">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-people"></i>
               </div>
+              <h4 class="fw-semibold mb-3">Pengajar Profesional</h4>
+              <p class="text-muted small">
+                Native speaker dan instruktur berpengalaman di bidangnya
+                masing-masing.
+              </p>
             </div>
-
-            <!-- Program 3: Industri -->
-            <div class="col-md-6 col-lg-4">
-              <div class="program-card" data-category="keahlian">
-                <div class="img-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80"
-                    alt="Pelatihan Industri"
-                    class="program-img"
-                  />
-                </div>
-                <div class="p-4">
-                  <div class="d-flex gap-2 mb-3">
-                    <span class="badge-accent">Keahlian</span>
-                    <span class="badge-cream">6 Bulan</span>
-                  </div>
-                  <h3
-                    class="font-display fs-4 fw-semibold"
-                    style="font-family: &quot;Cormorant Garamond&quot;, serif"
-                  >
-                    Pelatihan Industri
-                  </h3>
-                  <p class="text-muted small mb-3">
-                    Pelatihan keterampilan teknis untuk bekerja di pabrik dan
-                    industri manufaktur Jepang.
-                  </p>
-                  <ul class="list-unstyled small text-muted mb-4">
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Safety &
-                      prosedur kerja
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Teknik produksi
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> K3 dan budaya
-                      kerja
-                    </li>
-                  </ul>
-                  <a
-                    href="pendaftaran.html?program=industri"
-                    class="btn-link-accent"
-                    >Daftar Program <i class="bi bi-arrow-right"></i
-                  ></a>
-                </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal reveal-delay-2">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-building"></i>
               </div>
+              <h4 class="fw-semibold mb-3">Fasilitas Lengkap</h4>
+              <p class="text-muted small">
+                Ruang kelas modern, lab komputer, asrama, dan ruang praktik
+                kaigo.
+              </p>
             </div>
-
-            <!-- Program 4: Tokutei Ginou -->
-            <div class="col-md-6 col-lg-4">
-              <div class="program-card" data-category="persiapan">
-                <div class="img-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80"
-                    alt="Tokutei Ginou"
-                    class="program-img"
-                  />
-                </div>
-                <div class="p-4">
-                  <div class="d-flex gap-2 mb-3">
-                    <span class="badge-accent">Persiapan Kerja</span>
-                    <span class="badge-cream">4 Bulan</span>
-                  </div>
-                  <h3
-                    class="font-display fs-4 fw-semibold"
-                    style="font-family: &quot;Cormorant Garamond&quot;, serif"
-                  >
-                    Tokutei Ginou
-                  </h3>
-                  <p class="text-muted small mb-3">
-                    Persiapan lengkap untuk program Tokutei Ginou (Specified
-                    Skilled Worker) visa Jepang.
-                  </p>
-                  <ul class="list-unstyled small text-muted mb-4">
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Persiapan ujian
-                      skill
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Persiapan JLPT
-                      N4/N3
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Pendampingan
-                      dokumen
-                    </li>
-                  </ul>
-                  <a
-                    href="pendaftaran.html?program=ginou"
-                    class="btn-link-accent"
-                    >Daftar Program <i class="bi bi-arrow-right"></i
-                  ></a>
-                </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal reveal-delay-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-briefcase"></i>
               </div>
-            </div>
-
-            <!-- Program 5: Pemagangan -->
-            <div class="col-md-6 col-lg-4">
-              <div class="program-card" data-category="persiapan">
-                <div class="img-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80"
-                    alt="Program Pemagangan"
-                    class="program-img"
-                  />
-                </div>
-                <div class="p-4">
-                  <div class="d-flex gap-2 mb-3">
-                    <span class="badge-accent">Persiapan Kerja</span>
-                    <span class="badge-cream">6 Bulan</span>
-                  </div>
-                  <h3
-                    class="font-display fs-4 fw-semibold"
-                    style="font-family: &quot;Cormorant Garamond&quot;, serif"
-                  >
-                    Pemagangan (Ginou Jisshusei)
-                  </h3>
-                  <p class="text-muted small mb-3">
-                    Program pemagangan 3 tahun ke Jepang dengan berbagai bidang
-                    keahlian.
-                  </p>
-                  <ul class="list-unstyled small text-muted mb-4">
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Berbagai bidang
-                      keahlian
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Kontrak 3 tahun
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Bahasa + Skill
-                    </li>
-                  </ul>
-                  <a
-                    href="pendaftaran.html?program=pemagangan"
-                    class="btn-link-accent"
-                    >Daftar Program <i class="bi bi-arrow-right"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Program 6: Private Class -->
-            <div class="col-md-6 col-lg-4">
-              <div class="program-card" data-category="bahasa">
-                <div class="img-wrapper">
-                  <img
-                    src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80"
-                    alt="Kelas Privat"
-                    class="program-img"
-                  />
-                </div>
-                <div class="p-4">
-                  <div class="d-flex gap-2 mb-3">
-                    <span class="badge-accent">Bahasa</span>
-                    <span class="badge-cream">Fleksibel</span>
-                  </div>
-                  <h3
-                    class="font-display fs-4 fw-semibold"
-                    style="font-family: &quot;Cormorant Garamond&quot;, serif"
-                  >
-                    Kelas Privat
-                  </h3>
-                  <p class="text-muted small mb-3">
-                    Kelas one-on-one dengan jadwal fleksibel sesuai kebutuhan
-                    dan target Anda.
-                  </p>
-                  <ul class="list-unstyled small text-muted mb-4">
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Jadwal
-                      fleksibel
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Materi
-                      disesuaikan
-                    </li>
-                    <li class="d-flex align-items-center gap-2 mb-2">
-                      <i class="bi bi-check-lg text-accent"></i> Online &
-                      Offline
-                    </li>
-                  </ul>
-                  <a
-                    href="pendaftaran.html?program=privat"
-                    class="btn-link-accent"
-                    >Daftar Program <i class="bi bi-arrow-right"></i
-                  ></a>
-                </div>
-              </div>
+              <h4 class="fw-semibold mb-3">Penempatan Kerja</h4>
+              <p class="text-muted small">
+                Jaringan luas dengan perusahaan mitra di berbagai prefektur
+                Jepang.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Program Details -->
+    <section class="section-padding px-3 px-lg-4">
+      <div class="container">
+        <div class="text-center reveal mb-5">
+          <span
+            class="text-accent text-uppercase fw-semibold tracking-wider small"
+            >Apa yang Kami Tawarkan</span
+          >
+          <h2 class="section-title">Program Kami</h2>
+          <div class="accent-line-center"></div>
+        </div>
+
+        <!-- Program 1: Bahasa Jepang (Image Left) -->
+        <div class="row g-5 align-items-center mb-5 pb-5 reveal">
+          <div class="col-lg-6">
+            <div class="program-icon-large">
+              <i class="bi bi-chat-dots"></i>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <h5
+              class="section-title"
+              style="font-size: 35px; color: var(--accent) !important"
+            >
+              Pelatihan Bahasa Jepang (N5 – N4)
+            </h5>
+            <p class="text-muted lead fs-6 mb-4">
+              Program pelatihan bahasa Jepang untuk penempatan kerja di Jepang
+              dirancang untuk membekali peserta dengan kemampuan berbahasa yang
+              kuat, baik secara lisan maupun tulisan. Kami menyelenggarakan
+              pelatihan bahasa Jepang mulai dari tingkat dasar hingga menengah
+              (N5 – N4).
+            </p>
+            <p class="text-muted mb-4">
+              Pelatihan ini mencakup pemahaman tata bahasa, kosakata bisnis,
+              serta keterampilan komunikasi yang diperlukan di lingkungan kerja.
+              Dengan metode pembelajaran yang interaktif dan instruktur
+              berpengalaman, program ini memastikan setiap peserta memiliki
+              kepercayaan diri dan kesiapan dalam berkomunikasi di tempat kerja
+              di Jepang.
+            </p>
+          </div>
+        </div>
+
+        <!-- Program 2: Budaya & Etika (Image Right) -->
+        <div class="row g-5 align-items-center mb-5 pb-5 reveal reveal-delay-1">
+          <div class="col-lg-6 order-lg-2">
+            <div class="program-icon-large">
+              <i class="bi bi-globe-asia-australia"></i>
+            </div>
+          </div>
+          <div class="col-lg-6 order-lg-1">
+            <h5
+              class="section-title"
+              style="font-size: 35px; color: var(--accent) !important"
+            >
+              Pemahaman Budaya & Etika
+            </h5>
+            <p class="text-muted lead fs-6 mb-4">
+              Program Pemahaman Budaya & Etika untuk penempatan kerja di Jepang
+              bertujuan untuk membekali peserta dengan wawasan mendalam tentang
+              norma, nilai, dan kebiasaan kerja di Jepang. Peserta akan
+              mempelajari konsep kedisiplinan, kerja tim, serta prinsip hormat
+              dan sopan santun yang menjadi bagian penting dalam budaya
+              profesional Jepang.
+            </p>
+            <p class="text-muted mb-4">
+              Dengan mengikuti program ini, peserta diharapkan dapat lebih siap
+              menghadapi tantangan di dunia kerja Jepang dan menjalin hubungan
+              yang baik dengan rekan kerja maupun atasan.
+            </p>
+          </div>
+        </div>
+
+        <!-- Program 3: Pelatihan Keterampilan (Image Left) -->
+        <div class="row g-5 align-items-center mb-5 reveal reveal-delay-2">
+          <div class="col-lg-6">
+            <div class="program-icon-large">
+              <i class="bi bi-tools"></i>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <h5
+              class="section-title"
+              style="font-size: 35px; color: var(--accent) !important"
+            >
+              Pelatihan Keterampilan
+            </h5>
+            <p class="text-muted lead fs-6 mb-4">
+              Program Pelatihan Keterampilan untuk penempatan kerja di Jepang
+              dirancang untuk membekali peserta dengan keahlian teknis sesuai
+              dengan bidang pekerjaan yang dibutuhkan oleh industri di Jepang.
+              Selain keterampilan teknik, peserta juga diajarkan cara kerja yang
+              efisien, standar keselamatan kerja, serta penggunaan alat dan
+              teknologi yang umum digunakan di Jepang.
+            </p>
+            <p class="text-muted mb-4">
+              Dengan pendekatan berbasis praktik dan simulasi kerja nyata,
+              program ini memastikan peserta siap pakai dan mampu beradaptasi
+              dengan cepat di lingkungan kerja Jepang.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Preview -->
+    <!-- <section class="section-padding bg-cream px-3 px-lg-4">
+      <div class="container">
+        <div class="text-center reveal mb-5">
+          <span
+            class="text-accent text-uppercase fw-semibold tracking-wider small"
+            >Testimoni</span
+          >
+          <h2 class="section-title">Apa Kata Mereka</h2>
+          <div class="accent-line-center"></div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 reveal">
+            <div class="feature-card text-start">
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
+                  class="rounded-circle me-3"
+                  width="50"
+                  height="50"
+                  style="object-fit: cover"
+                  alt=""
+                />
+                <div>
+                  <h6 class="fw-bold mb-0">Andi Pratama</h6>
+                  <small class="text-accent">Tokutei Ginou - Tokyo</small>
+                </div>
+              </div>
+              <p class="text-muted small mb-0">
+                "Berkat LPK Yuuki Gakkou, saya bisa lulus JLPT N3 dan
+                mendapatkan pekerjaan di Tokyo."
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
+            <div class="feature-card text-start">
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80"
+                  class="rounded-circle me-3"
+                  width="50"
+                  height="50"
+                  style="object-fit: cover"
+                  alt=""
+                />
+                <div>
+                  <h6 class="fw-bold mb-0">Siti Rahayu</h6>
+                  <small class="text-accent">Kaigo - Osaka</small>
+                </div>
+              </div>
+              <p class="text-muted small mb-0">
+                "Program Kaigo sangat lengkap. Sekarang saya bekerja di Osaka
+                dengan gaji memuaskan."
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
+            <div class="feature-card text-start">
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80"
+                  class="rounded-circle me-3"
+                  width="50"
+                  height="50"
+                  style="object-fit: cover"
+                  alt=""
+                />
+                <div>
+                  <h6 class="fw-bold mb-0">Budi Santoso</h6>
+                  <small class="text-accent">Ginou Jisshusei - Nagoya</small>
+                </div>
+              </div>
+              <p class="text-muted small mb-0">
+                "Pendampingan dari awal sampai berangkat sangat membantu. Highly
+                recommended!"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-5 reveal">
+          <a href="testimoni.html" class="btn btn-outline-accent"
+            >Lihat Semua Testimoni</a
+          >
+        </div>
+      </div>
+    </section> -->
+
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="section-padding px-3 px-lg-4">
       <div class="container">
         <div class="row justify-content-center text-center">
-          <div class="col-lg-8">
-            <h2
-              class="font-display fs-1 fw-bold mb-4"
-              style="font-family: &quot;Cormorant Garamond&quot;, serif"
-            >
-              Butuh Bantuan Memilih Program?
-            </h2>
+          <div class="col-lg-8 reveal">
+            <h2 class="section-title">Siap Memulai Perjalanan Anda?</h2>
             <p class="text-muted mb-5">
-              Konsultasikan tujuan karier Anda dengan tim kami untuk mendapatkan
-              rekomendasi program terbaik.
+              Daftar sekarang dan wujudkan impian berkarier di Jepang bersama
+              LPK Yuuki Gakkou.
             </p>
             <div
               class="d-flex flex-column flex-sm-row gap-3 justify-content-center"
             >
               <a href="pendaftaran.html" class="btn btn-primary"
-                >Daftar Konsultasi</a
+                >Daftar Sekarang</a
               >
               <a
                 href="https://wa.me/628xxxxxxxxxx"
@@ -934,16 +907,23 @@
               <li class="mb-2">
                 <a href="dokumentasi.html" class="footer-link">Dokumentasi</a>
               </li>
+              <li class="mb-2">
+                <a href="testimoni.html" class="footer-link">Testimoni</a>
+              </li>
             </ul>
           </div>
           <div class="col-6 col-md-3 col-lg-2">
             <h4 class="text-white fs-6 fw-semibold mb-4">Program</h4>
             <ul class="list-unstyled">
               <li class="mb-2">
-                <a href="#" class="footer-link">JLPT Intensif</a>
+                <a href="#" class="footer-link">Bahasa Jepang</a>
               </li>
-              <li class="mb-2"><a href="#" class="footer-link">Kaigo</a></li>
-              <li class="mb-2"><a href="#" class="footer-link">Industri</a></li>
+              <li class="mb-2">
+                <a href="#" class="footer-link">Pelatihan Kaigo</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="footer-link">Pelatihan Industri</a>
+              </li>
               <li class="mb-2">
                 <a href="#" class="footer-link">Tokutei Ginou</a>
               </li>
@@ -964,6 +944,10 @@
                   >info@yuukigakkou.com</a
                 >
               </li>
+              <li class="d-flex gap-3 mb-3">
+                <i class="bi bi-telephone text-accent"></i
+                ><span class="small text-white-50">08xx-xxxx-xxxx</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -980,9 +964,6 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const navbar = document.querySelector(".navbar");
-        const tabBtns = document.querySelectorAll(".tab-btn");
-        const programCards = document.querySelectorAll(".program-card");
-        const tabContents = document.querySelectorAll(".tab-content");
 
         // Navbar scroll
         window.addEventListener("scroll", function () {
@@ -1004,33 +985,10 @@
         );
 
         document
-          .querySelectorAll(".program-card, .hero-content, .cta-section .row")
+          .querySelectorAll(".reveal")
           .forEach((el) => observer.observe(el));
 
-        // Tab filter
-        tabBtns.forEach((btn) => {
-          btn.addEventListener("click", function () {
-            tabBtns.forEach((b) => {
-              b.classList.remove("active");
-              b.setAttribute("aria-selected", "false");
-            });
-            this.classList.add("active");
-            this.setAttribute("aria-selected", "true");
-            const filter = this.dataset.tab;
-
-            programCards.forEach((card) => {
-              const col = card.closest(".col-md-6");
-              if (filter === "semua" || card.dataset.category === filter) {
-                col.style.display = "block";
-                setTimeout(() => card.classList.add("visible"), 20);
-              } else {
-                col.style.display = "none";
-              }
-            });
-          });
-        });
-
-        // close mobile menu
+        // close mobile menu on link click
         const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
         const collapse = document.querySelector(".navbar-collapse");
         navLinks.forEach((link) =>
@@ -1043,4 +1001,3 @@
     </script>
   </body>
 </html>
-
