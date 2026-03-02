@@ -4,233 +4,420 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Legalitas - LPK Yuuki Gakkou</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
 
     <style>
       :root {
-        --primary-color: #9b2c2c;
-        --secondary-color: #1a1a1a;
-        --accent-bg: #f5f3ef;
-        --text-muted: #6b6b6b;
-        --font-heading: "Cormorant Garamond", serif;
-        --font-body: "Plus Jakarta Sans", sans-serif;
+        --bg: #fdfcfa;
+        --fg: #1a1a1a;
+        --muted: #6b6b6b;
+        --accent: #9b2c2c;
+        --accent-light: #c53030;
+        --card: #ffffff;
+        --border: #e8e6e3;
+        --cream: #f5f3ef;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
-        font-family: var(--font-body);
-        background-color: #fdfcfa;
-        color: var(--secondary-color);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: var(--bg);
+        color: var(--fg);
       }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5 {
-        font-family: var(--font-heading);
+      .pattern-bg {
+        background-image:
+          linear-gradient(rgba(155, 44, 44, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(155, 44, 44, 0.02) 1px, transparent 1px);
+        background-size: 60px 60px;
       }
 
-      /* Navbar Custom */
-      .navbar-custom {
-        background: rgba(255, 255, 255, 0.95);
+      /* Navbar */
+      .navbar {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: transparent;
+        backdrop-filter: blur(0px);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
         backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
       }
 
-      .navbar-custom.scrolled {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      .navbar:not(.scrolled) .navbar-brand h1,
+      .navbar:not(.scrolled) .navbar-brand p {
+        color: white !important;
+      }
+
+      .navbar-brand h1 {
+        font-family: system-ui;
+        font-weight: 900;
+        font-size: 28px;
+        margin-bottom: 0;
+        color: var(--fg);
+        transition: color 0.3s ease;
+      }
+
+      .navbar-brand .small {
+        color: var(--muted);
+        transition: color 0.3s ease;
       }
 
       .nav-link {
-        font-weight: 500;
-        color: var(--secondary-color) !important;
-        margin: 0 0.5rem;
         position: relative;
+        transition: color 0.3s ease;
+        color: var(--muted) !important;
+        font-weight: 500;
+        padding: 0.5rem 1rem !important;
+        font-size: 14px;
+      }
+
+      .navbar:not(.scrolled) .nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+
+      .nav-link:hover {
+        color: var(--fg) !important;
+      }
+
+      .navbar:not(.scrolled) .nav-link:hover {
+        color: white !important;
       }
 
       .nav-link::after {
         content: "";
         position: absolute;
-        width: 0;
-        height: 2px;
         bottom: 0;
-        left: 0;
-        background-color: var(--primary-color);
-        transition: width 0.3s;
+        left: 0.5rem;
+        right: 0.5rem;
+        height: 2px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
       }
 
       .nav-link:hover::after,
       .nav-link.active::after {
-        width: 100%;
+        transform: scaleX(1);
       }
 
       .nav-link.active {
-        color: var(--primary-color) !important;
+        color: var(--accent) !important;
         font-weight: 600;
       }
 
-      .btn-custom-primary {
-        background-color: var(--primary-color);
-        border: none;
-        color: white;
-        padding: 0.6rem 1.5rem;
-        border-radius: 50px;
-        font-weight: 600;
-        transition: all 0.3s ease;
+      .navbar:not(.scrolled) .nav-link.active {
+        color: white !important;
       }
 
-      .btn-custom-primary:hover {
-        background-color: #7c1f1f;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(155, 44, 44, 0.3);
-      }
-
-      /* Hero Section */
-      .hero-section {
-        background:
-          linear-gradient(
-            135deg,
-            rgba(26, 26, 26, 0.8),
-            rgba(155, 44, 44, 0.7)
-          ),
-          url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1920");
-        background-size: cover;
-        background-position: center;
-        padding-top: 160px;
-        padding-bottom: 80px;
-        color: white;
-      }
-
-      /* Content Styles */
-      .legal-card {
-        border: 1px solid #e8e6e3;
-        border-radius: 1rem;
-        overflow: hidden;
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease;
+      .navbar:not(.scrolled) .nav-link.active::after {
         background: white;
-        height: 100%;
       }
 
-      .legal-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-      }
-
-      .legal-icon {
-        width: 60px;
-        height: 60px;
-        background-color: var(--accent-bg);
-        border-radius: 12px;
+      /* Hero section - 100vh */
+      .hero-section {
+        height: 100vh;
+        min-height: 650px;
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--primary-color);
-        font-size: 1.8rem;
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 26, 26, 0.8) 0%,
+          rgba(155, 44, 44, 0.7) 100%
+        );
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+        max-width: 900px;
+        padding: 2rem;
+      }
+
+      .hero-content .badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+        border-radius: 100px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .hero-content h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-content p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+      }
+
+      /* Section styling */
+      .section-padding {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--fg);
+        margin-bottom: 1rem;
       }
 
       .accent-line {
         width: 60px;
         height: 3px;
-        background-color: var(--primary-color);
+        background: var(--accent);
+        margin: 1.5rem 0;
+      }
+
+      .accent-line-center {
+        width: 60px;
+        height: 3px;
+        background: var(--accent);
+        margin: 1.5rem auto;
+      }
+
+      .text-accent {
+        color: var(--accent) !important;
+      }
+
+      .bg-cream {
+        background-color: var(--cream) !important;
+      }
+
+      .border-border {
+        border-color: var(--border) !important;
+      }
+
+      /* Legal Cards */
+      .legal-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1.5rem !important;
+        overflow: hidden;
+        padding: 2rem;
+        height: 100%;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .legal-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 40px rgba(0, 0, 0, 0.08) !important;
+        border-color: transparent;
+      }
+
+      .legal-icon {
+        width: 70px;
+        height: 70px;
+        background: rgba(155, 44, 44, 0.08);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Buttons */
+      .btn-primary {
+        background: var(--accent) !important;
+        border-color: var(--accent) !important;
+        padding: 0.8rem 2.5rem;
+        border-radius: 100px !important;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(155, 44, 44, 0.15);
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-light) !important;
+        border-color: var(--accent-light) !important;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(155, 44, 44, 0.25);
       }
 
       /* Footer */
-      footer {
-        background-color: var(--secondary-color);
-        color: #adb5bd;
-      }
-
-      footer h5 {
-        color: white;
-        font-family: var(--font-heading);
+      .footer {
+        background-color: #1a1a1a !important;
+        color: #a0a0a0;
       }
 
       .footer-link {
-        color: #adb5bd;
+        color: #a0a0a0;
         text-decoration: none;
-        transition: color 0.2s;
-      }
-      .footer-link:hover {
-        color: var(--primary-color);
+        transition: color 0.2s ease;
+        font-size: 0.9rem;
       }
 
-      /* Animation */
+      .footer-link:hover {
+        color: var(--accent) !important;
+      }
+
+      /* Reveal animations */
       .reveal {
         opacity: 0;
         transform: translateY(30px);
-        transition: all 0.8s ease;
+        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
       }
+
       .reveal.visible {
         opacity: 1;
         transform: translateY(0);
       }
+
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* Mobile menu */
+      @media (max-width: 991.98px) {
+        .navbar-collapse {
+          background: white;
+          padding: 1rem;
+          border-radius: 1rem;
+          margin-top: 0.75rem;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar:not(.scrolled) .navbar-collapse {
+          background: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar:not(.scrolled) .nav-link {
+          color: var(--muted) !important;
+        }
+
+        .navbar:not(.scrolled) .nav-link.active {
+          color: var(--accent) !important;
+        }
+
+        .navbar:not(.scrolled) .nav-link.active::after {
+          background: var(--accent);
+        }
+      }
     </style>
   </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
+  <body class="pattern-bg">
+    <!-- Navbar (konsisten dengan halaman lain) -->
+    <nav class="navbar navbar-expand-lg fixed-top px-3" id="mainNav">
+      <div class="container-fluid px-lg-4">
+        <a
+          href="index.html"
+          class="navbar-brand d-flex align-items-center gap-2"
+        >
           <div
-            class="bg-danger rounded-circle d-flex justify-content-center align-items-center me-2"
-            style="
-              width: 40px;
-              height: 40px;
-              background-color: var(--primary-color) !important;
-            "
+            class="rounded-circle bg-white d-flex align-items-center justify-content-center"
+            style="width: 80px; height: 80px"
           >
-            <span
-              class="text-white fw-bold"
-              style="font-family: var(--font-heading)"
-              >YG</span
-            >
+            <img src="logo.png" alt="logo" style="width: 80px" />
           </div>
-          <div>
-            <span class="fw-bold d-block" style="font-size: 1.1rem"
-              >Yuuki Gakkou</span
-            >
-            <span
-              class="text-muted"
-              style="font-size: 0.7rem; letter-spacing: 0.5px"
-              >LPK RESMI</span
-            >
+          <div class="d-none d-sm-block">
+            <h1 class="mb-0" style="font-size: 18px">
+              Lembaga Pelatihan Kerja
+            </h1>
+            <h1 class="mb-0">YUUKI GAKKOU</h1>
           </div>
         </a>
+
         <button
           class="navbar-toggler border-0"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
+          data-bs-target="#navbarMain"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Beranda</a>
+              <a class="nav-link" href="beranda.html">Beranda</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="program.html">Program</a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link active" href="legalitas.html">Legalitas</a>
             </li>
@@ -244,123 +431,164 @@
               <a class="nav-link" href="tentang.html">Tentang Kami</a>
             </li>
           </ul>
-          <a href="pendaftaran.html" class="btn btn-custom-primary"
+          <a
+            href="pendaftaran.html"
+            class="btn btn-primary rounded-pill px-4 py-2 fw-semibold"
             >Daftar Sekarang</a
           >
         </div>
       </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero-section text-center">
-      <div class="container">
-        <span class="badge bg-white bg-opacity-10 text-white px-3 py-2 mb-3"
-          >Transparansi & Kepercayaan</span
-        >
-        <h1 class="display-4 fw-bold mb-3">Legalitas Lembaga</h1>
-        <p class="lead opacity-75 col-md-8 mx-auto">
+    <!-- Hero Section - 100vh -->
+    <section class="hero-section">
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=80"
+          alt="Legalitas"
+        />
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <span class="badge">TRANSPARANSI & KEPERCAYAAN</span>
+        <h1>Legalitas Lembaga</h1>
+        <p class="mx-auto">
           LPK Yuuki Gakkou beroperasi secara resmi dan terdaftar di instansi
           terkait.
         </p>
       </div>
     </section>
 
-    <!-- Legalitas Content -->
-    <section class="py-5">
+    <!-- Legalitas Cards -->
+    <section class="section-padding px-3 px-lg-4">
       <div class="container">
-        <div class="text-center mb-5 reveal">
-          <h2 class="fw-bold mb-3">Dokumen Resmi</h2>
-          <div class="accent-line mx-auto"></div>
+        <div class="text-center reveal mb-5">
+          <span
+            class="text-accent text-uppercase fw-semibold tracking-wider small"
+            >Dokumen Resmi</span
+          >
+          <h2 class="section-title">Legalitas Terlengkap</h2>
+          <div class="accent-line-center"></div>
         </div>
 
         <div class="row g-4">
-          <!-- Card 1 -->
+          <!-- Card 1 NIB -->
           <div class="col-md-6 col-lg-4 reveal">
-            <div class="legal-card p-4 text-center">
-              <div class="legal-icon mx-auto mb-4">
+            <div class="legal-card">
+              <div class="legal-icon">
                 <i class="bi bi-file-earmark-text"></i>
               </div>
-              <h4 class="fw-semibold mb-3">NIB (Nomor Induk Berusaha)</h4>
-              <p class="text-muted small">
+              <h3
+                class="font-display fs-4 fw-semibold"
+                style="font-family: &quot;Cormorant Garamond&quot;, serif"
+              >
+                NIB (Nomor Induk Berusaha)
+              </h3>
+              <p class="text-muted small mt-2">
                 Terdaftar sebagai lembaga pelatihan kerja melalui sistem OSS
                 (Online Single Submission).
               </p>
-              <p class="fw-bold text-danger mb-0">No: 12XX-XXXX-XXXX</p>
+              <p class="fw-bold text-accent mb-0">No: 12XX-XXXX-XXXX</p>
             </div>
           </div>
 
-          <!-- Card 2 -->
-          <div class="col-md-6 col-lg-4 reveal">
-            <div class="legal-card p-4 text-center">
-              <div class="legal-icon mx-auto mb-4">
+          <!-- Card 2 Akta -->
+          <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
+            <div class="legal-card">
+              <div class="legal-icon">
                 <i class="bi bi-bank"></i>
               </div>
-              <h4 class="fw-semibold mb-3">Akta Pendirian</h4>
-              <p class="text-muted small">
+              <h3
+                class="font-display fs-4 fw-semibold"
+                style="font-family: &quot;Cormorant Garamond&quot;, serif"
+              >
+                Akta Pendirian
+              </h3>
+              <p class="text-muted small mt-2">
                 Akta notaris pendirian yayasan/perusahaan yang sah secara hukum.
               </p>
-              <p class="fw-bold text-danger mb-0">No: XX/Not/2026/YY</p>
+              <p class="fw-bold text-accent mb-0">No: XX/Not/2026/YY</p>
             </div>
           </div>
 
-          <!-- Card 3 -->
-          <div class="col-md-6 col-lg-4 reveal">
-            <div class="legal-card p-4 text-center">
-              <div class="legal-icon mx-auto mb-4">
+          <!-- Card 3 Izin Operasional -->
+          <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
+            <div class="legal-card">
+              <div class="legal-icon">
                 <i class="bi bi-award"></i>
               </div>
-              <h4 class="fw-semibold mb-3">Izin Operasional LPK</h4>
-              <p class="text-muted small">
+              <h3
+                class="font-display fs-4 fw-semibold"
+                style="font-family: &quot;Cormorant Garamond&quot;, serif"
+              >
+                Izin Operasional LPK
+              </h3>
+              <p class="text-muted small mt-2">
                 Izin resmi dari Dinas Tenaga Kerja (Disnaker) setempat.
               </p>
-              <p class="fw-bold text-danger mb-0">No: XXX/KPTS/Disnaker</p>
+              <p class="fw-bold text-accent mb-0">No: XXX/KPTS/Disnaker</p>
             </div>
           </div>
 
-          <!-- Card 4 -->
+          <!-- Card 4 IMJP -->
           <div class="col-md-6 col-lg-4 reveal">
-            <div class="legal-card p-4 text-center">
-              <div class="legal-icon mx-auto mb-4">
+            <div class="legal-card">
+              <div class="legal-icon">
                 <i class="bi bi-globe-asia-australia"></i>
               </div>
-              <h4 class="fw-semibold mb-3">Izin IMJP</h4>
-              <p class="text-muted small">
+              <h3
+                class="font-display fs-4 fw-semibold"
+                style="font-family: &quot;Cormorant Garamond&quot;, serif"
+              >
+                Izin IMJP
+              </h3>
+              <p class="text-muted small mt-2">
                 Terdaftar sebagai lembaga pengirim tenaga kerja ke Jepang.
               </p>
-              <p class="fw-bold text-danger mb-0">Kementerian Tenaga Kerja</p>
+              <p class="fw-bold text-accent mb-0">Kementerian Tenaga Kerja</p>
             </div>
           </div>
 
-          <!-- Card 5 -->
-          <div class="col-md-6 col-lg-4 reveal">
-            <div class="legal-card p-4 text-center">
-              <div class="legal-icon mx-auto mb-4">
+          <!-- Card 5 NPWP -->
+          <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
+            <div class="legal-card">
+              <div class="legal-icon">
                 <i class="bi bi-shield-check"></i>
               </div>
-              <h4 class="fw-semibold mb-3">NPWP Perusahaan</h4>
-              <p class="text-muted small">
+              <h3
+                class="font-display fs-4 fw-semibold"
+                style="font-family: &quot;Cormorant Garamond&quot;, serif"
+              >
+                NPWP Perusahaan
+              </h3>
+              <p class="text-muted small mt-2">
                 Nomor Pokok Wajib Pajak badan usaha yang aktif.
               </p>
-              <p class="fw-bold text-danger mb-0">XX.XXX.XXX.X-XXX</p>
+              <p class="fw-bold text-accent mb-0">XX.XXX.XXX.X-XXX</p>
             </div>
           </div>
 
-          <!-- Card 6 -->
-          <div class="col-md-6 col-lg-4 reveal">
-            <div class="legal-card p-4 text-center">
-              <div class="legal-icon mx-auto mb-4">
+          <!-- Card 6 HIMADEKI -->
+          <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
+            <div class="legal-card">
+              <div class="legal-icon">
                 <i class="bi bi-people"></i>
               </div>
-              <h4 class="fw-semibold mb-3">Kerjasama HIMADEKI</h4>
-              <p class="text-muted small">
+              <h3
+                class="font-display fs-4 fw-semibold"
+                style="font-family: &quot;Cormorant Garamond&quot;, serif"
+              >
+                Kerjasama HIMADEKI
+              </h3>
+              <p class="text-muted small mt-2">
                 Terdaftar sebagai anggota asosiasi pengirim TKI ke Jepang.
               </p>
-              <p class="fw-bold text-danger mb-0">Member Resmi</p>
+              <p class="fw-bold text-accent mb-0">Member Resmi</p>
             </div>
           </div>
         </div>
 
-        <!-- Image Section -->
+        <!-- Gambar + Komitmen -->
         <div class="row mt-5 pt-5 align-items-center reveal">
           <div class="col-lg-6 mb-4 mb-lg-0">
             <img
@@ -370,7 +598,8 @@
             />
           </div>
           <div class="col-lg-6 ps-lg-5">
-            <h2 class="fw-bold mb-4">Komitmen Kepatuhan Hukum</h2>
+            <h2 class="section-title">Komitmen Kepatuhan Hukum</h2>
+            <div class="accent-line"></div>
             <p class="text-muted mb-4">
               Kami berkomitmen untuk menjalankan seluruh kegiatan pelatihan dan
               penempatan kerja sesuai dengan peraturan perundang-undangan yang
@@ -378,16 +607,22 @@
             </p>
             <ul class="list-unstyled">
               <li class="d-flex align-items-center mb-3">
-                <i class="bi bi-check-circle-fill text-danger me-3"></i>
-                <span>Transparansi biaya tanpa biaya tersembunyi</span>
+                <i class="bi bi-check-circle-fill text-accent me-3 fs-5"></i>
+                <span class="text-muted"
+                  >Transparansi biaya tanpa biaya tersembunyi</span
+                >
               </li>
               <li class="d-flex align-items-center mb-3">
-                <i class="bi bi-check-circle-fill text-danger me-3"></i>
-                <span>Kontrak kerja yang jelas dan sah hukum</span>
+                <i class="bi bi-check-circle-fill text-accent me-3 fs-5"></i>
+                <span class="text-muted"
+                  >Kontrak kerja yang jelas dan sah hukum</span
+                >
               </li>
               <li class="d-flex align-items-center mb-3">
-                <i class="bi bi-check-circle-fill text-danger me-3"></i>
-                <span>Pendampingan legalitas dokumen peserta</span>
+                <i class="bi bi-check-circle-fill text-accent me-3 fs-5"></i>
+                <span class="text-muted"
+                  >Pendampingan legalitas dokumen peserta</span
+                >
               </li>
             </ul>
           </div>
@@ -395,58 +630,105 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-5">
+    <!-- CTA Section (konsisten) -->
+    <section class="section-padding bg-cream px-3 px-lg-4">
       <div class="container">
-        <div class="row border-bottom border-secondary pb-4 mb-4">
-          <div class="col-md-4 mb-4">
-            <h5 class="fw-bold text-white mb-3">Yuuki Gakkou</h5>
-            <p class="small">
-              Lembaga Pelatihan Kerja yang berfokus pada persiapan sumber daya
-              manusia Indonesia untuk berkarier di Jepang.
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8 reveal">
+            <h2 class="section-title">
+              Percayakan Masa Depanmu pada Lembaga Resmi
+            </h2>
+            <p class="text-muted mb-5">
+              Bergabunglah dengan ribuan alumni yang telah sukses melalui
+              program kami.
+            </p>
+            <a href="pendaftaran.html" class="btn btn-primary"
+              >Daftar Sekarang</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (sama persis dengan halaman lain) -->
+    <footer class="footer py-5">
+      <div class="container">
+        <div class="row g-5 mb-4">
+          <div class="col-lg-4">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div
+                class="bg-white rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 70px; height: 70px"
+              >
+                <img src="logo.png" alt="" style="width: 70px; height: 70px" />
+              </div>
+              <h3
+                class="font-display fs-4 fw-semibold text-white mb-0"
+                style="font-family: &quot;Cormorant Garamond&quot;, serif"
+              >
+                LPK YUUKI GAKKOU
+              </h3>
+            </div>
+            <p class="text-white-50 small">
+              Mencetak tenaga kerja Indonesia siap berkarier profesional di
+              Jepang dengan pelatihan berkualitas.
             </p>
           </div>
-          <div class="col-6 col-md-2">
-            <h6 class="fw-bold text-white mb-3">Menu</h6>
+          <div class="col-6 col-md-3 col-lg-2">
+            <h4 class="text-white fs-6 fw-semibold mb-4">Menu</h4>
             <ul class="list-unstyled">
               <li class="mb-2">
-                <a href="index.html" class="footer-link small">Beranda</a>
+                <a href="index.html" class="footer-link">Beranda</a>
               </li>
               <li class="mb-2">
-                <a href="program.html" class="footer-link small">Program</a>
+                <a href="program.html" class="footer-link">Program</a>
               </li>
               <li class="mb-2">
-                <a href="legalitas.html" class="footer-link small">Legalitas</a>
+                <a href="legalitas.html" class="footer-link">Legalitas</a>
+              </li>
+              <li class="mb-2">
+                <a href="dokumentasi.html" class="footer-link">Dokumentasi</a>
+              </li>
+              <li class="mb-2">
+                <a href="testimoni.html" class="footer-link">Testimoni</a>
               </li>
             </ul>
           </div>
-          <div class="col-6 col-md-2">
-            <h6 class="fw-bold text-white mb-3">Layanan</h6>
+          <div class="col-6 col-md-3 col-lg-2">
+            <h4 class="text-white fs-6 fw-semibold mb-4">Program</h4>
             <ul class="list-unstyled">
               <li class="mb-2">
-                <a href="#" class="footer-link small">JLPT</a>
+                <a href="#" class="footer-link">JLPT Intensif</a>
               </li>
+              <li class="mb-2"><a href="#" class="footer-link">Kaigo</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Industri</a></li>
               <li class="mb-2">
-                <a href="#" class="footer-link small">Kaigo</a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="footer-link small">Ginou Jisshusei</a>
+                <a href="#" class="footer-link">Tokutei Ginou</a>
               </li>
             </ul>
           </div>
-          <div class="col-md-4">
-            <h6 class="fw-bold text-white mb-3">Hubungi Kami</h6>
-            <p class="small mb-1">
-              <i class="bi bi-envelope me-2"></i> info@yuukigakkou.com
-            </p>
-            <p class="small">
-              <i class="bi bi-telephone me-2"></i> 08xx-xxxx-xxxx
-            </p>
+          <div class="col-md-6 col-lg-4">
+            <h4 class="text-white fs-6 fw-semibold mb-4">Kontak</h4>
+            <ul class="list-unstyled">
+              <li class="d-flex gap-3 mb-3">
+                <i class="bi bi-geo-alt text-accent"></i
+                ><span class="small text-white-50"
+                  >Jl. Contoh No. 123, Kota</span
+                >
+              </li>
+              <li class="d-flex gap-3 mb-3">
+                <i class="bi bi-envelope text-accent"></i
+                ><a href="mailto:info@yuukigakkou.com" class="footer-link"
+                  >info@yuukigakkou.com</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="text-center small">
-          &copy; 2024 LPK Yuuki Gakkou. All Rights Reserved.
-        </div>
+        <hr class="border-white border-opacity-10 my-4" />
+        <p class="small text-white-50 text-center mb-0">
+          &copy; 2024 LPK Yuuki Gakkou. Hak cipta dilindungi.
+        </p>
       </div>
     </footer>
 
@@ -454,29 +736,43 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-      // Scroll Animation
-      const reveals = document.querySelectorAll(".reveal");
-      const revealOnScroll = () => {
-        reveals.forEach((el) => {
-          const windowHeight = window.innerHeight;
-          const elementTop = el.getBoundingClientRect().top;
-          if (elementTop < windowHeight - 50) {
-            el.classList.add("visible");
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar");
+
+        // Navbar scroll
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 20) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
           }
         });
-      };
-      window.addEventListener("scroll", revealOnScroll);
-      window.addEventListener("load", revealOnScroll);
 
-      // Navbar Scroll Effect
-      window.addEventListener("scroll", function () {
-        const navbar = document.querySelector(".navbar-custom");
-        if (window.scrollY > 50) {
-          navbar.classList.add("scrolled");
-        } else {
-          navbar.classList.remove("scrolled");
-        }
+        // Reveal observer
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("visible");
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -30px 0px" },
+        );
+
+        document
+          .querySelectorAll(".reveal")
+          .forEach((el) => observer.observe(el));
+
+        // close mobile menu on link click
+        const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+        const collapse = document.querySelector(".navbar-collapse");
+        navLinks.forEach((link) =>
+          link.addEventListener("click", () => {
+            if (collapse.classList.contains("show"))
+              new bootstrap.Collapse(collapse).hide();
+          }),
+        );
       });
     </script>
   </body>
 </html>
+
