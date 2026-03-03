@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -50,7 +50,8 @@
 
       /* Hero Section */
       .hero-section {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
           url("https://images.unsplash.com/photo-1528164344705-47542687000d?w=1200");
         background-size: cover;
         background-position: center;
@@ -340,9 +341,15 @@
             `Email: ${email}%0ATelepon: ${telepon}%0AAlamat: ${alamat}%0A%0A` +
             `Program: ${program}%0AMotivasi: ${motivasi}%0A%0ATerima kasih.`;
 
-          window.open(`https://wa.me/6281234567890?text=${msg}`, "_blank");
+          window.open(`https://wa.me/6282118717338?text=${msg}`, "_blank");
           alert("Form terkirim! Anda akan diarahkan ke WhatsApp.");
+
+          reset();
         });
+
+      function reset() {
+        document.getElementById("registrationForm").reset();
+      }
     </script>
   </body>
 </html>

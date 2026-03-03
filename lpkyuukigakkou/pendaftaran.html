@@ -4,61 +4,126 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pendaftaran - LPK Yuuki Gakkou</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
 
     <style>
       :root {
-        --primary-color: #9b2c2c;
-        --secondary-color: #1a1a1a;
-        --font-heading: "Cormorant Garamond", serif;
+        --bg: #fdfcfa;
+        --fg: #1a1a1a;
+        --muted: #6b6b6b;
+        --accent: #9b2c2c;
+        --accent-light: #c53030;
+        --card: #ffffff;
+        --border: #e8e6e3;
+        --cream: #f5f3ef;
       }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         font-family: "Plus Jakarta Sans", sans-serif;
-        background-color: #f5f3ef;
+        background: var(--bg);
+        color: var(--fg);
       }
-      h1,
-      h2,
-      h3,
-      h4 {
-        font-family: var(--font-heading);
+
+      .pattern-bg {
+        background-image: linear-gradient(rgba(155, 44, 44, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(155, 44, 44, 0.02) 1px, transparent 1px);
+        background-size: 60px 60px;
       }
 
       /* Navbar */
-      .navbar-custom {
-        background: rgba(255, 255, 255, 0.95);
+      .navbar {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: transparent;
+        backdrop-filter: blur(0px);
+      }
+
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
         backdrop-filter: blur(10px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
       }
+
+      .navbar:not(.scrolled) .navbar-brand h1,
+      .navbar:not(.scrolled) .navbar-brand p {
+        color: white !important;
+      }
+
+      .navbar-brand h1 {
+        font-family: system-ui;
+        font-weight: 900;
+        font-size: 28px;
+        margin-bottom: 0;
+        color: var(--fg);
+        transition: color 0.3s ease;
+      }
+
+      .navbar-brand .small {
+        color: var(--muted);
+        transition: color 0.3s ease;
+      }
+
       .nav-link {
-        font-weight: 500;
-        color: var(--secondary-color) !important;
         position: relative;
+        transition: color 0.3s ease;
+        color: var(--muted) !important;
+        font-weight: 500;
+        padding: 0.5rem 1rem !important;
+        font-size: 14px;
       }
+
+      .navbar:not(.scrolled) .nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+
+      .nav-link:hover {
+        color: var(--fg) !important;
+      }
+
+      .navbar:not(.scrolled) .nav-link:hover {
+        color: white !important;
+      }
+
       .nav-link::after {
         content: "";
         position: absolute;
-        width: 0;
-        height: 2px;
         bottom: 0;
-        left: 0;
-        background-color: var(--primary-color);
-        transition: width 0.3s;
+        left: 0.5rem;
+        right: 0.5rem;
+        height: 2px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
       }
+
       .nav-link:hover::after,
       .nav-link.active::after {
-        width: 100%;
+        transform: scaleX(1);
       }
+
+      .nav-link.active {
+        color: var(--accent) !important;
+        font-weight: 600;
+      }
+
+      .navbar:not(.scrolled) .nav-link.active {
+        color: white !important;
+      }
+
+      .navbar:not(.scrolled) .nav-link.active::after {
+        background: white;
+      }
+
       .btn-custom-primary {
         background-color: var(--primary-color);
         border: none;
@@ -69,6 +134,385 @@
       }
       .btn-custom-primary:hover {
         background-color: #7c1f1f;
+      }
+
+      /* Hero section - 100vh */
+      .hero-section {
+        height: 60vh;
+        /* min-height: 650px; */
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(155, 44, 44, 0.7) 100%);
+      }
+
+      .hero-content {
+        position: relative;
+        top: 45px;
+        z-index: 2;
+        text-align: center;
+        color: white;
+        max-width: 900px;
+        padding: 2rem;
+      }
+
+      .hero-content .badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+        border-radius: 100px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .hero-content h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-content p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+      }
+
+      /* Section styling */
+      .section-padding {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--fg);
+        margin-bottom: 1rem;
+      }
+
+      .accent-line {
+        width: 60px;
+        height: 3px;
+        background: var(--accent);
+        margin: 1.5rem 0;
+      }
+
+      .accent-line-center {
+        width: 60px;
+        height: 3px;
+        background: var(--accent);
+        margin: 1.5rem auto;
+      }
+
+      .text-accent {
+        color: var(--accent) !important;
+      }
+
+      .bg-cream {
+        background-color: var(--cream) !important;
+      }
+
+      /* Gallery Cards */
+      .gallery-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1.5rem !important;
+        overflow: hidden;
+        height: 100%;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+      }
+
+      .gallery-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 40px rgba(0, 0, 0, 0.08) !important;
+        border-color: transparent;
+      }
+
+      .gallery-card .img-wrapper {
+        overflow: hidden;
+        height: 260px;
+      }
+
+      .gallery-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .gallery-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .gallery-caption {
+        padding: 1.5rem;
+      }
+
+      .gallery-caption h4 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .gallery-caption p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 0;
+      }
+
+      /* Category tabs */
+      .tab-btn {
+        padding: 0.6rem 1.8rem;
+        border-radius: 100px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--muted);
+        transition: all 0.2s ease;
+        cursor: pointer;
+        letter-spacing: 0.3px;
+      }
+
+      .tab-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(155, 44, 44, 0.03);
+      }
+
+      .tab-btn.active {
+        background: var(--accent);
+        color: white !important;
+        border-color: var(--accent);
+        box-shadow: 0 6px 15px rgba(155, 44, 44, 0.2);
+      }
+
+      /* Lightbox */
+      .lightbox-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .lightbox-modal.show {
+        display: flex;
+        opacity: 1;
+      }
+
+      .lightbox-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      .lightbox-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 1rem;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0.5rem;
+      }
+
+      .lightbox-caption {
+        position: absolute;
+        bottom: -40px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: white;
+        font-size: 1rem;
+      }
+
+      .lightbox-prev,
+      .lightbox-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+
+      .lightbox-prev:hover,
+      .lightbox-next:hover {
+        background: rgba(155, 44, 44, 0.8);
+      }
+
+      .lightbox-prev {
+        left: 20px;
+      }
+
+      .lightbox-next {
+        right: 20px;
+      }
+
+      /* Buttons */
+      .btn-primary {
+        background: var(--accent) !important;
+        border-color: var(--accent) !important;
+        padding: 0.8rem 2.5rem;
+        border-radius: 100px !important;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(155, 44, 44, 0.15);
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-light) !important;
+        border-color: var(--accent-light) !important;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(155, 44, 44, 0.25);
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #1a1a1a !important;
+        color: #a0a0a0;
+      }
+
+      .footer-link {
+        color: #a0a0a0;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        font-size: 0.9rem;
+      }
+
+      .footer-link:hover {
+        color: var(--accent) !important;
+      }
+
+      /* Reveal animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* Mobile menu */
+      @media (max-width: 991.98px) {
+        .navbar-collapse {
+          background: white;
+          padding: 1rem;
+          border-radius: 1rem;
+          margin-top: 0.75rem;
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar:not(.scrolled) .navbar-collapse {
+          background: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar:not(.scrolled) .nav-link {
+          color: var(--muted) !important;
+        }
+
+        .navbar:not(.scrolled) .nav-link.active {
+          color: var(--accent) !important;
+        }
+
+        .navbar:not(.scrolled) .nav-link.active::after {
+          background: var(--accent);
+        }
+      }
+
+      .registration-card {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .registration-card .card-header {
+        background: var(--primary-red);
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        letter-spacing: 0.5px;
       }
 
       /* Form Custom */
@@ -112,55 +556,32 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <div
-            class="rounded-circle d-flex justify-content-center align-items-center me-2"
-            style="
-              width: 40px;
-              height: 40px;
-              background-color: var(--primary-color);
-            "
-          >
-            <span
-              class="text-white fw-bold"
-              style="font-family: var(--font-heading)"
-              >YG</span
-            >
+    <nav class="navbar navbar-expand-lg fixed-top px-3" id="mainNav">
+      <div class="container-fluid px-lg-4">
+        <a href="index.html" class="navbar-brand d-flex align-items-center gap-2">
+          <div class="rounded-circle bg-white d-flex align-items-center justify-content-center" style="width: 80px; height: 80px">
+            <img src="logo.png" alt="logo" style="width: 80px" />
           </div>
-          <div>
-            <span class="fw-bold d-block" style="font-size: 1.1rem"
-              >Yuuki Gakkou</span
-            >
-            <span
-              class="text-muted"
-              style="font-size: 0.7rem; letter-spacing: 0.5px"
-              >LPK RESMI</span
-            >
+          <div class="d-none d-sm-block">
+            <h1 class="mb-0" style="font-size: 18px">Lembaga Pelatihan Kerja</h1>
+            <h1 class="mb-0">YUUKI GAKKOU</h1>
           </div>
         </a>
-        <button
-          class="navbar-toggler border-0"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
+
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto">
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Beranda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="program.html">Program</a>
+              <a class="nav-link" href="beranda.html">Beranda</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="legalitas.html">Legalitas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="dokumentasi.html">Dokumentasi</a>
+              <a class="nav-link active" href="dokumentasi.html">Dokumentasi</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="testimoni.html">Testimoni</a>
@@ -169,186 +590,93 @@
               <a class="nav-link" href="tentang.html">Tentang Kami</a>
             </li>
           </ul>
-          <a href="pendaftaran.html" class="btn btn-custom-primary"
-            >Daftar Sekarang</a
-          >
+          <a href="pendaftaran.html" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">Daftar Sekarang</a>
         </div>
       </div>
     </nav>
 
+    <section class="hero-section">
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1920" alt="Formulir Pendaftaran" />
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <span class="badge">Pendaftaran</span>
+        <h1>Formulir Pendaftaran</h1>
+        <p class="mx-auto">Isi formulir di bawah ini untuk mendaftar di Lembaga Pelatihan Kerja Yuuki Gakkou.</p>
+      </div>
+    </section>
+
     <!-- Form Section -->
-    <section class="py-5" style="margin-top: 100px">
+    <section class="py-5">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="form-section p-4 p-md-5">
-              <div class="text-center mb-5">
-                <h2 class="fw-bold">Formulir Pendaftaran</h2>
-                <p class="text-muted">
-                  Isi data dengan benar untuk memulai proses pendaftaran
-                </p>
+        <div class="card registration-card">
+          <div class="card-header">Formulir Pendaftaran LPK Yukki Gakkou</div>
+          <div class="card-body p-4">
+            <form id="registrationForm">
+              <h4 class="section-title">Data Pribadi</h4>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label>Nama Lengkap</label>
+                  <input type="text" class="form-control" id="namaLengkap" required />
+                </div>
+                <div class="col-md-6">
+                  <label>Tempat Lahir</label>
+                  <input type="text" class="form-control" id="tempatLahir" required />
+                </div>
+                <div class="col-md-6">
+                  <label>Tanggal Lahir</label>
+                  <input type="date" class="form-control" id="tanggalLahir" required />
+                </div>
+                <div class="col-md-6">
+                  <label>Jenis Kelamin</label>
+                  <select class="form-select" id="jenisKelamin" required>
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                  </select>
+                </div>
               </div>
 
-              <form>
-                <!-- Data Pribadi -->
-                <h5
-                  class="mb-3 text-muted text-uppercase"
-                  style="font-size: 0.8rem; letter-spacing: 1px"
-                >
-                  Data Pribadi
-                </h5>
-                <div class="row g-3 mb-4">
-                  <div class="col-md-6">
-                    <label class="form-label">Nama Lengkap</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Sesuai KTP"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Tempat Lahir</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Kota Kelahiran"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Tanggal Lahir</label>
-                    <input type="date" class="form-control" required />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Jenis Kelamin</label>
-                    <select class="form-select" required>
-                      <option selected disabled>Pilih...</option>
-                      <option>Laki-laki</option>
-                      <option>Perempuan</option>
-                    </select>
-                  </div>
-                  <div class="col-12">
-                    <label class="form-label">Alamat Lengkap</label>
-                    <textarea
-                      class="form-control"
-                      rows="2"
-                      placeholder="Alamat sesuai KTP"
-                      required
-                    ></textarea>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">No. HP (WhatsApp)</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      placeholder="08xxxxxxxxxx"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="nama@email.com"
-                      required
-                    />
-                  </div>
+              <h4 class="section-title">Kontak</h4>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label>Email</label>
+                  <input type="email" class="form-control" id="email" required />
                 </div>
-
-                <!-- Pendidikan -->
-                <h5
-                  class="mb-3 text-muted text-uppercase"
-                  style="font-size: 0.8rem; letter-spacing: 1px"
-                >
-                  Pendidikan
-                </h5>
-                <div class="row g-3 mb-4">
-                  <div class="col-md-6">
-                    <label class="form-label">Pendidikan Terakhir</label>
-                    <select class="form-select" required>
-                      <option selected disabled>Pilih...</option>
-                      <option>SMA/Sederajat</option>
-                      <option>D1</option>
-                      <option>D3</option>
-                      <option>S1</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Jurusan</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Jurusan/Prodi"
-                    />
-                  </div>
+                <div class="col-md-6">
+                  <label>No. Telepon / WhatsApp</label>
+                  <input type="tel" class="form-control" id="telepon" required />
                 </div>
-
-                <!-- Program -->
-                <h5
-                  class="mb-3 text-muted text-uppercase"
-                  style="font-size: 0.8rem; letter-spacing: 1px"
-                >
-                  Program Pilihan
-                </h5>
-                <div class="row g-3 mb-4">
-                  <div class="col-md-6">
-                    <label class="form-label">Program yang Diminati</label>
-                    <select class="form-select" required>
-                      <option selected disabled>Pilih Program...</option>
-                      <option>JLPT Intensif</option>
-                      <option>Pelatihan Kaigo</option>
-                      <option>Pelatihan Industri</option>
-                      <option>Tokutei Ginou</option>
-                      <option>Ginou Jisshusei (Magang)</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Kemampuan Bahasa Jepang</label>
-                    <select class="form-select">
-                      <option selected disabled>Pilih Level...</option>
-                      <option>Belum Bisa</option>
-                      <option>N5</option>
-                      <option>N4</option>
-                      <option>N3</option>
-                      <option>N2 ke atas</option>
-                    </select>
-                  </div>
+                <div class="col-12">
+                  <label>Alamat Lengkap</label>
+                  <textarea id="alamat" class="form-control" rows="3" required></textarea>
                 </div>
+              </div>
 
-                <!-- Agreement -->
-                <div class="form-check mb-4">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="agree"
-                    required
-                  />
-                  <label class="form-check-label small text-muted" for="agree">
-                    Saya menyatakan data yang diisi adalah benar dan bersedia
-                    mengikuti proses seleksi.
-                  </label>
-                </div>
+              <h4 class="section-title">Program</h4>
+              <div class="mb-3">
+                <label>Pilih Program</label>
+                <select class="form-select" id="program" required disabled>
+                  <option value="">Pilih Program</option>
+                  <option value="Kursus Intensif" selected>Kursus Bahasa Jepang Intensif</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label>Motivasi Mengikuti Program</label>
+                <textarea id="motivasi" class="form-control" rows="3" required></textarea>
+              </div>
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                  <button type="submit" class="btn btn-submit px-5">
-                    Kirim Pendaftaran
-                  </button>
-                </div>
-              </form>
-            </div>
+              <div class="form-check my-3">
+                <input type="checkbox" class="form-check-input" id="konfirmasi" required />
+                <label class="form-check-label" for="konfirmasi">Saya menyatakan data yang saya isi benar dan siap mengikuti seleksi LPK Yukki Gakkou.</label>
+              </div>
 
-            <div class="text-center mt-4">
-              <p class="text-muted small">
-                Ada pertanyaan?
-                <a
-                  href="https://wa.me/628xxxxxxxxxx"
-                  class="text-danger fw-bold"
-                  >Hubungi kami via WhatsApp</a
-                >
-              </p>
-            </div>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                <button type="reset" class="btn btn-outline-secondary me-md-2">Reset</button>
+                <button type="submit" class="btn btn-primary">Kirim via WhatsApp</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -356,11 +684,67 @@
 
     <!-- Footer -->
     <footer class="bg-dark py-4 text-white-50 mt-5">
-      <div class="container text-center small">
-        &copy; 2024 LPK Yuuki Gakkou. All Rights Reserved.
-      </div>
+      <div class="container text-center small">&copy; 2026 LPK Yuuki Gakkou. All Rights Reserved.</div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.getElementById("registrationForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const nama = document.getElementById("namaLengkap").value;
+        const tempat = document.getElementById("tempatLahir").value;
+        const tanggal = document.getElementById("tanggalLahir").value;
+        const gender = document.getElementById("jenisKelamin").value;
+        const email = document.getElementById("email").value;
+        const telepon = document.getElementById("telepon").value;
+        const alamat = document.getElementById("alamat").value;
+        const program = document.getElementById("program").value;
+        const motivasi = document.getElementById("motivasi").value;
+
+        const msg =
+          `Halo, saya ingin mendaftar di *LPK Yukki Gakkou*%0A%0A` +
+          `Nama: ${nama}%0ATempat Lahir: ${tempat}%0ATanggal Lahir: ${tanggal}%0AJenis Kelamin: ${gender}%0A%0A` +
+          `Email: ${email}%0ATelepon: ${telepon}%0AAlamat: ${alamat}%0A%0A` +
+          `Program: ${program}%0AMotivasi: ${motivasi}%0A%0ATerima kasih.`;
+
+        window.open(`https://wa.me/6282118717338?text=${msg}`, "_blank");
+        alert("Form terkirim! Anda akan diarahkan ke WhatsApp.");
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar");
+
+        // Navbar scroll
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 20) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Reveal observer
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("visible");
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -30px 0px" },
+        );
+
+        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+        // close mobile menu on link click
+        const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+        const collapse = document.querySelector(".navbar-collapse");
+        navLinks.forEach((link) =>
+          link.addEventListener("click", () => {
+            if (collapse.classList.contains("show")) new bootstrap.Collapse(collapse).hide();
+          }),
+        );
+      });
+    </script>
   </body>
 </html>
