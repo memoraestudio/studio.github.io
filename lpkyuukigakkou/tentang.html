@@ -346,6 +346,37 @@
         font-weight: 600;
       }
 
+      .cert-preview-scroll {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        scrollbar-width: thin;
+      }
+
+      .cert-preview-scroll img {
+        height: 80px;
+        width: 20%;
+        border-radius: 6px;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .cert-preview-scroll img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Scrollbar styling */
+      .cert-preview-scroll::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      .cert-preview-scroll::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 10px;
+      }
+
       .org-modal .modal-content {
         background: #121212;
         border: 1px solid #242424;
@@ -525,6 +556,99 @@
           background: var(--accent);
         }
       }
+
+      /* Mobile overflow fixes */
+      @media (max-width: 768.98px) {
+        body {
+          overflow-x: hidden;
+        }
+
+        .navbar {
+          padding-left: 0.5rem !important;
+          padding-right: 0.5rem !important;
+        }
+
+        .navbar .container-fluid {
+          padding-left: 0.5rem !important;
+          padding-right: 0.5rem !important;
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .navbar-brand {
+          min-width: 0;
+          max-width: calc(100% - 56px);
+        }
+
+        .navbar-brand .rounded-circle {
+          width: 56px !important;
+          height: 56px !important;
+          flex: 0 0 56px;
+        }
+
+        .navbar-brand .rounded-circle img {
+          width: 56px !important;
+          height: 56px !important;
+          object-fit: contain;
+        }
+
+        .navbar-brand h1 {
+          font-size: 14px !important;
+          line-height: 1.15;
+        }
+
+        .navbar-collapse {
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .navbar-collapse .btn {
+          width: 100%;
+          margin-top: 0.5rem;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+        }
+
+        .navbar-nav .nav-link {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+
+        .footer .container {
+          overflow: hidden;
+        }
+
+        .footer .d-flex.align-items-center.gap-3 {
+          flex-wrap: wrap;
+        }
+
+        .footer .bg-white.rounded-circle {
+          width: 56px !important;
+          height: 56px !important;
+          flex: 0 0 56px;
+        }
+
+        .footer .bg-white.rounded-circle img {
+          width: 56px !important;
+          height: 56px !important;
+        }
+
+        .footer h3 {
+          font-size: 1.05rem !important;
+          line-height: 1.25;
+        }
+
+        .footer li.d-flex {
+          align-items: flex-start;
+          gap: 0.5rem !important;
+        }
+
+        .footer li span,
+        .footer li a {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+      }
     </style>
   </head>
   <body class="pattern-bg">
@@ -554,11 +678,11 @@
               <a class="nav-link" href="legalitas.html">Legalitas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="dokumentasi.html">Dokumentasi</a>
+              <a class="nav-link" href="dokumentasi.html">Galeri</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="testimoni.html">Testimoni</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link active" href="tentang.html">Tentang Kami</a>
             </li>
@@ -680,13 +804,16 @@
                   data-bs-toggle="modal"
                   data-bs-target="#orgCertModal"
                   data-cert-title="Sertifikat IMAM SAEFULLOH"
-                  data-cert-images="img/certifcate_imam.jpg|img/certificate_imam_2.jpg|img/certificate_imam_3.jpg"
+                  data-cert-images="img/certificate_imam_1.jpg|img/certificate_imam_2.jpg|img/certificate_imam_3.jpg|img/certificate_imam_n3.jpg"
                 >
-                  <img src="img/certifcate_imam.jpg" alt="Sertifikat Imam Saefulloh" class="cert-preview-img" />
-                  <img src="img/certificate_imam_2.jpg" alt="Sertifikat Imam Saefulloh" class="cert-preview-img" />
-                  <img src="img/certificate_imam_3.jpg" alt="Sertifikat Imam Saefulloh" class="cert-preview-img" />
-                  <span class="cert-preview-label">Lihat Sertifikat (3 Foto)</span>
+                  <div class="cert-preview-scroll">
+                    <img src="img/certificate_imam_1.jpg" alt="Sertifikat Imam Saefulloh" class="cert-preview-img" />
+                    <img src="img/certificate_imam_2.jpg" alt="Sertifikat Imam Saefulloh" class="cert-preview-img" />
+                    <img src="img/certificate_imam_3.jpg" alt="Sertifikat Imam Saefulloh" class="cert-preview-img" />
+                    <img src="img/certificate_imam_n3.jpg" alt="Sertifikat Imam Saefulloh" class="cert-preview-img" />
+                  </div>
                 </button>
+                <span class="cert-preview-label">Lihat Sertifikat</span>
               </div>
             </div>
           </div>
@@ -711,13 +838,29 @@
             </div>
           </div>
 
-          <div class="col-12 reveal reveal-delay-2">
+          <div class="col-12 reveal">
             <div class="org-card-wide">
-              <img src="img/default.jpg" alt="Colin" class="org-photo" />
+              <img src="img/colin.png" alt="Imam Saefulloh" class="org-photo" />
               <div class="org-body">
                 <span class="org-role">Manager</span>
-                <h4 class="font-display fs-3 fw-semibold mb-2" style="font-family: &quot;Cormorant Garamond&quot;, serif">COLIN</h4>
-                <p class="text-muted mb-0">Bertanggung jawab atas manajemen program, target, dan kualitas layanan pelatihan.</p>
+                <h4 class="font-display fs-3 fw-semibold mb-2" style="font-family: &quot;Cormorant Garamond&quot;, serif">COLIN RAHMAT PRASETYANTO</h4>
+                <p class="text-muted mb-3">Bertanggung jawab atas manajemen program, target, dan kualitas layanan pelatihan.</p>
+                <button
+                  class="cert-preview-btn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#orgCertModal"
+                  data-cert-title="Sertifikat COLIN RAHMAT PRASETYANTO"
+                  data-cert-images="img/certificate_colin_1.jpg|img/certificate_colin_2.jpg|img/certificate_colin_3.jpg|img/certificate_colin_4.jpg"
+                >
+                  <div class="cert-preview-scroll">
+                    <img src="img/certificate_colin_1.jpg" alt="Sertifikat COLIN RAHMAT PRASETYANTO" class="cert-preview-img" />
+                    <img src="img/certificate_colin_2.jpg" alt="Sertifikat COLIN RAHMAT PRASETYANTO" class="cert-preview-img" />
+                    <img src="img/certificate_colin_3.jpg" alt="Sertifikat COLIN RAHMAT PRASETYANTO" class="cert-preview-img" />
+                    <img src="img/certificate_colin_4.jpg" alt="Sertifikat COLIN RAHMAT PRASETYANTO" class="cert-preview-img" />
+                  </div>
+                </button>
+                <span class="cert-preview-label">Lihat Sertifikat</span>
               </div>
             </div>
           </div>
@@ -773,43 +916,22 @@
           <div class="col-md-6 col-lg-4 reveal">
             <div class="facility-card">
               <i class="bi bi-building"></i>
-              <h4>Ruang Kelas Modern</h4>
-              <p>Dilengkapi AC, proyektor, dan kapasitas 20 siswa per kelas</p>
+              <h4>Ruang Kelas</h4>
+              <p>Kapasitas 20 siswa per kelas</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
             <div class="facility-card">
               <i class="bi bi-house-door"></i>
               <h4>Asrama Peserta</h4>
-              <p>Asrama nyaman dengan kapasitas 100 orang dan fasilitas lengkap</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
-            <div class="facility-card">
-              <i class="bi bi-pc-display"></i>
-              <h4>Lab Komputer</h4>
-              <p>Lab komputer untuk pembelajaran digital dan ujian online</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal">
-            <div class="facility-card">
-              <i class="bi bi-book"></i>
-              <h4>Perpustakaan</h4>
-              <p>Koleksi buku bahasa Jepang dan materi persiapan ujian</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 reveal reveal-delay-1">
-            <div class="facility-card">
-              <i class="bi bi-heart-pulse"></i>
-              <h4>Ruang Praktik Kaigo</h4>
-              <p>Simulasi ruang perawatan lengkap dengan peralatan medis</p>
+              <p>Asrama nyaman dengan fasilitas lengkap</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 reveal reveal-delay-2">
             <div class="facility-card">
               <i class="bi bi-cup-hot"></i>
-              <h4>Dapur & Kantin</h4>
-              <p>Fasilitas makan dengan menu bergizi untuk peserta asrama</p>
+              <h4>Fasilitas Peserta Asrama</h4>
+              <p>Dapur, Gerasi, WC</p>
             </div>
           </div>
         </div>
@@ -835,6 +957,7 @@
     </section> -->
 
     <!-- Footer (sama persis) -->
+    <!-- Footer -->
     <footer class="footer py-5">
       <div class="container">
         <div class="row g-5 mb-4">
@@ -854,39 +977,33 @@
                 <a href="index.html" class="footer-link">Beranda</a>
               </li>
               <li class="mb-2">
-                <a href="program.html" class="footer-link">Program</a>
-              </li>
-              <li class="mb-2">
                 <a href="legalitas.html" class="footer-link">Legalitas</a>
               </li>
               <li class="mb-2">
-                <a href="dokumentasi.html" class="footer-link">Dokumentasi</a>
+                <a href="dokumentasi.html" class="footer-link">Galeri</a>
+              </li>
+              <!-- <li class="mb-2">
+                <a href="testimoni.html" class="footer-link">Testimoni</a>
+              </li> -->
+              <li class="mb-2">
+                <a href="tentang.html" class="footer-link">Tentang Kami</a>
               </li>
             </ul>
           </div>
           <div class="col-6 col-md-3 col-lg-2">
-            <h4 class="text-white fs-6 fw-semibold mb-4">Program</h4>
-            <ul class="list-unstyled">
-              <li class="mb-2">
-                <a href="#" class="footer-link">JLPT Intensif</a>
-              </li>
-              <li class="mb-2"><a href="#" class="footer-link">Kaigo</a></li>
-              <li class="mb-2"><a href="#" class="footer-link">Industri</a></li>
-              <li class="mb-2">
-                <a href="#" class="footer-link">Tokutei Ginou</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-4">
             <h4 class="text-white fs-6 fw-semibold mb-4">Kontak</h4>
             <ul class="list-unstyled">
               <li class="d-flex gap-3 mb-3">
                 <i class="bi bi-geo-alt text-accent"></i>
-                <span class="small text-white-50">Jl. Contoh No. 123, Kota</span>
+                <span class="small text-white-50">Jalan Raya Pangandaran Dusun Sindangherang Kecamatan Padaherang</span>
               </li>
               <li class="d-flex gap-3 mb-3">
                 <i class="bi bi-envelope text-accent"></i>
                 <a href="mailto:yuukigakkou@gmail.com" class="footer-link">yuukigakkou@gmail.com</a>
+              </li>
+              <li class="d-flex gap-3 mb-3">
+                <i class="bi bi-telephone text-accent"></i>
+                <span class="small text-white-50">0821-1871-7338</span>
               </li>
             </ul>
           </div>

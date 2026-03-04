@@ -552,6 +552,99 @@
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(155, 44, 44, 0.3);
       }
+    
+      /* Mobile overflow fixes */
+      @media (max-width: 768.98px) {
+        body {
+          overflow-x: hidden;
+        }
+
+        .navbar {
+          padding-left: 0.5rem !important;
+          padding-right: 0.5rem !important;
+        }
+
+        .navbar .container-fluid {
+          padding-left: 0.5rem !important;
+          padding-right: 0.5rem !important;
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .navbar-brand {
+          min-width: 0;
+          max-width: calc(100% - 56px);
+        }
+
+        .navbar-brand .rounded-circle {
+          width: 56px !important;
+          height: 56px !important;
+          flex: 0 0 56px;
+        }
+
+        .navbar-brand .rounded-circle img {
+          width: 56px !important;
+          height: 56px !important;
+          object-fit: contain;
+        }
+
+        .navbar-brand h1 {
+          font-size: 14px !important;
+          line-height: 1.15;
+        }
+
+        .navbar-collapse {
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .navbar-collapse .btn {
+          width: 100%;
+          margin-top: 0.5rem;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+        }
+
+        .navbar-nav .nav-link {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+
+        .footer .container {
+          overflow: hidden;
+        }
+
+        .footer .d-flex.align-items-center.gap-3 {
+          flex-wrap: wrap;
+        }
+
+        .footer .bg-white.rounded-circle {
+          width: 56px !important;
+          height: 56px !important;
+          flex: 0 0 56px;
+        }
+
+        .footer .bg-white.rounded-circle img {
+          width: 56px !important;
+          height: 56px !important;
+        }
+
+        .footer h3 {
+          font-size: 1.05rem !important;
+          line-height: 1.25;
+        }
+
+        .footer li.d-flex {
+          align-items: flex-start;
+          gap: 0.5rem !important;
+        }
+
+        .footer li span,
+        .footer li a {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+      }
     </style>
   </head>
   <body>
@@ -583,9 +676,9 @@
             <li class="nav-item">
               <a class="nav-link active" href="dokumentasi.html">Dokumentasi</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="testimoni.html">Testimoni</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="tentang.html">Tentang Kami</a>
             </li>
@@ -748,3 +841,4 @@
     </script>
   </body>
 </html>
+

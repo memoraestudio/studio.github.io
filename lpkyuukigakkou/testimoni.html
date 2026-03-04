@@ -391,6 +391,99 @@
           background: var(--accent);
         }
       }
+
+      /* Mobile overflow fixes */
+      @media (max-width: 768.98px) {
+        body {
+          overflow-x: hidden;
+        }
+
+        .navbar {
+          padding-left: 0.5rem !important;
+          padding-right: 0.5rem !important;
+        }
+
+        .navbar .container-fluid {
+          padding-left: 0.5rem !important;
+          padding-right: 0.5rem !important;
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .navbar-brand {
+          min-width: 0;
+          max-width: calc(100% - 56px);
+        }
+
+        .navbar-brand .rounded-circle {
+          width: 56px !important;
+          height: 56px !important;
+          flex: 0 0 56px;
+        }
+
+        .navbar-brand .rounded-circle img {
+          width: 56px !important;
+          height: 56px !important;
+          object-fit: contain;
+        }
+
+        .navbar-brand h1 {
+          font-size: 14px !important;
+          line-height: 1.15;
+        }
+
+        .navbar-collapse {
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .navbar-collapse .btn {
+          width: 100%;
+          margin-top: 0.5rem;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+        }
+
+        .navbar-nav .nav-link {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+
+        .footer .container {
+          overflow: hidden;
+        }
+
+        .footer .d-flex.align-items-center.gap-3 {
+          flex-wrap: wrap;
+        }
+
+        .footer .bg-white.rounded-circle {
+          width: 56px !important;
+          height: 56px !important;
+          flex: 0 0 56px;
+        }
+
+        .footer .bg-white.rounded-circle img {
+          width: 56px !important;
+          height: 56px !important;
+        }
+
+        .footer h3 {
+          font-size: 1.05rem !important;
+          line-height: 1.25;
+        }
+
+        .footer li.d-flex {
+          align-items: flex-start;
+          gap: 0.5rem !important;
+        }
+
+        .footer li span,
+        .footer li a {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+      }
     </style>
   </head>
   <body class="pattern-bg">
@@ -420,11 +513,11 @@
               <a class="nav-link" href="legalitas.html">Legalitas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="dokumentasi.html">Dokumentasi</a>
+              <a class="nav-link" href="dokumentasi.html">Galeri</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link active" href="testimoni.html">Testimoni</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="tentang.html">Tentang Kami</a>
             </li>
@@ -564,6 +657,7 @@
     </section>
 
     <!-- Footer (sama persis) -->
+    <!-- Footer -->
     <footer class="footer py-5">
       <div class="container">
         <div class="row g-5 mb-4">
@@ -586,39 +680,30 @@
                 <a href="legalitas.html" class="footer-link">Legalitas</a>
               </li>
               <li class="mb-2">
-                <a href="dokumentasi.html" class="footer-link">Dokumentasi</a>
+                <a href="dokumentasi.html" class="footer-link">Galeri</a>
               </li>
-              <li class="mb-2">
+              <!-- <li class="mb-2">
                 <a href="testimoni.html" class="footer-link">Testimoni</a>
-              </li>
+              </li> -->
               <li class="mb-2">
                 <a href="tentang.html" class="footer-link">Tentang Kami</a>
               </li>
             </ul>
           </div>
           <div class="col-6 col-md-3 col-lg-2">
-            <h4 class="text-white fs-6 fw-semibold mb-4">Program</h4>
-            <ul class="list-unstyled">
-              <li class="mb-2">
-                <a href="#" class="footer-link">JLPT Intensif</a>
-              </li>
-              <li class="mb-2"><a href="#" class="footer-link">Kaigo</a></li>
-              <li class="mb-2"><a href="#" class="footer-link">Industri</a></li>
-              <li class="mb-2">
-                <a href="#" class="footer-link">Tokutei Ginou</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-4">
             <h4 class="text-white fs-6 fw-semibold mb-4">Kontak</h4>
             <ul class="list-unstyled">
               <li class="d-flex gap-3 mb-3">
                 <i class="bi bi-geo-alt text-accent"></i>
-                <span class="small text-white-50">Jl. Contoh No. 123, Kota</span>
+                <span class="small text-white-50">Jalan Raya Pangandaran Dusun Sindangherang Kecamatan Padaherang</span>
               </li>
               <li class="d-flex gap-3 mb-3">
                 <i class="bi bi-envelope text-accent"></i>
                 <a href="mailto:yuukigakkou@gmail.com" class="footer-link">yuukigakkou@gmail.com</a>
+              </li>
+              <li class="d-flex gap-3 mb-3">
+                <i class="bi bi-telephone text-accent"></i>
+                <span class="small text-white-50">0821-1871-7338</span>
               </li>
             </ul>
           </div>

@@ -320,7 +320,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.95);
+        background: #000000c9;
         z-index: 9999;
         display: none;
         align-items: center;
@@ -348,7 +348,7 @@
 
       .lightbox-close {
         position: absolute;
-        top: -40px;
+        top: 0px;
         right: 0;
         color: white;
         font-size: 2rem;
@@ -492,6 +492,99 @@
           background: var(--accent);
         }
       }
+
+      /* Mobile overflow fixes */
+      @media (max-width: 768.98px) {
+        body {
+          overflow-x: hidden;
+        }
+
+        .navbar {
+          padding-left: 0.5rem !important;
+          padding-right: 0.5rem !important;
+        }
+
+        .navbar .container-fluid {
+          padding-left: 0.5rem !important;
+          padding-right: 0.5rem !important;
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .navbar-brand {
+          min-width: 0;
+          max-width: calc(100% - 56px);
+        }
+
+        .navbar-brand .rounded-circle {
+          width: 56px !important;
+          height: 56px !important;
+          flex: 0 0 56px;
+        }
+
+        .navbar-brand .rounded-circle img {
+          width: 56px !important;
+          height: 56px !important;
+          object-fit: contain;
+        }
+
+        .navbar-brand h1 {
+          font-size: 14px !important;
+          line-height: 1.15;
+        }
+
+        .navbar-collapse {
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .navbar-collapse .btn {
+          width: 100%;
+          margin-top: 0.5rem;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+        }
+
+        .navbar-nav .nav-link {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+
+        .footer .container {
+          overflow: hidden;
+        }
+
+        .footer .d-flex.align-items-center.gap-3 {
+          flex-wrap: wrap;
+        }
+
+        .footer .bg-white.rounded-circle {
+          width: 56px !important;
+          height: 56px !important;
+          flex: 0 0 56px;
+        }
+
+        .footer .bg-white.rounded-circle img {
+          width: 56px !important;
+          height: 56px !important;
+        }
+
+        .footer h3 {
+          font-size: 1.05rem !important;
+          line-height: 1.25;
+        }
+
+        .footer li.d-flex {
+          align-items: flex-start;
+          gap: 0.5rem !important;
+        }
+
+        .footer li span,
+        .footer li a {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+      }
     </style>
   </head>
   <body class="pattern-bg">
@@ -521,11 +614,11 @@
               <a class="nav-link" href="legalitas.html">Legalitas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="dokumentasi.html">Dokumentasi</a>
+              <a class="nav-link active" href="dokumentasi.html">Galeri</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="testimoni.html">Testimoni</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="tentang.html">Tentang Kami</a>
             </li>
@@ -542,8 +635,8 @@
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-content">
-        <span class="badge">MOMEN BERHARGA</span>
-        <h1>Dokumentasi Kegiatan</h1>
+        <span class="badge">Galeri</span>
+        <h1>Abadikan Moment Kehangatan</h1>
         <p class="mx-auto">Lihat suasana pelatihan, kelas, dan kegiatan bersama alumni kami.</p>
       </div>
     </section>
@@ -553,10 +646,9 @@
       <div class="container">
         <div class="d-flex flex-wrap justify-content-center gap-2" role="tablist">
           <button class="tab-btn active" data-tab="semua">Semua</button>
-          <button class="tab-btn" data-tab="kelas">Kegiatan Kelas</button>
+          <button class="tab-btn" data-tab="tempat">Tempat</button>
           <button class="tab-btn" data-tab="praktik">Praktik</button>
           <button class="tab-btn" data-tab="acara">Acara & Wisuda</button>
-          <button class="tab-btn" data-tab="fasilitas">Fasilitas</button>
         </div>
       </div>
     </div>
@@ -565,131 +657,44 @@
     <section class="section-padding px-3 px-lg-4">
       <div class="container">
         <div class="text-center reveal mb-5">
-          <span class="text-accent text-uppercase fw-semibold tracking-wider small">Galeri Kegiatan</span>
-          <h2 class="section-title">Abadikan Setiap Momen</h2>
+          <h2 class="section-title">Galeri</h2>
           <div class="accent-line-center"></div>
         </div>
 
         <div class="row g-4" id="gallery-grid">
-          <!-- Kelas 1 -->
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="kelas">
+          <div class="col-md-6 col-lg-4 gallery-item" data-category="tempat">
             <div class="gallery-card" data-index="0">
               <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" alt="Kelas Bahasa Jepang" loading="lazy" />
-              </div>
-              <div class="gallery-caption">
-                <h4>Kelas Bahasa Jepang Intensif</h4>
-                <p>Suasana kelas persiapan JLPT N4 dengan pengajar native.</p>
+                <img src="img/dapur.jpeg" alt="Kelas Bahasa Jepang" loading="lazy" />
               </div>
             </div>
           </div>
 
-          <!-- Praktik 1 -->
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="praktik">
+          <div class="col-md-6 col-lg-4 gallery-item" data-category="tempat">
             <div class="gallery-card" data-index="1">
               <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&q=80" alt="Praktik Kaigo" loading="lazy" />
-              </div>
-              <div class="gallery-caption">
-                <h4>Praktik Perawatan Lansia (Kaigo)</h4>
-                <p>Simulasi merawat lansia dengan peralatan medis standar.</p>
+                <img src="img/depan.jpeg" alt="Praktik Kaigo" loading="lazy" />
               </div>
             </div>
           </div>
 
-          <!-- Fasilitas 1 -->
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="fasilitas">
+          <div class="col-md-6 col-lg-4 gallery-item" data-category="tempat">
             <div class="gallery-card" data-index="2">
               <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80" alt="Ruang Kelas Modern" loading="lazy" />
-              </div>
-              <div class="gallery-caption">
-                <h4>Ruang Kelas Modern</h4>
-                <p>Kelas nyaman dengan AC, proyektor, dan akustik baik.</p>
+                <img src="img/ruangan_depan.jpeg" alt="Ruang Kelas Modern" loading="lazy" />
               </div>
             </div>
           </div>
 
-          <!-- Acara 1 -->
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="acara">
+          <div class="col-md-6 col-lg-4 gallery-item" data-category="tempat">
             <div class="gallery-card" data-index="3">
               <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" alt="Wisuda" loading="lazy" />
-              </div>
-              <div class="gallery-caption">
-                <h4>Wisuda Angkatan ke-12</h4>
-                <p>Acara kelulusan dan pelepasan peserta ke Jepang.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Kelas 2 -->
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="kelas">
-            <div class="gallery-card" data-index="4">
-              <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Diskusi Kelas" loading="lazy" />
-              </div>
-              <div class="gallery-caption">
-                <h4>Diskusi Interaktif</h4>
-                <p>Siswa berlatih percakapan bahasa Jepang sehari-hari.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Praktik 2 -->
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="praktik">
-            <div class="gallery-card" data-index="5">
-              <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" alt="Praktik Industri" loading="lazy" />
-              </div>
-              <div class="gallery-caption">
-                <h4>Pelatihan Teknik Industri</h4>
-                <p>Praktik perakitan dan safety prosedur ala pabrik Jepang.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Fasilitas 2 -->
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="fasilitas">
-            <div class="gallery-card" data-index="6">
-              <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80" alt="Ruang Komputer" loading="lazy" />
-              </div>
-              <div class="gallery-caption">
-                <h4>Lab Komputer & E-Learning</h4>
-                <p>Fasilitas untuk ujian online dan pembelajaran digital.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Acara 2 -->
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="acara">
-            <div class="gallery-card" data-index="7">
-              <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" alt="Kunjungan Industri" loading="lazy" />
-              </div>
-              <div class="gallery-caption">
-                <h4>Kunjungan ke Perusahaan Mitra</h4>
-                <p>Silaturahmi dengan perusahaan penerima magang di Jepang.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Kelas 3 -->
-          <div class="col-md-6 col-lg-4 gallery-item" data-category="kelas">
-            <div class="gallery-card" data-index="8">
-              <div class="img-wrapper">
-                <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&q=80" alt="Kelas Budaya" loading="lazy" />
-              </div>
-              <div class="gallery-caption">
-                <h4>Pengenalan Budaya Jepang</h4>
-                <p>Belajar etika, tata krama, dan kebiasaan kerja di Jepang.</p>
+                <img src="img/ruangan_kelas.jpeg" alt="Wisuda" loading="lazy" />
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- CTA Section -->
     <section class="section-padding bg-cream px-3 px-lg-4">
@@ -724,39 +729,33 @@
                 <a href="index.html" class="footer-link">Beranda</a>
               </li>
               <li class="mb-2">
-                <a href="program.html" class="footer-link">Program</a>
-              </li>
-              <li class="mb-2">
                 <a href="legalitas.html" class="footer-link">Legalitas</a>
               </li>
               <li class="mb-2">
-                <a href="dokumentasi.html" class="footer-link">Dokumentasi</a>
+                <a href="dokumentasi.html" class="footer-link">Galeri</a>
+              </li>
+              <!-- <li class="mb-2">
+                <a href="testimoni.html" class="footer-link">Testimoni</a>
+              </li> -->
+              <li class="mb-2">
+                <a href="tentang.html" class="footer-link">Tentang Kami</a>
               </li>
             </ul>
           </div>
           <div class="col-6 col-md-3 col-lg-2">
-            <h4 class="text-white fs-6 fw-semibold mb-4">Program</h4>
-            <ul class="list-unstyled">
-              <li class="mb-2">
-                <a href="#" class="footer-link">JLPT Intensif</a>
-              </li>
-              <li class="mb-2"><a href="#" class="footer-link">Kaigo</a></li>
-              <li class="mb-2"><a href="#" class="footer-link">Industri</a></li>
-              <li class="mb-2">
-                <a href="#" class="footer-link">Tokutei Ginou</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-6 col-lg-4">
             <h4 class="text-white fs-6 fw-semibold mb-4">Kontak</h4>
             <ul class="list-unstyled">
               <li class="d-flex gap-3 mb-3">
                 <i class="bi bi-geo-alt text-accent"></i>
-                <span class="small text-white-50">Jl. Contoh No. 123, Kota</span>
+                <span class="small text-white-50">Jalan Raya Pangandaran Dusun Sindangherang Kecamatan Padaherang</span>
               </li>
               <li class="d-flex gap-3 mb-3">
                 <i class="bi bi-envelope text-accent"></i>
                 <a href="mailto:yuukigakkou@gmail.com" class="footer-link">yuukigakkou@gmail.com</a>
+              </li>
+              <li class="d-flex gap-3 mb-3">
+                <i class="bi bi-telephone text-accent"></i>
+                <span class="small text-white-50">0821-1871-7338</span>
               </li>
             </ul>
           </div>
@@ -801,40 +800,20 @@
         let currentIndex = 0;
         const images = [
           {
-            src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80",
-            caption: "Kelas Bahasa Jepang Intensif - Suasana kelas persiapan JLPT N4 dengan pengajar native.",
+            src: "img/dapur.jpeg",
+            caption: "Ruang Dapur.",
           },
           {
-            src: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1200&q=80",
-            caption: "Praktik Perawatan Lansia (Kaigo) - Simulasi merawat lansia dengan peralatan medis standar.",
+            src: "img/depan.jpeg",
+            caption: "Halaman Depan.",
           },
           {
-            src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80",
-            caption: "Ruang Kelas Modern - Kelas nyaman dengan AC, proyektor, dan akustik baik.",
+            src: "img/ruangan_depan.jpeg",
+            caption: "Resepsionis.",
           },
           {
-            src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80",
-            caption: "Wisuda Angkatan ke-12 - Acara kelulusan dan pelepasan peserta ke Jepang.",
-          },
-          {
-            src: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80",
-            caption: "Diskusi Interaktif - Siswa berlatih percakapan bahasa Jepang sehari-hari.",
-          },
-          {
-            src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80",
-            caption: "Pelatihan Teknik Industri - Praktik perakitan dan safety prosedur ala pabrik Jepang.",
-          },
-          {
-            src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80",
-            caption: "Lab Komputer & E-Learning - Fasilitas untuk ujian online dan pembelajaran digital.",
-          },
-          {
-            src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80",
-            caption: "Kunjungan ke Perusahaan Mitra - Silaturahmi dengan perusahaan penerima magang di Jepang.",
-          },
-          {
-            src: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200&q=80",
-            caption: "Pengenalan Budaya Jepang - Belajar etika, tata krama, dan kebiasaan kerja di Jepang.",
+            src: "img/ruangan_kelas.jpeg",
+            caption: "Ruang Kelas.",
           },
         ];
 
@@ -931,3 +910,4 @@
     </script>
   </body>
 </html>
+
